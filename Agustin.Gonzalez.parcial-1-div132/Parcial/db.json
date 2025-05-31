@@ -1,0 +1,15 @@
+[
+  { "id": 1, "nombre": "kuronami", "precio": 2175, "img": "https://images.gamebanana.com/img/ss/mods/6653f38566b7b.jpg" },
+  { "id": 2, "nombre": "arandano", "precio": 5000, "img": "img/arandano.jpg" },
+  { "id": 3, "nombre": "banana", "precio": 3000, "img": "img/banana.jpg" },
+  { "id": 4, "nombre": "frambuesa", "precio": 4500, "img": "img/frambuesa.png" },
+  { "id": 5, "nombre": "frutilla", "precio": 4800, "img": "img/frutilla.jpg" },
+  { "id": 6, "nombre": "kiwi", "precio": 3900, "img": "img/kiwi.jpg" },
+  { "id": 7, "nombre": "mandarina", "precio": 3200, "img": "img/mandarina.jpg" },
+  { "id": 8, "nombre": "manzana", "precio": 3500, "img": "img/manzana.jpg" },
+  { "id": 9, "nombre": "naranja", "precio": 3300, "img": "img/naranja.jpg" },
+  { "id": 10, "nombre": "pera", "precio": 3700, "img": "img/pera.jpg" },
+  { "id": 11, "nombre": "pomelo amarillo", "precio": 4000, "img": "img/pomelo-amarillo.jpg" },
+  { "id": 12, "nombre": "pomelo rojo", "precio": 4100, "img": "img/pomelo-rojo.jpg" },
+  { "id": 13, "nombre": "sandía", "precio": 6800, "img": "img/sandia.jpg" }
+]
