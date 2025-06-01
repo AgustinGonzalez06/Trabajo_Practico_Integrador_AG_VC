@@ -13,14 +13,23 @@
 </head>
 <body>
     <div class="login-cont">
-        <h2>Iniciar sesión</h2> 
+        <h2>Registrate</h2> 
         <form class="login-form">
+            <input type="email" id="email" placeholder="Email" required>
+            <div class="checkbox-cont">
+            <input type="checkbox" id="promo" name="promo" />
+            <label for="promo" id="register">Quiero recibir notificaciones y promociones de la tienda.</label>
+            </div>
             <input type="text" id="usuario" placeholder="Usuario" required>
             <input type="password" id="contraseña" placeholder="Contraseña" required>
-            <button type="submit">Ingresar</button>
+            <button type="submit">Registrarse</button>
+            <div class="checkbox-cont">
+            <input type="checkbox" id="tyc" name="tyc" />
+            <a href="tyc.html" id="register">Acepto los terminos y condiciones.</a>
+            </div>
             <p class="error" id="errorMsg"></p>
         </form>
-        <a href="register.html" id="register">Regístrate</a>
+        <a href="login.html" id="register">Inicia sesion</a>
         
     </div>
 

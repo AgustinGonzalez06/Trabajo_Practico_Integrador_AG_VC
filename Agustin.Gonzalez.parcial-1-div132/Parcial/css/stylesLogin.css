@@ -1,0 +1,130 @@
+body {
+  font-family: 'Zain', sans-serif;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url('../img/loginBg.jpg');
+  background-size: cover;
+  user-select: none;
+}
+h2{
+  margin: 10px;
+  padding: 10px;
+}
+#register,
+#register:visited {
+  font-family: 'Zain', sans-serif;
+  font-weight: bold;
+  color: white !important;
+  text-decoration: none !important;
+  text-align: center;
+}
+.login-cont {
+  color: white;
+  text-align: center;
+  padding: 25px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
+.tyc-cont {
+  color: white;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+button {
+  background-color: #ff4655; /* rojo Valorant */
+  color: white;
+  border: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+input {
+  border: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 5px;
+  margin: 5px;
+  border-radius: 4px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espacio entre campos */
+}
+
+.login-form input,
+.login-form button {
+  padding: 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+}
+
+.login-form input {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.login-form button {
+  background-color: #ff4655;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.checkbox-cont {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  justify-content: center;
+  margin: auto; 
+  max-width: fit-content;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+} 
+/* .login-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 300px;
+}
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.login-container input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+.login-container button:hover {
+  background-color: #0056b3;
+}
+.error {
+  color: red;
+  font-size: 0.9em;
+  text-align: center;
+  margin-top: 10px;
+  height: 18px;
+} */
