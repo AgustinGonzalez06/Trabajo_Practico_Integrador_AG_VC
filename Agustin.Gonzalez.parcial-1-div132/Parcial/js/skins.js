@@ -1,117 +1,133 @@
 let skinsGlobal = [];
 let carrito = [];
-//punto 6
+
+// Guardar carrito en localStorage
 function guardarCarrito() {
-    localStorage.setItem("carrito", JSON.stringify(carrito));
+  localStorage.setItem("carrito", JSON.stringify(carrito));
 }
-// Función inicializadora
+
+// Cargar la app
 function init() {
-  // Aquí deben invocarse todas las funciones necesarias para que la aplicación comience a funcionar
-    // cargar productos
-    fetch("skins.json")
-        .then(res => res.json())
-        .then(skins => {
-            skinsGlobal = skins;
-            mostrarProductos(skinsGlobal);
-        })
-        .catch(error => {
-            console.error("Error al cargar productos:", error);
-        });
+  fetch("skins.json")
+    .then(res => res.json())
+    .then(skins => {
+      skinsGlobal = skins;
+      mostrarProductos(skinsGlobal);
+    })
+    .catch(error => {
+      console.error("Error al cargar productos:", error);
+    });
 
-    document.querySelector(".search-bar").addEventListener("keyup", filtro);
+  // Cargar carrito guardado
+  const carritoGuardado = localStorage.getItem("carrito");
+  if (carritoGuardado) {
+    carrito = JSON.parse(carritoGuardado);
+    renderizarCarrito();
+  }
 
-    // cargar carrito punto 6
-    const carritoGuardado = localStorage.getItem("carrito");
-    if (carritoGuardado) {
-        carrito = JSON.parse(carritoGuardado);
-        renderizarCarrito();
+  // Abrir/cerrar menú carrito
+  const cartButton = document.getElementById("cart-button");
+  const cartDropdown = document.getElementById("cart-dropdown");
+
+  cartButton.addEventListener("click", (event) => {
+    event.stopPropagation(); // Evita que el click se propague y cierre el menú
+    cartDropdown.classList.toggle("hidden");
+  });
+
+  // Cerrar menú si se clickea fuera del menú y del botón
+  document.addEventListener("click", (event) => {
+    if (
+      !cartDropdown.classList.contains("hidden") &&
+      !cartDropdown.contains(event.target) &&
+      event.target !== cartButton
+    ) {
+      cartDropdown.classList.add("hidden");
     }
+  });
 }
 
-//punto 3
+// Mostrar productos en pantalla
 function mostrarProductos(lista) {
-    const container = document.querySelector(".product-grid"); // contenedor de productos
-    container.innerHTML = ""; // limpiar contenedor
+  const container = document.querySelector(".product-grid");
+  container.innerHTML = "";
 
-    lista.forEach(skin => {
-        const card = document.createElement("div");
-        card.classList.add("product-card");
+  lista.forEach(skin => {
+    const card = document.createElement("div");
+    card.classList.add("product-card");
 
-        card.innerHTML = `
-            <img src="${skin.img}" alt="${skin.nombre}">
-            <h3>${skin.nombre}</h3>
-            <p>$${skin.precio}</p>
-            <button class="add-to-cart">Agregar a carrito</button>
-        `;
+    card.innerHTML = `
+      <img src="${skin.img}" alt="${skin.nombre}">
+      <h3>${skin.nombre}</h3>
+      <p>$${skin.precio.toFixed(2)}</p>
+      <button class="add-to-cart">Agregar a carrito</button>
+    `;
 
-        // agregar al carrito
-        const boton = card.querySelector(".add-to-cart");
-        boton.addEventListener("click", () => agregarAlCarrito(skin));
-
-        container.appendChild(card);
+    const boton = card.querySelector(".add-to-cart");
+    boton.addEventListener("click", (event) => {
+      event.stopPropagation(); // No cerrar menú al click
+      agregarAlCarrito(skin);
     });
+
+    container.appendChild(card);
+  });
 }
 
-//punto 4
-function filtro(e) {
-    const texto = e.target.value.toLowerCase();
-    const filtradas = frutasGlobal.filter(fruta =>
-        fruta.nombre.toLowerCase().includes(texto)
-    );
-    mostrarProductos(filtradas);
-}
-
-// punto 5
+// Agrega producto al carrito, sumando cantidades si ya existe
 function agregarAlCarrito(producto) {
-    carrito.push(producto);
-    guardarCarrito();
-    renderizarCarrito();
+  // Buscar si producto ya existe en carrito
+  const existente = carrito.find(item => item.id === producto.id);
+  if (existente) {
+    existente.cantidad += 1;
+  } else {
+    carrito.push({ ...producto, cantidad: 1 });
+  }
+  guardarCarrito();
+  renderizarCarrito();
 }
 
-
+// Renderizar carrito con cantidades
 function renderizarCarrito() {
-    const contenedor = document.getElementById("cart-items");
-    contenedor.innerHTML = ""; // limpiar contenedro
-    if (carrito.length === 0) {
-        contenedor.innerHTML = "<p>No hay elementos en el carrito.</p>";
-        actualizarTotal();
-        return;
-    }
+  const contenedor = document.getElementById("cart-items");
+  contenedor.innerHTML = "";
 
-    const ul = document.createElement("ul");
+  if (carrito.length === 0) {
+    contenedor.innerHTML = "<p>No hay elementos en el carrito.</p>";
+    actualizarTotal();
+    return;
+  }
 
-    carrito.forEach((item, index) => {
-        const li = document.createElement("li");
-        li.classList.add("item-block");
+  carrito.forEach((item, index) => {
+    const li = document.createElement("li");
+    li.classList.add("item-block");
+    li.innerHTML = `
+      <p class="item-name">${item.nombre} x${item.cantidad} - $${(item.precio * item.cantidad).toFixed(2)}</p>
+      <button class="delete-button">Eliminar</button>
+    `;
 
-        li.innerHTML = `
-            <p class="item-name">${item.nombre} - $${item.precio}</p>
-            <button class="delete-button">Eliminar</button>
-        `;
-
-        li.querySelector(".delete-button").addEventListener("click", () => {
-            eliminarDelCarrito(index);
-        });
-
-        ul.appendChild(li);
+    const btnEliminar = li.querySelector(".delete-button");
+    btnEliminar.addEventListener("click", (event) => {
+      event.stopPropagation(); // No cerrar menú al eliminar
+      eliminarDelCarrito(index);
     });
 
-    contenedor.appendChild(ul);
-    actualizarTotal();
+    contenedor.appendChild(li);
+  });
+
+  actualizarTotal();
 }
 
-
+// Eliminar item completo del carrito
 function eliminarDelCarrito(index) {
-    carrito.splice(index, 1);
-    guardarCarrito();
-    renderizarCarrito();
+  carrito.splice(index, 1);
+  guardarCarrito();
+  renderizarCarrito();
 }
 
+// Actualizar total
 function actualizarTotal() {
-    const total = carrito.reduce((sum, item) => sum + item.precio, 0);
-    document.getElementById("total-price").textContent = `$${total.toFixed(2)}`;
-    document.getElementById("cart-count").textContent = carrito.length;
+  const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
+  document.getElementById("total-price").textContent = `$${total.toFixed(2)}`;
 }
 
-
+// Inicializar app cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", init);

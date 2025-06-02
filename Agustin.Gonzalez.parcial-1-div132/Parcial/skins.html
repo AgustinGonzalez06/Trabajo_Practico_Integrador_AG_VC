@@ -2,55 +2,38 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Skins</title>
   <link rel="stylesheet" href="css/stylesMI.css" />
   <link rel="icon" href="favicon.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="favicon.png" alt="Logo ValorantTienda">
-            <h2>ValorantTienda</h2>
-        </div>
-        <nav>
-            <a href="" class="nav-link">Inicio</a>
-            <a href="" class="nav-link">Carrito</a>
-        </nav>
-        <div class="cart-total">
-        <p>Total: <span id="total-price">$0.00</span></p>
-        </div>
+  <header>
+    <div class="logo">
+      <img src="favicon.png" alt="Logo ValorantTienda" />
+      <h2>ValorantTienda</h2>
+    </div>
+    <nav>
+      <a href="#" class="nav-link">Inicio</a>
+      <button id="cart-button" class="nav-link">Carrito</button>
+    </nav>
 
-        <p>Valentin Corallo   Agustin Gonzales</p>
-    </header>
-    <!-- Contenedor principal -->
-    <main>
+    <div id="cart-dropdown" class="cart-dropdown hidden">
+      <ul id="cart-items"></ul>
+      <p class="cart-total">Total: <span id="total-price">$0.00</span></p>
+    </div>
+
+    <p>Valentin Corallo   Agustin Gonzales</p>
+  </header>
+
+  <main>
     <section class="products-section">
-
-        <h2>Skins</h2>
-        <div class="product-grid">
-
-        </div>
+      <h2>Skins</h2>
+      <div class="product-grid"></div>
     </section>
+  </main>
 
-
-    <!-- Sección carrito -->
-    <section class="cart-section">
-
-        <h2>Carrito</h2>
-
-        <div id="cart-items">
-            <p>No hay elementos en el carrito.</p>
-        </div>
-
-        <div class="cart-total">
-            <p>Total: <span id="total-price">$0.00</span></p>
-        </div>
-
-    </section>
-    </main>
-
-<script src="js/skins.js"></script>
+  <script src="js/skins.js"></script>
 </body>
 </html>
