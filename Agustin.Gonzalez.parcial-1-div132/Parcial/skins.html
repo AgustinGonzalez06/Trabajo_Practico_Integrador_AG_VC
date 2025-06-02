@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Menú de Ítems</title>
+  <title>Skins</title>
   <link rel="stylesheet" href="css/stylesMI.css" />
   <link rel="icon" href="favicon.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
@@ -24,17 +24,33 @@
 
         <p>Valentin Corallo   Agustin Gonzales</p>
     </header>
-    <div class="container">
-    <h1 class="titulo">SELECCIONA TU OPCIÓN</h1>
+    <!-- Contenedor principal -->
+    <main>
+    <section class="products-section">
 
-    <div class="menu">
-    <button id="btnVP" class="boton">Valorant Points</button>
-    <button id="btnSkins" class="boton">Skins</button>
-    </div>
+        <h2>Skins</h2>
+        <div class="product-grid">
 
-    <div id="contenido" class="contenido"></div>
-    </div>
+        </div>
+    </section>
 
-<script src="js/scriptMI.js"></script>
+
+    <!-- Sección carrito -->
+    <section class="cart-section">
+
+        <h2>Carrito</h2>
+
+        <div id="cart-items">
+            <p>No hay elementos en el carrito.</p>
+        </div>
+
+        <div class="cart-total">
+            <p>Total: <span id="total-price">$0.00</span></p>
+        </div>
+
+    </section>
+    </main>
+
+<script src="js/skins.js"></script>
 </body>
 </html>

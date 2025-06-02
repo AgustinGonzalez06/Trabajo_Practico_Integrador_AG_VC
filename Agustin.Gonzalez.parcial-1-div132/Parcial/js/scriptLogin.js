@@ -16,7 +16,7 @@ function login(event) {
   );
 
   if (usuarioValido) {
-    window.location.href = "index.html";
+    window.location.href = "MI.html";
   } else {
     
     alert("Usuario o contraseña incorrectos");

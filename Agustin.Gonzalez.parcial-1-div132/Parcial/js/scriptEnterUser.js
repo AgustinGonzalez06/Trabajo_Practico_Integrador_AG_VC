@@ -5,7 +5,7 @@ function login(event) {
   const inputUsuario = document.getElementById("nombre").value;
 
   if (inputUsuario) {
-    window.location.href = "index.html";
+    window.location.href = "MI.html";
   } else {
     
     alert("Ingrese su nombre");
