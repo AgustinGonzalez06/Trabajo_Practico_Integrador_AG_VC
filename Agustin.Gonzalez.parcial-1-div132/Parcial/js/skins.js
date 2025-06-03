@@ -118,9 +118,15 @@ function renderizarCarrito() {
 
 // Eliminar item completo del carrito
 function eliminarDelCarrito(index) {
-  carrito.splice(index, 1);
+    if (index >= 0 && index < carrito.length) {
+    if (carrito[index].cantidad > 1) {
+      carrito[index].cantidad -= 1;
+    } else {
+      carrito.splice(index, 1); // Eliminar solo si queda 1 unidad
+    }
   guardarCarrito();
   renderizarCarrito();
+}
 }
 
 // Actualizar total

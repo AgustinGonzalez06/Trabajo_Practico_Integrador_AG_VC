@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="css/stylesMI.css" />
   <link rel="icon" href="favicon.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
 </head>
 <body>
   <header>
@@ -33,6 +35,47 @@
       <div class="product-grid"></div>
     </section>
   </main>
+
+  <div id="ContentItemCarrusel"> <!-- Contenedor principal del carrusel -->
+  <div class="itemCarrusel"><!-- Ítem 1 del carrusel -->
+    <div class="tarjetaCarrusel" id="tarjetaCarrusel-1"> <!-- objeto de tarjeta con id especifico para identificar nro de TC -->
+      a<!-- aca va la imagen que se muestra en el carrucel, mas especifico el elemenot "A"-->
+    </div>
+    <div class="flechasCarrusel">
+      <a href="#tarjetaCarrusel-3"><!-- linea que sirve para que la flecha funcione como una reversa-->
+      <span class="material-symbols-outlined">arrow_back</span>
+      </a>
+      <a href="#tarjetaCarrusel-2"><!-- linea que sirve para que la flecha funcione como un avance-->
+      <span class="material-symbols-outlined">arrow_forward</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="itemCarrusel"><!-- Ítem 2 del carrusel -->
+    <div class="tarjetaCarrusel" id="tarjetaCarrusel-2">b</div>
+    <div class="flechasCarrusel">
+      <a href="#tarjetaCarrusel-1">
+      <span class="material-symbols-outlined">arrow_back</span>
+      </a>
+      <a href="#tarjetaCarrusel-3">
+      <span class="material-symbols-outlined">arrow_forward</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="itemCarrusel"><!-- Ítem 3 del carrusel -->
+    <div class="tarjetaCarrusel" id="tarjetaCarrusel-3">c</div>
+    <div class="flechasCarrusel">
+      <a href="#tarjetaCarrusel-2">
+      <span class="material-symbols-outlined">arrow_back</span>
+      </a>
+      <a href="#tarjetaCarrusel-1">
+      <span class="material-symbols-outlined">arrow_forward</span>
+      </a>
+    </div>
+  </div>
+</div>
+
 
   <script src="js/skins.js"></script>
 </body>

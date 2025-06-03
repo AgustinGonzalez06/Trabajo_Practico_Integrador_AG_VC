@@ -233,3 +233,40 @@ nav {
   padding: 0;
   box-sizing: border-box;
 }
+
+/* ajuste de estilo para el contenedor del carrusel */
+#ContentItemCarrusel{
+  height: 100px;
+  overflow: hidden;
+}
+
+
+.itemCarrusel{
+  height: 100px;
+  position: relative;
+}
+
+/* Estilo para la tarjeta del carrusel (el contenido visible de cada slide) */
+.tarjetaCarrusel{
+  height: 100%;
+}
+
+/* Contenedor de las flechas de navegación (adelante / atrás) */
+.flechasCarrusel{
+  position:absolute;
+  top:0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+/*estilo para las imagenes dentro del carrusel*/
+img{
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
