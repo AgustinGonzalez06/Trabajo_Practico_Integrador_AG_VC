@@ -1,10 +1,12 @@
 let skinsGlobal = [];
 let carrito = [];
+const searchBar = document.getElementById("search-bar");
 
 // Guardar carrito en localStorage
 function guardarCarrito() {
   localStorage.setItem("carrito", JSON.stringify(carrito));
 }
+
 
 // Cargar la app
 function init() {
@@ -14,6 +16,7 @@ function init() {
       skinsGlobal = skins;
       mostrarProductos(skinsGlobal);
       mostrarCarruselDestacado(skinsGlobal);
+      searchBar.addEventListener("input", filtrarSkins);
     })
     .catch(error => {
       console.error("Error al cargar productos:", error);
@@ -71,6 +74,17 @@ function mostrarProductos(lista) {
 
     container.appendChild(card);
   });
+}
+
+function filtrarSkins() {
+  const texto = searchBar.value.toLowerCase();
+
+if (texto.length < 3) {
+    mostrarProductos(skinsGlobal);
+    return;
+  }
+  const filtrados = skinsGlobal.filter(p => p.nombre.toLowerCase().includes(texto));
+  mostrarProductos(filtrados);
 }
 
 // Agrega producto al carrito, sumando cantidades si ya existe
