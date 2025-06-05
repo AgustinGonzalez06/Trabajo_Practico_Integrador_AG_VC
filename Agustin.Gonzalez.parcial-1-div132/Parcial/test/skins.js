@@ -13,7 +13,6 @@ function init() {
     .then(skins => {
       skinsGlobal = skins;
       mostrarProductos(skinsGlobal);
-      mostrarCarruselDestacado(skinsGlobal);
     })
     .catch(error => {
       console.error("Error al cargar productos:", error);
@@ -134,32 +133,6 @@ function eliminarDelCarrito(index) {
 function actualizarTotal() {
   const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
   document.getElementById("total-price").textContent = `$${total.toFixed(2)}`;
-}
-function mostrarCarruselDestacado(lista) {
-  const carrusel = document.getElementById("carousel-products");
-  carrusel.innerHTML = "";
-
-  const destacados = lista.slice(0, 4);
-
-  destacados.forEach(skin => {
-    const li = document.createElement("li");
-    li.innerHTML = `
-      <div class="product-card">
-        <img src="${skin.img}" alt="${skin.nombre}">
-        <h3>${skin.nombre}</h3>
-        <p>$${skin.precio.toFixed(2)}</p>
-        <button class="add-to-cart">Agregar a carrito</button>
-      </div>
-    `;
-
-    const boton = li.querySelector(".add-to-cart");
-    boton.addEventListener("click", (event) => {
-      event.stopPropagation();
-      agregarAlCarrito(skin);
-    });
-
-    carrusel.appendChild(li);
-  });
 }
 
 // Inicializar app cuando el DOM esté listo
