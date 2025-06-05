@@ -17,6 +17,11 @@ function init() {
       mostrarProductos(skinsGlobal);
       mostrarCarruselDestacado(skinsGlobal);
       searchBar.addEventListener("input", filtrarSkins);
+      const filtros = document.querySelectorAll("input[name='categoria'], input[name='rareza'], #precio-max");
+      filtros.forEach(f => f.addEventListener("input", aplicarFiltros));
+
+      const precioMaxSelect = document.getElementById("precio-max");
+      precioMaxSelect.addEventListener("change", aplicarFiltros);
     })
     .catch(error => {
       console.error("Error al cargar productos:", error);
@@ -84,6 +89,28 @@ if (texto.length < 3) {
     return;
   }
   const filtrados = skinsGlobal.filter(p => p.nombre.toLowerCase().includes(texto));
+  mostrarProductos(filtrados);
+}
+
+function aplicarFiltros() {
+  const texto = searchBar.value.toLowerCase();
+
+  const categoriasSeleccionadas = Array.from(document.querySelectorAll("input[name='categoria']:checked"))
+    .map(cb => cb.value);
+
+  const rarezasSeleccionadas = Array.from(document.querySelectorAll("input[name='rareza']:checked"))
+    .map(cb => cb.value);
+
+  const precioMaximoValor = document.getElementById("precio-max").value;
+
+  let filtrados = skinsGlobal.filter(skin => {
+    const coincideCategoria = categoriasSeleccionadas.includes(skin.categoria);
+    const coincideRareza = rarezasSeleccionadas.includes(skin.rareza);
+    const coincidePrecio = (precioMaximoValor === "Todos") || (skin.precio === +precioMaximoValor);
+    const coincideTexto = texto.length < 3 || skin.nombre.toLowerCase().includes(texto);
+    return coincideCategoria && coincideRareza && coincidePrecio && coincideTexto;
+  });
+
   mostrarProductos(filtrados);
 }
 

@@ -35,6 +35,29 @@
   </div>
 
   <main>
+    <aside class="filter-menu">
+    <h3>Filtrar</h3> 
+    <div class="filter-group">
+      <h4>Categoría</h4>
+      <label><input type="checkbox" name="categoria" value="vandal" checked> Vandal</label>
+    </div>
+    <div class="filter-group">
+      <h4>Rareza</h4>
+      <label><input type="checkbox" name="rareza" value="ultra"> Ultra</label>
+      <label><input type="checkbox" name="rareza" value="exclusive"> Exclusive</label>
+      <label><input type="checkbox" name="rareza" value="premium"> Premium</label>
+    </div>
+    <div class="filter-group">
+      <h4>Precio máximo</h4>
+      <select id="precio-max">
+        <option value="Todos">Todos</option>
+        <option value="17">17</option>
+        <option value="20">20</option>
+        <option value="23">23</option>
+        <option value="25">25</option>
+      </select>
+    </div>
+    </aside>
     <section class="products-section">
       <h2>Skins</h2>
       <div class="product-grid"></div>
