@@ -10,7 +10,19 @@ function guardarCarrito() {
 
 // Cargar la app
 function init() {
-  fetch("skins.json")
+  let jsonUrl = "skins.json"; // Por defecto
+
+  const pathname = window.location.pathname;
+
+  // Detectar la página y ajustar el JSON a cargar
+  if (pathname.includes("vp.html")) {
+    jsonUrl = "vp.json";
+  } else if (pathname.includes("skins.html")) {
+    jsonUrl = "skins.json";
+  }
+
+  // Cargar los datos
+  fetch(jsonUrl)
     .then(res => res.json())
     .then(skins => {
       skinsGlobal = skins;
@@ -42,6 +54,11 @@ function init() {
     event.stopPropagation(); // Evita que el click se propague y cierre el menú
     cartDropdown.classList.toggle("hidden");
   });
+  
+  const logoDiv = document.querySelector(".logo");
+  logoDiv.addEventListener("click", () => {
+  window.location.href = "MI.html"; // o "/" si es el inicio
+  });
 
   // Cerrar menú si se clickea fuera del menú y del botón
   document.addEventListener("click", (event) => {
@@ -54,6 +71,26 @@ function init() {
     }
   });
 }
+
+  // Mostrar/ocultar input de búsqueda al hacer clic en el ícono
+  const searchIcon = document.getElementById("search-toggle");
+  const searchContainer = document.querySelector(".search-container");
+
+  if (searchIcon && searchContainer) {
+    searchIcon.addEventListener("click", () => {
+      searchContainer.classList.toggle("active");
+      const input = document.getElementById("search-bar");
+      if (searchContainer.classList.contains("active")) {
+        input.focus();
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!searchContainer.contains(e.target) && e.target !== searchIcon) {
+        searchContainer.classList.remove("active");
+      }
+    });
+  }
 
 // Mostrar productos en pantalla
 function mostrarProductos(lista) {
@@ -203,5 +240,13 @@ function mostrarCarruselDestacado(lista) {
   });
 }
 
+btnVP.addEventListener("click", () => {
+    window.location.href = "vp.html";
+});
+
+
+btnSkins.addEventListener("click", () => {
+    window.location.href = "skins.html";
+});
 // Inicializar app cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", init);

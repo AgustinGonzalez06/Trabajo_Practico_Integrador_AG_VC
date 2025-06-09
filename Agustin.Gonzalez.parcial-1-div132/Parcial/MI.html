@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -9,27 +9,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="favicon.png" alt="Logo ValorantTienda">
-            <h2>ValorantTienda</h2>
-        </div>
-        <nav>
-            <a href="" class="nav-link">Inicio</a>
-            <a href="" class="nav-link">Carrito</a>
-        </nav>
-        <div class="cart-total">
-        <p>Total: <span id="total-price">$0.00</span></p>
-        </div>
+<header>
+    <div class="logo">
+      <img src="favicon.png" alt="Logo ValorantTienda" />
+      <h1>ValorantTienda</h1>
+    </div>
+    <nav>
+      <button id="cart-button" class="nav-link">Carrito</button>
+      <input type="text" id="search-bar" placeholder="Buscar skins...">
+    </nav>
 
-        <p>Valentin Corallo   Agustin Gonzales</p>
-    </header>
+    <div id="cart-dropdown" class="cart-dropdown hidden">
+      <ul id="cart-items"></ul>
+      <p class="cart-total">Total: <span id="total-price">$0.00</span></p>
+    </div>
+
+    <p>Valentin Corallo   Agustin Gonzales</p>
+  </header>
     <div class="container">
     <h1 class="titulo">SELECCIONA TU OPCIÓN</h1>
 
     <div class="menu">
-    <button id="btnVP" class="boton">Valorant Points</button>
-    <button id="btnSkins" class="boton">Skins</button>
+    <button id="btnVP" class="boton-MI">Monedas</button>
+    <button id="btnSkins" class="boton-MI">Skins</button>
     </div>
 
     <div id="contenido" class="contenido"></div>
