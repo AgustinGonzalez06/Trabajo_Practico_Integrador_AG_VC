@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skins</title>
+  <link rel="stylesheet" href="/css/stylesMI.css" />
+  <link rel="icon" href="img/icono/favicon.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+<body>
+<header>
+  <div class="logo">
+    <img src="img/icono/favicon.png" alt="Logo ValorantTienda" />
+    <h1>ValorantTienda</h1>
+  </div>
+
+  <nav>
+    <div class="menu">
+    <button id="btnVP" class="boton">Monedas</button>
+    <button id="btnSkins" class="boton">Skins</button>
+    </div>
+
+    <!-- Campo de búsqueda con icono -->
+    <div class="search-container">
+      <img src="../img/search.png" alt="Buscar" class="icon search-icon" id="search-toggle" />
+      <input type="text" id="search-bar" placeholder="Buscar skins..." />
+    </div>
+    
+    <!-- Botón del carrito con icono -->
+    <button id="cart-button" class="nav-link">
+      <img src="../img/cart.png" alt="Carrito" class="icon" />
+      Carrito
+    </button>
+  </nav>
+
+  <div id="cart-dropdown" class="cart-dropdown hidden">
+    <ul id="cart-items"></ul>
+    <p class="cart-total">Total: <span id="total-price">$0.00</span></p>
+    <button id="confirm-purchase-btn">Confirmar</button>
+  </div>
+</header>
+
+    <aside class="filter-menu">
+    <h3>Filtrar</h3> 
+    <div class="filter-group">
+      <h4>Categoría</h4>
+      <label><input type="checkbox" name="categoria" value="vandal" checked> Vandal</label>
+    </div>
+    
+    <div class="filter-group">
+      <h4>Rareza</h4>
+      <label><input type="checkbox" name="rareza" value="ultra"> Ultra</label>
+      <label><input type="checkbox" name="rareza" value="exclusive"> Exclusive</label>
+      <label><input type="checkbox" name="rareza" value="premium"> Premium</label>
+    </div>
+
+    <div class="filter-group">
+      <h4>Precio máximo</h4>
+      <select id="precio-max">
+        <option value="Todos">Todos</option>
+        <option value="17">17</option>
+        <option value="20">20</option>
+        <option value="23">23</option>
+        <option value="25">25</option>
+      </select>
+    </div>
+
+  <h2>Skins destacadas</h2>
+  <div class="slider-frame">
+    <ul id="carousel-products"></ul>
+  </div>
+
+  <main>
+
+    </aside>
+    <section class="products-section">
+      <h2>Skins</h2>
+      <div class="product-grid"></div>
+    </section>
+  </main>
+
+  <script src="/js/skins.js"></script>
+  <script src="/js/btnConfirmar.js" defer></script>
+  <footer>
+  <div class="logo">
+    <img src="img/icono/favicon.png" alt="Logo ValorantTienda" />
+    <h1>ValorantTienda</h1>
+  </div>
+
+  <div class="footer-info">
+    <p>Valentin Corallo &nbsp;&nbsp; Agustin Gonzales</p>
+    <p>&copy; 2025 ValorantTienda. Todos los derechos reservados.</p>
+  </div>
+</footer>
+</body>
+</html>
