@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "categoria": "vandal",
+    "nombre": "Vandal Araxys",
+    "precio": 20.00,
+    "rareza": "exclusive",
+    "img": "img/vandal/Araxys_Vandal.webp"
+  },
+  {
+    "id": 2,
+    "categoria": "vandal",
+    "nombre": "Vandal Evori Dreamwings",
+    "precio": 25.00,
+    "rareza": "ultra",
+    "img": "img/vandal/Evori_Dreamwings_Vandal.webp"
+  },
+  {
+    "id": 3,
+    "categoria": "vandal",
+    "nombre": "Vandal Kuronami",
+    "precio": 23.00,
+    "rareza": "exclusive",
+    "img": "img/vandal/Kuronami_Vandal.webp"
+  },
+  {
+    "id": 4,
+    "categoria": "vandal",
+    "nombre": "Vandal Prime",
+    "precio": 17.00,
+    "rareza": "premium",
+    "img": "img/vandal/Prime_Vandal.webp"
+  },
+  {
+    "id": 5,
+    "categoria": "vandal",
+    "nombre": "Vandal Reaver",
+    "precio": 17.00,
+    "rareza": "premium",
+    "img": "img/vandal/Reaver_Vandal.webp"
+  },
+  {
+    "id": 6,
+    "categoria": "vandal",
+    "nombre": "Vandal Singularity",
+    "precio": 20.00,
+    "rareza": "exclusive",
+    "img": "img/vandal/Singularity_Vandal.webp"
+  }
+]

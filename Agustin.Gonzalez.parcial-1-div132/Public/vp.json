@@ -1,0 +1,107 @@
+[
+    {
+    "id": 1,
+    "categoria": "vp",
+    "nombre": "475 valorant points",
+    "precio": 5,
+    "img": "img/vp/475vp.jpg"
+  },
+    {
+    "id": 2,
+    "categoria": "vp",
+    "nombre": "1000 valorant points",
+    "precio": 10,
+    "img": "img/vp/1000vp.jpg"
+  },
+    {
+    "id": 3,
+    "categoria": "vp",
+    "nombre": "2050 valorant points",
+    "precio": 20,
+    "img": "img/vp/2050vp.jpg"
+  },
+    {
+    "id": 4,
+    "categoria": "vp",
+    "nombre": "3650 valorant points",
+    "precio": 35,
+    "img": "img/vp/3650vp.jpg"
+  },
+    {
+    "id": 5,
+    "categoria": "vp",
+    "nombre": "5350 valorant points",
+    "precio": 50,
+    "img": "img/vp/5350vp.jpg"
+  },
+    {
+    "id": 6,
+    "categoria": "vp",
+    "nombre": "11000 valorant points",
+    "precio": 100,
+    "img": "img/vp/11000vp.jpg"
+  },
+    {
+    "id": 7,
+    "categoria": "radiant",
+    "nombre": "20 radiant points",
+    "precio": 5,
+    "img": "img/radiant/20r.jpg"
+  },
+    {
+    "id": 8,
+    "categoria": "radiant",
+    "nombre": "40 radiant points",
+    "precio": 10,
+    "img": "img/radiant/40r.jpg"
+  },
+    {
+    "id": 9,
+    "categoria": "radiant",
+    "nombre": "80 radiant points",
+    "precio": 15,
+    "img": "img/radiant/80r.jpg"
+  },
+    {
+    "id": 10,
+    "categoria": "rp",
+    "nombre": "750 riot points",
+    "precio": 5,
+    "img": "img/rp/750rp.png"
+  },
+    {
+    "id": 11,
+    "categoria": "rp",
+    "nombre": "1500 riot points",
+    "precio": 10,
+    "img": "img/rp/1500rp.png"
+  },
+    {
+    "id": 12,
+    "categoria": "rp",
+    "nombre": "2250 riot points",
+    "precio": 15,
+    "img": "img/rp/2250rp.png"
+  },
+    {
+    "id": 13,
+    "categoria": "rp",
+    "nombre": "3750 riot points",
+    "precio": 25,
+    "img": "img/rp/3750rp.png"
+  },
+    {
+    "id": 14,
+    "categoria": "rp",
+    "nombre": "7500 riot points",
+    "precio": 50,
+    "img": "img/rp/7500rp.png"
+  },
+    {
+    "id": 15,
+    "categoria": "rp",
+    "nombre": "120000 riot points",
+    "precio": 80,
+    "img": "img/rp/12000rp.png"
+  }
+]
