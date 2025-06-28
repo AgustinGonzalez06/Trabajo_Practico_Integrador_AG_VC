@@ -4,7 +4,7 @@ const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
   password: 'admin',
-  database: 'valoranttienda_db', // si aún no existe, se puede crear en otro archivo
+  database: 'valoranttienda_db',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,

@@ -1,0 +1,51 @@
+[
+      {
+    "nombre": "Vandal Araxys",
+    "precio": 20.00,
+    "categoria": "skin",
+    "subcategoria": "exclusive",
+    "img": "img/vandal/Araxys_Vandal.webp",
+    "activo":true
+  },
+        {
+    "nombre": "Vandal Evori Dreamwings",
+    "precio": 25.00,
+    "categoria": "skin",
+    "subcategoria": "ultra",
+    "img": "img/vandal/Evori_Dreamwings_Vandal.webp",
+    "activo":true
+  },
+        {
+    "nombre": "Vandal Kuronami",
+    "precio": 23.00,
+    "categoria": "skin",
+    "subcategoria": "exclusive",
+    "img": "img/vandal/Kuronami_Vandal.webp",
+    "activo":true
+  },
+        {
+    "nombre": "Vandal Prime",
+    "precio": 17.00,
+    "categoria": "skin",
+    "subcategoria": "premium",
+    "img": "img/vandal/premium_Vandal.webp",
+    "activo":true
+  },
+        {
+    "nombre": "Vandal Reaver",
+    "precio": 17.00,
+    "categoria": "skin",
+    "subcategoria": "premium",
+    "img": "img/vandal/Reaver_Vandal.webp",
+    "activo":true
+  },
+        {
+    "nombre": "Vandal Singularity",
+    "precio": 20.00,
+    "categoria": "skin",
+    "subcategoria": "exclusive",
+    "img": "img/vandal/Singularity_Vandal.webp",
+    "activo":true
+  }
+  
+]

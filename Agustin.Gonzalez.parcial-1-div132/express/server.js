@@ -1,5 +1,6 @@
 import skinRoutes from './src/routes/skin.routes.js';
 import monedasRouter from './src/routes/moneda.routes.js';
+import productosRouter from './src/routes/productos.routes.js'; // ⬅️ nuevo import
 import express from "express";
 import path from "path";
 import { fileURLToPath } from 'url';
@@ -17,10 +18,10 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(express.json());
 
-app.use('/api', skinRoutes);
-app.use('/api', monedasRouter);
+// Rutas API
+app.use('/api/productos', productosRouter); // ⬅️ nueva ruta unificada
 
-
+// Página principal
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'loginUser.html'));
 });

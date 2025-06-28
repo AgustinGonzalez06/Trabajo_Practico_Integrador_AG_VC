@@ -32,7 +32,7 @@ async function cargarDatos() {
 
     if (pathname.endsWith('vp.html')) {
       url = '/api/monedas';
-    } else if (pathname.endsWith('skins.html') || pathname.endsWith('/')) {
+    } else if (pathname.endsWith('productos.html') || pathname.endsWith('/')) {
       url = '/api/skins';
     } else {
       console.warn('Página no soportada para cargar datos automáticamente');
@@ -81,18 +81,18 @@ console.log("PATHNAME:", pathname);
   // --------- LOGIN PAGE ----------
   if (pathname === "/" || pathname.includes("loginUser")) {
     const loginForm = document.getElementById("loginForm");
-    console.log("¿Encontró el formulario?", loginForm); // 🔥 línea de prueba
+    console.log("¿Encontró el formulario?", loginForm);
     
     if (loginForm) {
       loginForm.addEventListener("submit", (event) => {
         event.preventDefault();
-        console.log("Formulario enviado"); // 🔥 Agregá esto
+        console.log("Formulario enviado");
 
         const inputUsuario = document.getElementById("nombre").value;
 
         if (inputUsuario) {
           console.log("Redirigiendo...");
-          window.location.href = "skins.html";
+          window.location.href = "productos.html";
         } else {
           const error = document.getElementById("errorMsg");
           if (error) {
@@ -184,7 +184,7 @@ console.log("PATHNAME:", pathname);
   const btnSkins = document.getElementById("btnSkins");
   if (btnSkins) {
     btnSkins.addEventListener("click", () => {
-      window.location.href = "skins.html";
+      window.location.href = "productos.html";
     });
   }
 
