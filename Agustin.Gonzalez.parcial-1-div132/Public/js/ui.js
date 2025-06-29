@@ -1,4 +1,5 @@
 import { agregarAlCarrito } from './carrito.js';
+import { carrito, actualizarTotal } from './carrito.js';
 
 export function mostrarProductos(lista) {
   const container = document.querySelector(".product-grid");
@@ -54,4 +55,30 @@ export function mostrarCarruselDestacado(lista) {
 
     carrusel.appendChild(li);
   });
+}
+
+export function renderizarResumenCarrito() {
+  const contenedor = document.querySelector('.resumen-carrito');
+  if (!contenedor) return;
+
+  contenedor.innerHTML = '';
+
+  if (carrito.length === 0) {
+    contenedor.innerHTML = "<p>No hay productos en el carrito.</p>";
+    return;
+  }
+
+  carrito.forEach(producto => {
+    const div = document.createElement('div');
+    div.classList.add('resumen-item');
+    div.innerHTML = `
+      <p>${producto.nombre} x${producto.cantidad} - $${(producto.precio * producto.cantidad).toFixed(2)}</p>
+    `;
+    contenedor.appendChild(div);
+  });
+
+  const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
+  const totalDiv = document.createElement('div');
+  totalDiv.innerHTML = `<h3>Total: $${total.toFixed(2)}</h3>`;
+  contenedor.appendChild(totalDiv);
 }

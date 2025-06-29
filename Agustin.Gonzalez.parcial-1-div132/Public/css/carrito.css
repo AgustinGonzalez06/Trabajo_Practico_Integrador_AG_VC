@@ -1,0 +1,360 @@
+/* ===== Reset global ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== Fondo y cuerpo general ===== */
+body {
+  background-image: url('../img/bgstore2.png');
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+  min-height: 100vh;
+  user-select: none;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: -10px;
+  left: -10px;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  background-image: url('../img/bgstore2.png');
+  background-size: cover;
+  background-position: center;
+  filter: blur(6px);
+  z-index: -1;
+}
+
+/* ===== Header y navegación ===== */
+header {
+  height: 70px;
+  background-color: #111;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 4px solid #ff4655;
+  position: sticky;
+  top:0;
+  font-family: 'Orbitron', sans-serif;
+}
+
+header .logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.logo img {
+  width: 50px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: white;
+
+}
+
+/* ===== Estilos principales para el carrito ===== */
+
+h2 {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 2rem;
+}
+
+.carrito-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.productos-carrito {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  width: 60%;
+}
+
+.product-card {
+  background-color: #111;
+  border: 1px solid #00ff88;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 0 10px #00ff88;
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: scale(1.03);
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
+
+.product-card h3 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.product-card p {
+  font-size: 1rem;
+  margin: 0.2rem 0;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 0.5rem;
+}
+
+.btn-cantidad,
+.btn-eliminar {
+  background-color: #00ff88;
+  color: #000;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.btn-cantidad:hover,
+.btn-eliminar:hover {
+  background-color: #00cc6f;
+}
+
+/* ===== Resumen lateral / inferior ===== */
+
+.resumen-compra-fija {
+  width: 30%;
+  background-color: #111;
+  border: 1px solid #00ff88;
+  border-radius: 12px;
+  padding: 1rem;
+  height: fit-content;
+  box-shadow: 0 0 10px #00ff88;
+}
+
+.resumen-compra-fija h3 {
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.resumen-compra-fija p {
+  font-size: 1.1rem;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+#finalizar-compra {
+  background-color: #00ff88;
+  color: #000;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  display: block;
+  margin: 0 auto;
+  transition: background-color 0.2s;
+}
+
+#finalizar-compra:hover {
+  background-color: #00cc6f;
+}
+
+/* ===== Responsive para móviles ===== */
+
+@media (max-width: 768px) {
+  .carrito-container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .resumen-compra-fija {
+    position: static;
+    width: 100%;
+    margin-top: 2rem;
+    box-shadow: none;
+  }
+
+  #finalizar-compra {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+
+  .resumen-compra-fija p {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .productos-carrito {
+    width: 100%;
+  }
+}
+
+.boton {
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  background:#ff4655;
+  border: none;
+  
+  padding: 10px 20px;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.boton:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 15px #ff4655;
+}
+
+.titulo {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #ff4655;
+  text-shadow: 0 0 10px #ff4655;
+}
+
+
+footer .logo {
+  display: flex;
+  align-items: center;
+}
+
+footer .logo img {
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+}
+
+footer .footer-info {
+  text-align: right;
+}
+
+footer .footer-info p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+#search-bar {
+  position: absolute;
+  right: 100%; /* Coloca el input a la izquierda del botón */
+  width: 0;
+  opacity: 0;
+  transition: width 0.3s ease, opacity 0.3s ease;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  margin-left: 0; /* Elimina margen que empujaba hacia la derecha */
+  z-index: 10; /* Asegura que esté por encima si hay solapamientos */
+}
+.search-container.active #search-bar {
+  z-index: 10;
+  width: 150px;
+  opacity: 1;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hace que el footer se empuje al fondo */
+footer {
+  margin-top: auto;
+  background-color: #111;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  border-top: 4px solid #ff4655;
+}
+
+.product-card button,
+.confirm-button,
+#finalizar-compra {
+  background-color: #00ff88;
+  color: #000;
+  border: 2px solid #00ff88;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 1px;
+  box-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88 inset;
+  transition: all 0.2s ease-in-out;
+  text-transform: uppercase;
+}
+
+.product-card button:hover,
+#finalizar-compra:hover,
+.confirm-button:hover {
+  background-color: #000;
+  color: #00ff88;
+  box-shadow: 0 0 15px #00ff88, 0 0 30px #00ff88 inset;
+  transform: scale(1.05);
+}
+
+/* Estilo para botones desactivados */
+.product-card button:disabled,
+.confirm-button:disabled,
+#finalizar-compra:disabled {
+  background-color: #555;
+  color: #999;
+  border-color: #444;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
