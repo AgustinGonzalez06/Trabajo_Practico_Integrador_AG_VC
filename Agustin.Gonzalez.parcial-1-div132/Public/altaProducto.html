@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agregar Producto</title>
+  <link rel="stylesheet" href="css/styles.css" /> <!-- tu CSS general -->
+</head>
+<body>
+  <h1>Agregar Producto</h1>
+
+  <form id="formAltaProducto">
+    <input type="text" id="nombre" placeholder="Nombre" required>
+    <input type="number" id="precio" placeholder="Precio" required>
+    <input type="text" id="categoria" placeholder="Categoría" required>
+    <input type="text" id="subcategoria" placeholder="Subcategoría" required>
+
+    <p>Imagen del producto:</p>
+    <label>
+      <input type="radio" name="tipoImg" value="url" checked> URL de imagen
+    </label>
+    <label>
+      <input type="radio" name="tipoImg" value="file"> Subir archivo
+    </label>
+
+    <div id="inputUrl">
+      <input type="text" id="imgUrl" placeholder="Ruta URL de la imagen">
+    </div>
+
+    <div id="inputFile" style="display:none;">
+      <input type="file" id="imgFile" accept="image/*">
+    </div>
+
+    <label>
+      <input type="checkbox" id="activo">
+      Activo
+    </label>
+
+    <label>
+      <input type="checkbox" id="destacado">
+      Destacado
+    </label>
+
+    <button type="submit">Agregar Producto</button>
+  </form>
+
+  <script src="js/altaProducto.js"></script>
+</body>
+</html>

@@ -7,3 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     inicializarEventos();
   }
 });
+
+document.getElementById('btnAdmin').addEventListener('click', () => {
+  window.location.href = 'loginAdmin.html';
+});

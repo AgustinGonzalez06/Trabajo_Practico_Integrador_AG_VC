@@ -14,12 +14,12 @@
 <body>
     <div class="login-cont">
         <h2>Iniciar sesión</h2> 
-        <form class="login-form" id="loginForm">
-            <input type="text" id="usuario" placeholder="Usuario" required>
-            <input type="password" id="contraseña" placeholder="Contraseña" required>
-            <button type="submit">Ingresar</button>
-            <p class="error" id="errorMsg"></p>
-        </form>
+            <form class="login-form" id="loginForm" autocomplete="on">
+                <input type="text" id="usuario" name="username" placeholder="Usuario" autocomplete="username" required>
+                <input type="password" id="contraseña" name="password" placeholder="Contraseña" autocomplete="current-password" required>
+                <button type="submit">Ingresar</button>
+                <p class="error" id="errorMsg"></p>
+            </form>
         <a href="register.html" id="register">Regístrate</a>
         
     </div>

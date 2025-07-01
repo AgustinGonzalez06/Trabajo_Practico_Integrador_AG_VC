@@ -4,7 +4,8 @@ import {
   obtenerProducto,
   crearProducto,
   actualizarProducto,
-  eliminarProducto
+  eliminarProducto,
+  getProductosInactivos
 } from '../controller/productos.controller.js';
 
 const router = Router();
@@ -15,4 +16,8 @@ router.post('/', crearProducto);
 router.put('/:id', actualizarProducto);
 router.delete('/:id', eliminarProducto);
 
+router.get("/inactivos", getProductosInactivos);
+
+
 export default router;
+

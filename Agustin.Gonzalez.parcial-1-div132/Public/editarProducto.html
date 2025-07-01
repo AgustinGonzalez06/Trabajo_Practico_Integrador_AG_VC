@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editar Producto</title>
+  <link rel="stylesheet" href="css/styles.css" /> <!-- tu CSS general -->
+</head>
+<body>
+  <h1>Editar Producto</h1>
+
+  <form id="formEditarProducto">
+    <input type="text" id="nombre" placeholder="Nombre" required>
+    <input type="number" id="precio" placeholder="Precio" required>
+    <input type="text" id="categoria" placeholder="Categoría" required>
+    <input type="text" id="subcategoria" placeholder="Subcategoría" required>
+    <input type="text" id="img" placeholder="Ruta imagen" required>
+
+    <label>
+      <input type="checkbox" id="activo">
+      Activo
+    </label>
+
+    <label>
+      <input type="checkbox" id="destacado">
+      Destacado
+    </label>
+
+    <button type="submit">Guardar cambios</button>
+  </form>
+
+  <script src="js/editarProducto.js"></script>
+</body>
+</html>

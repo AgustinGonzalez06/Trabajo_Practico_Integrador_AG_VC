@@ -63,3 +63,20 @@ export const eliminarProducto = async (req, res) => {
     res.status(500).json({ error: 'Error al eliminar el producto' });
   }
 };
+
+export const getProductosInactivos = async (req, res) => {
+  try {
+    const [rows] = await pool.query(
+      'SELECT id, nombre, precio, descripcion FROM productos WHERE activo = ?',
+      [0]
+    );
+    // Si no hay resultados, devolvemos 204 No Content
+    if (rows.length === 0) {
+      return res.status(204).send();
+    }
+    res.json(rows);
+  } catch (err) {
+    console.error('Error al leer productos inactivos:', err);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
