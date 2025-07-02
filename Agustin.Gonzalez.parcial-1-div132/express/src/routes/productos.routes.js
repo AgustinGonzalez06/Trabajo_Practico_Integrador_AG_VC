@@ -4,7 +4,7 @@ import {
   obtenerProducto,
   crearProducto,
   actualizarProducto,
-  eliminarProducto,
+  deshabilitarProductoController,
   getProductosInactivos
 } from '../controller/productos.controller.js';
 
@@ -14,10 +14,8 @@ router.get('/', obtenerProductos);
 router.get('/:id', obtenerProducto);
 router.post('/', crearProducto);
 router.put('/:id', actualizarProducto);
-router.delete('/:id', eliminarProducto);
+router.delete('/:id', deshabilitarProductoController);
 
-router.get("/inactivos", getProductosInactivos);
-
+router.get('/inactivos', getProductosInactivos);
 
 export default router;
-

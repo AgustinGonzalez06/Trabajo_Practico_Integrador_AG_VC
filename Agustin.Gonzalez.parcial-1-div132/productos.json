@@ -1,51 +1,191 @@
 [
-      {
+  {
     "nombre": "Vandal Araxys",
     "precio": 20.00,
     "categoria": "skin",
     "subcategoria": "exclusive",
-    "img": "img/vandal/Araxys_Vandal.webp",
-    "activo":true
+    "img": "uploads/skins/Araxys_Vandal.webp",
+    "activo": true,
+    "destacado": false
   },
-        {
+  {
     "nombre": "Vandal Evori Dreamwings",
     "precio": 25.00,
     "categoria": "skin",
     "subcategoria": "ultra",
-    "img": "img/vandal/Evori_Dreamwings_Vandal.webp",
-    "activo":true
+    "img": "uploads/skins/Evori_Dreamwings_Vandal.webp",
+    "activo": true,
+    "destacado": false
   },
-        {
+  {
     "nombre": "Vandal Kuronami",
     "precio": 23.00,
     "categoria": "skin",
     "subcategoria": "exclusive",
-    "img": "img/vandal/Kuronami_Vandal.webp",
-    "activo":true
+    "img": "uploads/skins/Kuronami_Vandal.webp",
+    "activo": true,
+    "destacado": false
   },
-        {
+  {
     "nombre": "Vandal Prime",
     "precio": 17.00,
     "categoria": "skin",
     "subcategoria": "premium",
-    "img": "img/vandal/premium_Vandal.webp",
-    "activo":true
+    "img": "uploads/skins/premium_Vandal.webp",
+    "activo": true,
+    "destacado": false
   },
-        {
+  {
     "nombre": "Vandal Reaver",
     "precio": 17.00,
     "categoria": "skin",
     "subcategoria": "premium",
-    "img": "img/vandal/Reaver_Vandal.webp",
-    "activo":true
+    "img": "uploads/skins/Reaver_Vandal.webp",
+    "activo": true,
+    "destacado": false
   },
-        {
+  {
     "nombre": "Vandal Singularity",
     "precio": 20.00,
     "categoria": "skin",
     "subcategoria": "exclusive",
-    "img": "img/vandal/Singularity_Vandal.webp",
-    "activo":true
+    "img": "uploads/skins/Singularity_Vandal.webp",
+    "activo": true,
+    "destacado": false
+  },
+  {
+    "categoria": "moneda",
+    "nombre": "475 valorant points",
+    "precio": 5,
+    "img": "uploads/monedas/475vp.jpg",
+    "activo": true,
+    "destacado": false,
+    "subcategoria": "vp"
+  },
+  {
+    "categoria": "moneda",
+    "nombre": "1000 valorant points",
+    "precio": 10,
+    "img": "uploads/monedas/1000vp.jpg",
+    "activo": true,
+    "destacado": false,
+    "subcategoria": "vp"
+  },
+  {
+    "categoria": "moneda",
+    "nombre": "2050 valorant points",
+    "precio": 20,
+    "img": "uploads/monedas/2050vp.jpg",
+    "activo": true,
+    "destacado": false,
+    "subcategoria": "vp"
+  },
+  {
+    "categoria": "moneda",
+    "nombre": "3650 valorant points",
+    "precio": 35,
+    "img": "uploads/monedas/3650vp.jpg",
+    "activo": true,
+    "destacado": false,
+    "subcategoria": "vp"
+  },
+  {
+    "categoria": "moneda",
+    "nombre": "5350 valorant points",
+    "precio": 50,
+    "img": "uploads/monedas/5350vp.jpg",
+    "activo": true,
+    "destacado": false,
+    "subcategoria": "vp"
+  },
+  {
+    "categoria": "moneda",
+    "nombre": "11000 valorant points",
+    "precio": 100,
+    "img": "uploads/monedas/11000vp.jpg",
+    "activo": true,
+    "destacado": false,
+    "subcategoria": "vp"
+  },
+  {
+    "categoria": "moneda",
+    "nombre": "20 radiant points",
+    "precio": 5,
+    "img": "uploads/monedas/20r.jpg",
+    "activo": true,
+    "destacado": false,
+    "subcategoria": "radiant"
+  },
+  {
+    "categoria": "moneda",
+    "nombre": "40 radiant points",
+    "precio": 10,
+    "img": "uploads/monedas/40r.jpg",
+    "activo": true,
+    "destacado": false,
+    "subcategoria": "radiant"
+  },
+  {
+    "categoria": "moneda",
+    "nombre": "80 radiant points",
+    "precio": 15,
+    "img": "uploads/monedas/80r.jpg",
+    "activo": true,
+    "destacado": false,
+    "subcategoria": "radiant"
+  },
+  {
+    "categoria": "moneda",
+    "nombre": "750 riot points",
+    "precio": 5,
+    "img": "uploads/monedas/750rp.png",
+    "activo": true,
+    "destacado": false,
+    "subcategoria": "rp"
+  },
+  {
+    "categoria": "moneda",
+    "nombre": "1500 riot points",
+    "precio": 10,
+    "img": "uploads/monedas/1500rp.png",
+    "activo": true,
+    "destacado": false,
+    "subcategoria": "rp"
+  },
+  {
+    "categoria": "moneda",
+    "nombre": "2250 riot points",
+    "precio": 15,
+    "img": "uploads/monedas/2250rp.png",
+    "activo": true,
+    "destacado": false,
+    "subcategoria": "rp"
+  },
+  {
+    "categoria": "moneda",
+    "nombre": "3750 riot points",
+    "precio": 25,
+    "img": "uploads/monedas/3750rp.png",
+    "activo": true,
+    "destacado": false,
+    "subcategoria": "rp"
+  },
+  {
+    "categoria": "moneda",
+    "nombre": "7500 riot points",
+    "precio": 50,
+    "img": "uploads/monedas/7500rp.png",
+    "activo": true,
+    "destacado": false,
+    "subcategoria": "rp"
+  },
+  {
+    "categoria": "moneda",
+    "nombre": "120000 riot points",
+    "precio": 80,
+    "img": "uploads/monedas/12000rp.png",
+    "activo": true,
+    "destacado": false,
+    "subcategoria": "rp"
   }
-  
 ]

@@ -16,7 +16,7 @@ function login(event) {
   );
 
   if (usuarioValido) {
-    window.location.href = "dashboard.html";
+    window.location.href = "../express/src/views/admin/dashboard.ejs"; // Redirige al dashboard de administrador
   } else {
     
     alert("Usuario o contraseña incorrectos");

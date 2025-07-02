@@ -37,7 +37,10 @@ export const updateProducto = async (id, producto) => {
   return result;
 };
 
-// Eliminar (soft delete) un producto
-export const deleteProducto = async (id) => {
-  await pool.query('UPDATE productos SET activo = FALSE WHERE id = ?', [id]);
+// Deshabilitar producto: cambiar activo a false
+export const deshabilitarProducto = async (id) => {
+  await pool.query(
+    'UPDATE productos SET activo = false WHERE id = ?',
+    [id]
+  );
 };

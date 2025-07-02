@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inicio de sesión</title>
+
+    <link rel="stylesheet" href="/css/stylesLogin.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.png" type="image/png" />
+</head>
+<body>
+        <div class="login-cont">
+            <h2>Iniciar sesión como admin</h2>
+        <form class="login-form" id="loginForm" action="/admin/login" method="POST" autocomplete="on">
+            <input type="email" name="email" placeholder="Correo electrónico" autocomplete="email" required />
+            <input
+                type="password"
+                id="contraseña"
+                name="password"
+                placeholder="Contraseña"
+                autocomplete="current-password"
+                required
+/>
+            <button type="submit">Ingresar</button>
+            <p class="error" id="errorMsg"><%= typeof errorMsg !== 'undefined' ? errorMsg : '' %></p>
+        </form>
+
+<button type="button" id="btnAutoLogin">Ingreso rápido</button>
+
+<script>
+  document.getElementById('btnAutoLogin').addEventListener('click', () => {
+    const emailDePrueba = 'admin@example.com';
+    const passwordDePrueba = 'admin123';
+
+    document.querySelector('input[name="email"]').value = emailDePrueba;
+    document.querySelector('input[name="password"]').value = passwordDePrueba;
+
+    // Opcional: enviar el formulario automático
+    // document.getElementById('loginForm').submit();
+  });
+        </script>
+            <a href="/admin/registrar" id="register">Regístrate</a>
+        </div>
+</body>
+</html>

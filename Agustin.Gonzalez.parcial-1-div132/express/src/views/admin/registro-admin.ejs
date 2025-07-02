@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registrar Administrador</title>
+  <link rel="stylesheet" href="/css/stylesLogin.css" />
+</head>
+<body>
+  <div class="login-cont">
+    <h2>Registro de Administrador</h2>
+    <form action="/admin/registrar" method="POST">
+      <input type="email" name="email" placeholder="Correo electrónico" required />
+      <input type="password" name="password" placeholder="Contraseña" required />
+      <button type="submit">Crear Administrador</button>
+      <% if (typeof errorMsg !== 'undefined') { %>
+        <p class="error"><%= errorMsg %></p>
+      <% } %>
+    </form>
+    <a href="/admin/login">Volver al login</a>
+  </div>
+</body>
+</html>

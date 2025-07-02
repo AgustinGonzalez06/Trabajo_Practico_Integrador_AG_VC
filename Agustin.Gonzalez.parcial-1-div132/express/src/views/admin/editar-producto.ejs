@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Producto</title>
+  <link rel="stylesheet" href="/css/stylesProd.css">
+</head>
+<body>
+  <main class="formulario-producto">
+    <h1>Editar producto</h1>
+
+    <% if (errores && errores.length > 0) { %>
+      <ul class="errores">
+        <% errores.forEach(err => { %>
+          <li><%= err.msg %></li>
+        <% }) %>
+      </ul>
+    <% } %>
+
+    <form action="/admin/editar/<%= datos.id %>" method="POST" enctype="multipart/form-data">
+      <label for="nombre">Nombre:</label>
+      <input type="text" name="nombre" id="nombre" required minlength="3" maxlength="100" value="<%= datos?.nombre || '' %>" />
+
+      <label for="precio">Precio:</label>
+      <input type="number" name="precio" id="precio" required min="1" step="1" value="<%= datos?.precio || '' %>" />
+
+      <label for="categoria">Categoría:</label>
+      <select name="categoria" id="categoria" required>
+        <option value="moneda" <%= datos?.categoria === 'moneda' ? 'selected' : '' %>>Moneda</option>
+        <option value="skin" <%= datos?.categoria === 'skin' ? 'selected' : '' %>>Skin</option>
+      </select>
+
+      <label for="subcategoria">Subcategoría:</label>
+      <input type="text" name="subcategoria" id="subcategoria" maxlength="50" value="<%= datos?.subcategoria || '' %>" />
+
+      <label for="img">Imagen actual:</label><br>
+      <% if (datos.img) { %>
+        <img src="<%= datos.img %>" alt="Imagen actual" width="150"><br>
+      <% } else { %>
+        <p>No hay imagen disponible.</p>
+      <% } %>
+
+      <label for="img">Subir nueva imagen (opcional):</label>
+      <input type="file" name="img" id="img" accept="image/*" />
+
+      <button type="submit">Guardar cambios</button>
+    </form>
+
+    <a href="/admin/dashboard">⬅️ Volver al dashboard</a>
+  </main>
+</body>
+</html>

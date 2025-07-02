@@ -3,7 +3,7 @@ import {
   getProductoById,
   createProducto,
   updateProducto,
-  deleteProducto
+  deshabilitarProducto
 } from '../services/productos.services.js';
 
 export const obtenerProductos = async (req, res) => {
@@ -25,7 +25,6 @@ export const obtenerProducto = async (req, res) => {
     res.status(500).json({ error: 'Error al obtener el producto' });
   }
 };
-
 
 export const crearProducto = async (req, res) => {
   try {
@@ -54,13 +53,13 @@ export const actualizarProducto = async (req, res) => {
   }
 };
 
-export const eliminarProducto = async (req, res) => {
+export const deshabilitarProductoController = async (req, res) => {
   const { id } = req.params;
   try {
-    await deleteProducto(id);
-    res.json({ mensaje: 'Producto eliminado' });
+    await deshabilitarProducto(id);
+    res.json({ mensaje: 'Producto deshabilitado' });
   } catch (err) {
-    res.status(500).json({ error: 'Error al eliminar el producto' });
+    res.status(500).json({ error: 'Error al deshabilitar el producto' });
   }
 };
 
@@ -70,7 +69,6 @@ export const getProductosInactivos = async (req, res) => {
       'SELECT id, nombre, precio, descripcion FROM productos WHERE activo = ?',
       [0]
     );
-    // Si no hay resultados, devolvemos 204 No Content
     if (rows.length === 0) {
       return res.status(204).send();
     }

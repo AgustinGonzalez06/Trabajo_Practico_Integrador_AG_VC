@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Admin</title>
+  <link rel="stylesheet" href="/css/stylesProd.css" />
+</head>
+<body>
+  <header>
+    <h1>Dashboard de Administrador</h1>
+    <a href="/admin/agregar" class="btn-agregar">➕ Agregar producto</a>
+  </header>
+
+  <main>
+    <% if (productos && productos.length > 0) { %>
+      <section class="product-grid">
+        <% productos.forEach(producto => { %>
+          <div class="producto-card">
+            <img src="/<%= producto.img %>" alt="<%= producto.nombre %>" class="producto-img" />
+            <h3><%= producto.nombre %></h3>
+            <p>💰 Precio: $<%= producto.precio %></p>
+            <p>📂 Categoría: <%= producto.categoria %></p>
+            <p>🏷️ Subcategoría: <%= producto.subcategoria %></p>
+            <p><%= producto.activo ? "🟢 Activo" : "🔴 Inactivo" %></p>
+
+            <div class="acciones">
+              <a href="/admin/editar/<%= producto.id %>" class="btn-editar">✏️ Editar</a>
+              <form action="/admin/deshabilitar/<%= producto.id %>" method="POST" style="display:inline;">
+                <button type="submit" class="btn-deshabilitar">🚫 Deshabilitar</button>
+              </form>
+            </div>
+          </div>
+        <% }); %>
+      </section>
+    <% } else { %>
+      <p>No hay productos cargados.</p>
+    <% } %>
+  </main>
+</body>
+</html>
