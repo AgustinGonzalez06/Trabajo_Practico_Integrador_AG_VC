@@ -2,6 +2,8 @@ import { filtrarProductosPorTexto, aplicarFiltros } from './filtros.js';
 import { cargarCarrito, renderizarCarrito, renderizarResumenCarrito } from './carrito.js';
 import { mostrarProductos, mostrarCarruselDestacado } from './ui.js';
 import { productosGlobal, cargarDatos } from './api.js';
+import { finalizarCompra } from './carrito.js';
+
 
 export async function inicializarEventos() {
   const pathname = window.location.pathname;

@@ -8,6 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-document.getElementById('btnAdmin').addEventListener('click', () => {
-  window.location.href = 'loginAdmin.html';
-});
+// document.getElementById('btnAdmin').addEventListener('click', () => {
+//   window.location.href = 'loginAdmin.html';
+// });

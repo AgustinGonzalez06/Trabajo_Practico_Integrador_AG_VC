@@ -154,11 +154,62 @@ export function actualizarTotalResumen() {
 // Función para finalizar compra
 export function finalizarCompra() {
   if (carrito.length === 0) {
-    alert("El carrito está vacío.");
+    alert("No hay productos en el carrito.");
     return;
   }
-  alert(`Gracias por tu compra! Total: $${carrito.reduce((sum, i) => sum + i.precio * i.cantidad, 0).toFixed(2)}`);
-  carrito = [];
-  guardarCarrito();
-  renderizarResumenCarrito();
+
+  const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0).toFixed(2);
+
+  const confirmMsg = `Vas a comprar ${carrito.length} artículo(s) por un total de $${total}.\n\n¿Querés continuar?`;
+  if (!window.confirm(confirmMsg)) return;
+
+  const userData = localStorage.getItem("user");
+  const user = userData ? JSON.parse(userData) : null;
+
+  console.log("User:", user);
+
+  if (!user || !user.nombre) {
+    alert("Debes iniciar sesión con un nombre válido para comprar.");
+    return;
+  }
+
+  const payload = {
+    clienteNombre: user.nombre,
+    productos: carrito.map(p => ({
+      id: p.id,
+      cantidad: p.cantidad,
+      precio: p.precio,
+    })),
+  };
+
+  console.log("📤 Enviando datos de compra:", payload); // Debug útil
+
+  fetch("/api/venta/comprar", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("Error en respuesta del servidor");
+      }
+      return res.json();
+    })
+    .then(data => {
+      if (data.ventaId) {
+        alert("¡Compra confirmada!");
+        carrito = [];
+        guardarCarrito();
+        renderizarCarrito();
+         window.location.href = `ticket.html?ventaId=${data.ventaId}`;
+      } else {
+        alert("Error al procesar la compra.");
+      }
+    })
+    .catch(err => {
+      console.error("❌ Error en la compra:", err);
+      alert("Hubo un problema al finalizar la compra.");
+    });
 }

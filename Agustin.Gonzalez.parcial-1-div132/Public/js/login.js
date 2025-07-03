@@ -7,6 +7,7 @@ export function initLogin() {
         event.preventDefault();
         const inputUsuario = document.getElementById("nombre").value;
         if (inputUsuario) {
+          localStorage.setItem("user", JSON.stringify({ nombre: inputUsuario }));
           window.location.href = "productos.html";
         } else {
           alert("Ingrese su nombre");
