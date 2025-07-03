@@ -5,6 +5,8 @@ export async function getTicketByVentaId(ventaId) {
   try {
     const [rows] = await pool.query(`
       SELECT 
+        dv.venta_id,
+        v.fecha,
         p.nombre AS producto,
         dv.precio_unitario,
         dv.cantidad,

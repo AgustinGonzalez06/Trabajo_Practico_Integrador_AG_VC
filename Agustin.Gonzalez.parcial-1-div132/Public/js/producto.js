@@ -1,5 +1,7 @@
 let skinsGlobal = [];
 let carrito = [];
+let page = 1;
+const limit = 2; // o el número que quieras mostrar por página
 
 
 // async function cargarProductosDesdeBD() {
@@ -31,9 +33,9 @@ async function cargarDatos() {
     const pathname = window.location.pathname;
 
     if (pathname.endsWith('vp.html')) {
-      url = '/api/monedas';
+      url = `/api/monedas/paginacion?page=${page}&limit=${limit}`;
     } else if (pathname.endsWith('productos.html') || pathname.endsWith('/')) {
-      url = '/api/skins';
+      url = `/api/skins/paginacion?page=${page}&limit=${limit}`;
     } else {
       console.warn('Página no soportada para cargar datos automáticamente');
       return;
@@ -365,5 +367,3 @@ function mostrarCarruselDestacado(lista) {
   });
 }
 
-// Ejecutar al cargar DOM
-document.addEventListener("DOMContentLoaded", init);

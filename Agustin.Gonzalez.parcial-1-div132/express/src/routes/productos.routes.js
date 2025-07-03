@@ -18,4 +18,5 @@ router.delete('/:id', deshabilitarProductoController);
 
 router.get('/inactivos', getProductosInactivos);
 
+
 export default router;

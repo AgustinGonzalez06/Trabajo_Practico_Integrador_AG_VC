@@ -24,9 +24,15 @@ async function cargarTicket() {
 
     let total = 0;
 
+    const fecha = data[0].fecha;
+    const ventaID = data[0].venta_id;
+    
     const container = document.getElementById("ticketContainer");
-    container.innerHTML = `<p><strong>Cliente:</strong> ${usuario}</p>
-      <table border="1" cellspacing="0" cellpadding="5">
+    container.innerHTML = 
+    `<p><strong>Cliente:</strong> ${usuario}</p>
+    <p><strong>Venta ID:</strong> ${ventaID}</p>
+    <p><strong>fecha :</strong> ${fecha}</p>
+    <table border="1" cellspacing="0" cellpadding="5">
         <thead>
           <tr>
             <th>Producto</th>

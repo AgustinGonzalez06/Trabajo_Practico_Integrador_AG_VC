@@ -11,7 +11,7 @@ import monedasRouter from './src/routes/moneda.routes.js';
 import productosRouter from './src/routes/productos.routes.js';
 import ventaRoutes from './src/routes/venta.routes.js';
 import ticketsRouter from './src/routes/ticket.routes.js';
-
+import paginacionRouter from './src/routes/paginacion.routes.js';
 
 import { 
   getAllProductos, 
@@ -48,6 +48,7 @@ app.use(express.json());
 app.use('/api/skins', skinRoutes);
 app.use('/api/monedas', monedasRouter);
 app.use('/api/productos', productosRouter);
+app.use('/api/paginacion', paginacionRouter);
 app.use('/api/venta', ventaRoutes);
 app.use('/tickets', ticketsRouter);
 
