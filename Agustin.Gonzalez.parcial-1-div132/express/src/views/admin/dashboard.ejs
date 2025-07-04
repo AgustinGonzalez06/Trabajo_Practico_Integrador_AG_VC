@@ -2,42 +2,70 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dashboard Admin</title>
   <link rel="stylesheet" href="/css/stylesProd.css" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
-  <header>
-    <h1>Dashboard de Administrador</h1>
-    <a href="/admin/agregar" class="btn-agregar">➕ Agregar producto</a>
-  </header>
+<header>
+  <a href="/loginUser.html" style="text-decoration: none; color: inherit;">
+  <div class="logo">
+    <img src="/favicon.png" alt="Logo ValorantTienda" />
+    <h1>ValorantTienda Dashboard</h1>
+  </div>
+  </a>
+  <nav>
+    <div class="menu">
+      <!-- <button id="btnVP" class="boton">Monedas</button>
+      <button id="btnSkins" class="boton">Skins</button> -->
+      <a href="/admin/agregar" class="btn-agregar">➕ Agregar producto</a>
+    </div>
+  </nav>
 
-  <main>
-    <% if (productos && productos.length > 0) { %>
-      <section class="product-grid">
-        <% productos.forEach(producto => { %>
-          <div class="producto-card">
-            <img src="/<%= producto.img %>" alt="<%= producto.nombre %>" class="producto-img" />
-            <h3><%= producto.nombre %></h3>
-            <p>💰 Precio: $<%= producto.precio %></p>
-            <p>📂 Categoría: <%= producto.categoria %></p>
-            <p>🏷️ Subcategoría: <%= producto.subcategoria %></p>
-            <p><%= producto.activo ? "🟢 Activo" : "🔴 Inactivo" %></p>
+</header>
 
-            <div class="acciones">
-              <a href="/admin/editar/<%= producto.id %>" class="btn-editar">✏️ Editar</a>
-              <form action="/admin/toggle-estado/<%= producto.id %>" method="POST" style="display:inline;">
-                <button type="submit" class="btn-deshabilitar">
+<main>
+  <% if (productos && productos.length > 0) { %>
+    <section class="product-grid">
+      <% productos.forEach(producto => { %>
+        <div class="product-card"> <!-- usamos clase reutilizable -->
+          <img src="<%= producto.img %>" alt="<%= producto.nombre %>" />
+          <h3><%= producto.nombre %></h3>
+          <p>💰 Precio: $<%= producto.precio %></p>
+          <p>📂 Categoría: <%= producto.categoria %></p>
+          <p>🏷️ Subcategoría: <%= producto.subcategoria %></p>
+          <p><%= producto.activo ? "🟢 Activo" : "🔴 Inactivo" %></p>
+
+          <div class="acciones">
+            <a href="/admin/editar/<%= producto.id %>" class="btn-editar">✏️ Editar</a>
+            <form action="/admin/toggle-estado/<%= producto.id %>" method="POST" style="display:inline;">
+              <button type="submit" class="btn-deshabilitar">
                 <%= producto.activo ? "🚫 Deshabilitar" : "✅ Habilitar" %>
               </button>
-</form>
-            </div>
+            </form>
           </div>
-        <% }); %>
-      </section>
-    <% } else { %>
-      <p>No hay productos cargados.</p>
-    <% } %>
-  </main>
+        </div>
+      <% }); %>
+    </section>
+  <% } else { %>
+    <p>No hay productos cargados.</p>
+  <% } %>
+</main>
+<footer>
+  <div class="logo">
+    <img src="/favicon.png" alt="Logo ValorantTienda" />
+    <h1>ValorantTienda</h1>
+  </div>
+
+  <div class="footer-info">
+    <p>Valentin Corallo &nbsp;&nbsp; Agustin Gonzales</p>
+    <p>&copy; 2025 ValorantTienda. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script type="module" src="js/main.js"></script>
 </body>
 </html>

@@ -54,6 +54,7 @@ header {
   position: sticky;
   top: 0;
   font-family: 'Orbitron', sans-serif;
+  z-index: 10000;
 }
 
 header .logo {
@@ -194,7 +195,7 @@ nav {
 }
 
 .product-card button, 
-.confirm-button {
+.confirm-button, .btn-agregar, .btn-editar {
   background-color: #00ff88;
   color: #000;
   border: 2px solid #00ff88;
@@ -208,9 +209,10 @@ nav {
   box-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88 inset;
   transition: all 0.2s ease-in-out;
   text-transform: uppercase;
+  margin: 20px;
 }
 
-.product-card button:hover {
+.product-card button:hover, .btn-agregar:hover, .btn-editar:hover {
   background-color: #000;
   color: #00ff88;
   box-shadow: 0 0 15px #00ff88, 0 0 30px #00ff88 inset;
@@ -271,30 +273,37 @@ h2 {
 }
 
 .slider-frame {
-  background-color: rgb(36, 34, 34);
   width: 40%;
-  overflow: hidden;
   margin: 50px auto;
-  padding: 20px;
-  box-shadow: 0 0 10px #ff2018, 0 0 20px #ff2018 inset;
+  overflow: hidden;
   border: 2px solid #ff2018;
   border-radius: 10px;
+  background-color: rgb(36, 34, 34);
+  padding: 20px;
+  box-shadow: 0 0 10px #ff2018, 0 0 20px #ff2018 inset;
+  position: relative;
 }
 
 .slider-frame ul {
   display: flex;
-  width: 400%;
+  transition: transform 0.5s ease-in-out;
   padding: 0;
   margin: 0;
-  animation: slider 16s infinite forwards ease-in-out;
+  list-style: none;
 }
 
 .slider-frame li {
-  list-style: none;
-  width: 100%;
+  flex: 0 0 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+/* Animación slider */
+@keyframes slideAnimation {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 }
 
 /* Pantalla carrito */
@@ -444,17 +453,7 @@ h2 {
   }
 }
 
-/* Animación slider */
-@keyframes slider {
-  0% {margin-left: 0%;}
-  20% {margin-left: 0%;}
-  25% {margin-left: -100%;}
-  45% {margin-left: -100%;}
-  50% {margin-left: -200%;}
-  70% {margin-left: -200%;}
-  75% {margin-left: -300%;}
-  95% {margin-left: -300%;}
-}
+
 
 /* Iconos */
 .icon {
@@ -545,3 +544,5 @@ footer .footer-info p {
   margin: 4px 0;
   font-size: 14px;
 }
+
+

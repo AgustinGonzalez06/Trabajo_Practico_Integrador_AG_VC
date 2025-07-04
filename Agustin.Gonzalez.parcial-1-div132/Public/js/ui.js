@@ -34,7 +34,8 @@ export function mostrarCarruselDestacado(lista) {
 
   carrusel.innerHTML = "";
 
-  const destacados = lista.slice(0, 4);
+  const destacados = lista.filter(p => p.destacado);
+  if (destacados.length === 0) return;
 
   destacados.forEach(producto => {
     const li = document.createElement("li");
@@ -55,7 +56,16 @@ export function mostrarCarruselDestacado(lista) {
 
     carrusel.appendChild(li);
   });
+
+  let currentIndex = 0;
+
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % destacados.length;
+    carrusel.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }, 3000); // cada 3 segundos
 }
+
+
 
 export function renderizarResumenCarrito() {
   const contenedor = document.querySelector('.resumen-carrito');

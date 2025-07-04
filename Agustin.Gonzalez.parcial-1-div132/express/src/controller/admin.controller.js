@@ -45,24 +45,41 @@ export const agregarProductoDesdeForm = async (req, res) => {
   const producto = {
     ...req.body,
     activo: req.body.activo ? 1 : 0,
-    destacado: req.body.destacado ? 1 : 0
+    destacado: req.body.destacado ? 1 : 0,
+    img: req.file ? `/uploads/${req.body.categoria}/${req.file.filename}` : ''
   };
-  await createProducto(producto);
-  res.redirect('/admin/productos');
-};
 
+  try {
+    await createProducto(producto);
+    res.redirect('/admin/productos');
+  } catch (error) {
+    console.error("Error al agregar producto:", error);
+    res.status(500).send("Error al agregar producto");
+  }
+};
 export const eliminarProductoDesdeForm = async (req, res) => {
   await deshabilitarProducto(req.params.id);  // cambiar llamada aquí
   res.redirect('/admin/productos');
 };
 export const actualizarProductoDesdeForm = async (req, res) => {
-  const updated = {
-    ...req.body,
-    activo: req.body.activo ? 1 : 0,
-    destacado: req.body.destacado ? 1 : 0
-  };
-  await updateProducto(req.params.id, updated);
-  res.redirect('/admin/productos');
+  try {
+    const updated = {
+      ...req.body,
+      activo: req.body.activo ? 1 : 0,
+      destacado: req.body.destacado ? 1 : 0
+    };
+
+    // Si subieron archivo, actualizar campo img con la ruta correcta
+    if (req.file) {
+      updated.img = `/uploads/${req.file.filename}`; // o como armes la ruta
+    }
+
+    await updateProducto(req.params.id, updated);
+    res.redirect('/admin/productos');
+  } catch (error) {
+    console.error("Error al actualizar producto:", error);
+    res.status(500).send("Error al actualizar producto");
+  }
 };
 
 export const toggleEstadoDesdeForm = async (req, res) => {

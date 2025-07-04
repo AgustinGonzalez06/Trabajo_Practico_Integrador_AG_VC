@@ -43,6 +43,10 @@
       <label for="img">Subir nueva imagen (opcional):</label>
       <input type="file" name="img" id="img" accept="image/*" />
 
+      <label for="destacado">
+      <input type="checkbox" name="destacado" id="destacado" value="1" <%= datos.destacado ? 'checked' : '' %> />
+      Destacado
+      </label>
       <button type="submit">Guardar cambios</button>
     </form>
 
