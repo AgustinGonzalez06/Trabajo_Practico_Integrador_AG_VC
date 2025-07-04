@@ -3,7 +3,8 @@ import {
   getProductoById,
   createProducto,
   updateProducto,
-  deshabilitarProducto
+  deshabilitarProducto,
+  getProductosActivos
 } from '../services/productos.services.js';
 
 export const obtenerProductos = async (req, res) => {
@@ -12,6 +13,16 @@ export const obtenerProductos = async (req, res) => {
     res.json(productos);
   } catch (err) {
     res.status(500).json({ error: 'Error al obtener productos' });
+  }
+};
+
+
+export const obtenerProductosActivos = async (req, res) => {
+  try {
+    const productos = await getProductosActivos();
+    res.json(productos);
+  } catch (err) {
+    res.status(500).json({ error: 'Error al obtener productos activos' });
   }
 };
 

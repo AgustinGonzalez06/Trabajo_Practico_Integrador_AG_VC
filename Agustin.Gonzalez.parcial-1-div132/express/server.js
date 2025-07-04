@@ -11,6 +11,7 @@ import monedasRouter from './src/routes/moneda.routes.js';
 import productosRouter from './src/routes/productos.routes.js';
 import ventaRoutes from './src/routes/venta.routes.js';
 import ticketsRouter from './src/routes/ticket.routes.js';
+import adminRoutes from './src/routes/admin.routes.js';
 import paginacionRouter from './src/routes/paginacion.routes.js';
 
 import { 
@@ -51,7 +52,7 @@ app.use('/api/productos', productosRouter);
 app.use('/api/paginacion', paginacionRouter);
 app.use('/api/venta', ventaRoutes);
 app.use('/tickets', ticketsRouter);
-
+app.use('/', adminRoutes);
 // Página de login de usuario
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'loginUser.html'));

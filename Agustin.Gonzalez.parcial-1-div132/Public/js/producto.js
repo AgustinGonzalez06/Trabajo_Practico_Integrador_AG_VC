@@ -110,11 +110,13 @@ console.log("PATHNAME:", pathname);
 
   // --------- PRODUCTOS Y CARRITO ----------
   const searchBar = document.getElementById("search-bar");
-  let jsonUrl = "skins.json";
 
-  if (pathname.includes("vp.html")) {
-    jsonUrl = "vp.json";
-  }
+
+  // let jsonUrl = "skins.json";
+
+  // if (pathname.includes("vp.html")) {
+  //   jsonUrl = "vp.json";
+  // }
 
   // Cargar productos desde el JSON
   // fetch(jsonUrl)
@@ -173,20 +175,6 @@ console.log("PATHNAME:", pathname);
   if (logoDiv) {
     logoDiv.addEventListener("click", () => {
       window.location.href = "MI.html";
-    });
-  }
-
-  const btnVP = document.getElementById("btnVP");
-  if (btnVP) {
-    btnVP.addEventListener("click", () => {
-      window.location.href = "vp.html";
-    });
-  }
-
-  const btnSkins = document.getElementById("btnSkins");
-  if (btnSkins) {
-    btnSkins.addEventListener("click", () => {
-      window.location.href = "productos.html";
     });
   }
 

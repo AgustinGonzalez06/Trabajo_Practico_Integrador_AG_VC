@@ -2,7 +2,7 @@ export let productosGlobal = [];
 
 export async function cargarDatos() {
   try {
-    const res = await fetch('/api/productos');
+    const res = await fetch('/api/productos/activos');
     if (!res.ok) throw new Error(`Error ${res.status}`);
     const datos = await res.json();
 

@@ -2,6 +2,11 @@ import pool from '../../db.js';
 
 // Obtener todos los productos
 export const getAllProductos = async () => {
+  const [rows] = await pool.query('SELECT * FROM productos');
+  return rows;
+};
+// Obtener productos activos para la tienda
+export const getProductosActivos = async () => {
   const [rows] = await pool.query('SELECT * FROM productos WHERE activo = TRUE');
   return rows;
 };
@@ -43,4 +48,13 @@ export const deshabilitarProducto = async (id) => {
     'UPDATE productos SET activo = false WHERE id = ?',
     [id]
   );
+};
+
+export const toggleEstadoProducto = async (id) => {
+  const [rows] = await pool.query('SELECT activo FROM productos WHERE id = ?', [id]);
+  if (rows.length === 0) throw new Error('Producto no encontrado');
+
+  const nuevoEstado = rows[0].activo ? 0 : 1;
+
+  await pool.query('UPDATE productos SET activo = ? WHERE id = ?', [nuevoEstado, id]);
 };

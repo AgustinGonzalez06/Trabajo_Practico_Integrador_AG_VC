@@ -18,8 +18,8 @@
 
   <nav>
     <div class="menu">
-    <button id="btnVP" class="boton">Monedas</button>
-    <button id="btnSkins" class="boton">Skins</button>
+      <button id="btnVP" class="boton">Monedas</button>
+      <button id="btnSkins" class="boton">Skins</button>
     </div>
 
     <!-- Campo de búsqueda con icono -->
@@ -39,10 +39,12 @@
     <ul id="cart-items"></ul>
     <p class="cart-total">Total: <span id="total-price">$0.00</span></p>
     <button id="confirmar-compra" class="confirm-button">Confirmar compra</button>
-</div>
+  </div>
 </header>
 
-    <aside class="filter-menu">
+<!-- Contenedor principal para aside + main -->
+<div class="content-wrapper">
+  <aside class="filter-menu">
     <h3>Filtrar</h3> 
     <div class="filter-group">
       <h4>Categoría</h4>
@@ -67,28 +69,27 @@
       </select>
     </div>
 
-  <h2>Destacados</h2>
-  <div class="slider-frame">
-    <ul id="carousel-products"></ul>
-  </div>
+    <h2>Destacados</h2>
+    <div class="slider-frame">
+      <ul id="carousel-products"></ul>
+    </div>
+  </aside>
 
   <main>
-
-    </aside>
     <section class="products-section">
       <h2>Productos</h2>
       <div class="product-grid"></div>
 
       <div class="paginacion">
-    <button id="prev">⬅️</button>
-    <span id="pageNumber"></span>
-    <button id="next">➡️</button>
-    </div>
+        <button id="prev">⬅️</button>
+        <span id="pageNumber"></span>
+        <button id="next">➡️</button>
+      </div>
     </section>
   </main>
+</div>
 
-  <script type="module" src="js/main.js"></script>
-  <footer>
+<footer>
   <div class="logo">
     <img src="favicon.png" alt="Logo ValorantTienda" />
     <h1>ValorantTienda</h1>
@@ -99,5 +100,7 @@
     <p>&copy; 2025 ValorantTienda. Todos los derechos reservados.</p>
   </div>
 </footer>
+
+<script type="module" src="js/main.js"></script>
 </body>
 </html>

@@ -3,7 +3,8 @@ import {
   getProductoById,
   createProducto,
   updateProducto,
-  deshabilitarProducto
+  deshabilitarProducto,
+  toggleEstadoProducto
 } from '../services/productos.services.js';
 
 
@@ -63,6 +64,18 @@ export const actualizarProductoDesdeForm = async (req, res) => {
   await updateProducto(req.params.id, updated);
   res.redirect('/admin/productos');
 };
+
+export const toggleEstadoDesdeForm = async (req, res) => {
+   const { id } = req.params;
+
+   try {
+     await toggleEstadoProducto(id);  // Esta función alterna entre activo/inactivo
+     res.redirect('/admin/dashboard');
+   } catch (error) {
+     console.error('Error al cambiar el estado del producto:', error);
+     res.status(500).send('Error al cambiar estado');
+   }
+ };
 
 // =================== ADMIN CREACIÓN ===================
 

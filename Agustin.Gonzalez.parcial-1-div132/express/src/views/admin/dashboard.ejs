@@ -26,9 +26,11 @@
 
             <div class="acciones">
               <a href="/admin/editar/<%= producto.id %>" class="btn-editar">✏️ Editar</a>
-              <form action="/admin/deshabilitar/<%= producto.id %>" method="POST" style="display:inline;">
-                <button type="submit" class="btn-deshabilitar">🚫 Deshabilitar</button>
-              </form>
+              <form action="/admin/toggle-estado/<%= producto.id %>" method="POST" style="display:inline;">
+                <button type="submit" class="btn-deshabilitar">
+                <%= producto.activo ? "🚫 Deshabilitar" : "✅ Habilitar" %>
+              </button>
+</form>
             </div>
           </div>
         <% }); %>

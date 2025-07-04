@@ -5,13 +5,21 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   /* background-color: #1f1f27; */
-  background-image: url('../img/bgstore2.png') ;
+  background-image: url('../img/bgstore2.png');
   font-family: 'Orbitron', sans-serif;
   color: #fff;
-  min-height: 100vh;
   user-select: none;
+
+  /* Flex para footer sticky */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 body::before {
@@ -28,6 +36,11 @@ body::before {
   z-index: -1;
 }
 
+/* El main debe ocupar todo el espacio disponible para empujar footer abajo */
+main {
+  flex: 1;
+}
+
 /* Header */
 header {
   height: 70px;
@@ -39,7 +52,7 @@ header {
   padding: 10px 20px;
   border-bottom: 4px solid #ff4655;
   position: sticky;
-  top:0;
+  top: 0;
   font-family: 'Orbitron', sans-serif;
 }
 
@@ -203,6 +216,7 @@ nav {
   box-shadow: 0 0 15px #00ff88, 0 0 30px #00ff88 inset;
   transform: scale(1.05);
 }
+
 .container {
   text-align: center;
   justify-content: center;
@@ -226,7 +240,7 @@ nav {
 .boton {
   justify-content: center;
   align-items: center;
-  background:#ff4655;
+  background: #ff4655;
   border: none;
   color: #fff;
   padding: 10px 20px;
@@ -248,16 +262,14 @@ nav {
   gap: 24px;
   justify-content: center;
 }
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+
+/* Slider */
 h2 {
   text-align: center;
   margin: 50px;
   font-size: 2rem;
 }
+
 .slider-frame {
   background-color: rgb(36, 34, 34);
   width: 40%;
@@ -284,7 +296,6 @@ h2 {
   justify-content: center;
   align-items: center;
 }
-
 
 /* Pantalla carrito */
 .item-block {
@@ -317,6 +328,7 @@ h2 {
   font-weight: bold;
   cursor: pointer;
 }
+
 .cart-card {
   display: flex;
   gap: 15px;
@@ -402,8 +414,8 @@ h2 {
 .btn-eliminar:hover {
   background-color: #ff0000;
 }
-/* ===== Responsive para móviles ===== */
 
+/* ===== Responsive para móviles ===== */
 @media (max-width: 768px) {
   .carrito-container {
     flex-direction: column;
@@ -432,21 +444,19 @@ h2 {
   }
 }
 
-
+/* Animación slider */
 @keyframes slider {
   0% {margin-left: 0%;}
   20% {margin-left: 0%;}
-
   25% {margin-left: -100%;}
   45% {margin-left: -100%;}
-
   50% {margin-left: -200%;}
   70% {margin-left: -200%;}
-
   75% {margin-left: -300%;}
   95% {margin-left: -300%;}
 }
 
+/* Iconos */
 .icon {
   width: 20px;
   height: 20px;
@@ -454,87 +464,7 @@ h2 {
   margin-right: 5px;
 }
 
-.search-container {
-  display: flex;
-  align-items: center;
-  border: 1px solid #ccc;
-  padding: 5px;
-  border-radius: 5px;
-}
-
-.search-container input {
-  border: none;
-  outline: none;
-}
-
-
-/* Ocultar todo el texto del botón excepto la imagen */
-#cart-button::after {
-  content: none;
-}
-
-
-.search-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: none;
-  border: none;
-}
-
-#cart-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  color: transparent;     /* Oculta el texto */
-  font-size: 0;            /* Alternativa segura */
-}
-
-#cart-button img {
-  width: 24px;
-  height: 24px;
-}
-
-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #111;
-  color: white;
-  padding: 20px;
-  flex-wrap: wrap;
-  border-top: 4px solid #ff4655;
-}
-
-footer .logo {
-  display: flex;
-  align-items: center;
-}
-
-footer .logo img {
-  width: 32px;
-  height: 32px;
-  margin-right: 10px;
-}
-
-footer .footer-info {
-  text-align: right;
-}
-
-footer .footer-info p {
-  margin: 4px 0;
-  font-size: 14px;
-}
-
+/* Buscador */
 .search-container {
   display: flex;
   align-items: center;
@@ -556,8 +486,62 @@ footer .footer-info p {
   margin-left: 0; /* Elimina margen que empujaba hacia la derecha */
   z-index: 10; /* Asegura que esté por encima si hay solapamientos */
 }
+
 .search-container.active #search-bar {
-  z-index: 10;
   width: 150px;
   opacity: 1;
+  z-index: 10;
+}
+
+/* Botón carrito sin texto */
+#cart-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  color: transparent;
+  font-size: 0;
+}
+
+#cart-button img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Footer sticky */
+footer {
+  flex-shrink: 0;
+  background-color: #111;
+  padding: 20px;
+  border-top: 4px solid #ff4655;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+footer .logo {
+  display: flex;
+  align-items: center;
+}
+
+footer .logo img {
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+}
+
+footer .footer-info {
+  text-align: right;
+}
+
+footer .footer-info p {
+  margin: 4px 0;
+  font-size: 14px;
 }
