@@ -17,7 +17,7 @@ body {
   user-select: none;
 
   /* Flex para footer sticky */
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   min-height: 100vh;
 }
@@ -301,10 +301,10 @@ h2 {
 
 
 /* Animación slider */
-@keyframes slideAnimation {
+/* @keyframes slideAnimation {
   0% { transform: translateX(0); }
   100% { transform: translateX(-100%); }
-}
+} */
 
 /* Pantalla carrito */
 .item-block {
@@ -543,6 +543,70 @@ footer .footer-info {
 footer .footer-info p {
   margin: 4px 0;
   font-size: 14px;
+}
+
+/* Contenedor principal: layout horizontal */
+.tienda-container {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+/* Sidebar (filtros) */
+.sidebar {
+  width: 240px;
+  background-color: #1a1a1a;
+  padding: 1rem;
+  border-radius: 12px;
+  overflow-y: auto;
+  max-height: calc(100vh - 150px); /* ajusta según altura del header */
+  position: sticky;
+  top: 100px;
+}
+
+/* Grupos de filtros */
+.filter-group {
+  margin-bottom: 1.5rem;
+}
+
+.filter-group h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #ff4655;
+  cursor: pointer;
+}
+
+.filter-group .content label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* Main: carrusel + productos */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Carrusel de destacados */
+/* .destacados {
+  background-color: #202020;
+  padding: 1rem;
+  border-radius: 12px;
+} */
+
+.slider-frame {
+  overflow: hidden;
+  padding: 0.5rem 0;
+}
+
+.slider-frame ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
 }
 
 

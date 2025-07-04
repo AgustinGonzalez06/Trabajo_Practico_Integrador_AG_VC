@@ -10,98 +10,113 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
-<header>
-  <a href="loginUser.html" style="text-decoration: none; color: inherit;">
-  <div class="logo">
-    <img src="favicon.png" alt="Logo ValorantTienda" />
-    <h1>ValorantTienda</h1>
-  </div>
-  </a>
-  <nav>
-    <div class="menu">
-      <button id="btnVP" class="boton">Monedas</button>
-      <button id="btnSkins" class="boton">Skins</button>
-    </div>
-
-    <!-- Campo de búsqueda con icono -->
-    <div class="search-container">
-      <img src="img/search.png" alt="Buscar" class="icon search-icon" id="search-toggle" />
-      <input type="text" id="search-bar" placeholder="Buscar skins..." />
-    </div>
-    
-    <!-- Botón del carrito con icono -->
-    <button id="cart-button" class="nav-link">
-      <img src="img/cart.png" alt="Carrito" class="icon" />
-      Carrito
-    </button>
-  </nav>
-
-  <div id="cart-dropdown" class="cart-dropdown hidden">
-    <ul id="cart-items"></ul>
-    <p class="cart-total">Total: <span id="total-price">$0.00</span></p>
-    <button id="confirmar-compra" class="confirm-button">Confirmar compra</button>
-  </div>
-</header>
-
-<!-- Contenedor principal para aside + main -->
-<div class="content-wrapper">
-  <aside class="filter-menu">
-    <h3>Filtrar</h3> 
-    <div class="filter-group">
-      <h4>Categoría</h4>
-      <label><input type="checkbox" name="categoria" value="vandal" checked> Vandal</label>
-    </div>
-    
-    <div class="filter-group">
-      <h4>Rareza</h4>
-      <label><input type="checkbox" name="rareza" value="ultra"> Ultra</label>
-      <label><input type="checkbox" name="rareza" value="exclusive"> Exclusive</label>
-      <label><input type="checkbox" name="rareza" value="premium"> Premium</label>
-    </div>
-
-    <div class="filter-group">
-      <h4>Precio máximo</h4>
-      <select id="precio-max">
-        <option value="Todos">Todos</option>
-        <option value="17">17</option>
-        <option value="20">20</option>
-        <option value="23">23</option>
-        <option value="25">25</option>
-      </select>
-    </div>
-
-    <h2>Destacados</h2>
-    <div class="slider-frame">
-      <ul id="carousel-products"></ul>
-    </div>
-  </aside>
-
-  <main>
-    <section class="products-section">
-      <h2>Productos</h2>
-      <div class="product-grid"></div>
-
-      <div class="paginacion">
-        <button id="prev">⬅️</button>
-        <span id="pageNumber"></span>
-        <button id="next">➡️</button>
+  <header>
+    <a href="loginUser.html" style="text-decoration: none; color: inherit;">
+      <div class="logo">
+        <img src="favicon.png" alt="Logo ValorantTienda" />
+        <h1>ValorantTienda</h1>
       </div>
-    </section>
-  </main>
-</div>
+    </a>
 
-<footer>
-  <div class="logo">
-    <img src="favicon.png" alt="Logo ValorantTienda" />
-    <h1>ValorantTienda</h1>
+    <nav>
+      <div class="menu">
+        <button id="btnVP" class="boton">Monedas</button>
+        <button id="btnSkins" class="boton">Skins</button>
+      </div>
+
+      <div class="search-container">
+        <img src="img/search.png" alt="Buscar" class="icon search-icon" id="search-toggle" />
+        <input type="text" id="search-bar" placeholder="Buscar skins..." />
+      </div>
+
+      <button id="cart-button" class="nav-link">
+        <img src="img/cart.png" alt="Carrito" class="icon" />
+        Carrito
+      </button>
+    </nav>
+
+    <div id="cart-dropdown" class="cart-dropdown hidden">
+      <ul id="cart-items"></ul>
+      <p class="cart-total">Total: <span id="total-price">$0.00</span></p>
+      <button id="confirmar-compra" class="confirm-button">Confirmar compra</button>
+    </div>
+  </header>
+
+  <!-- Contenedor de filtros y contenido -->
+  <div class="tienda-container">
+    <!-- Sidebar: filtros -->
+    <aside class="sidebar">
+      <!-- Subcategoría -->
+      <div class="filter-group">
+        <h4>Subcategoría</h4>
+        <div class="content">
+          <label><input type="checkbox" name="subcategoria" value="vandal"> Vandal</label>
+          <label><input type="checkbox" name="subcategoria" value="spectre"> Spectre</label>
+          <label><input type="checkbox" name="subcategoria" value="guardian"> Guardian</label>
+          <label><input type="checkbox" name="subcategoria" value="phantom"> Phantom</label>
+          <label><input type="checkbox" name="subcategoria" value="sheriff"> Sheriff</label>
+          <label><input type="checkbox" name="subcategoria" value="operator"> Operator</label>
+          <label><input type="checkbox" name="subcategoria" value="classic"> Classic</label>
+          <label><input type="checkbox" name="subcategoria" value="cuchillos"> Cuchillos</label>
+          <label><input type="checkbox" name="subcategoria" value="vp"> Valorant Points</label>
+          <label><input type="checkbox" name="subcategoria" value="rp"> Riot Points</label>
+          <label><input type="checkbox" name="subcategoria" value="radiant"> Radiantes</label>
+        </div>
+      </div>
+
+      <!-- Orden de precio -->
+      <div class="filter-group">
+        <h4>Ordenar por</h4>
+        <select id="orden-precio">
+          <option value="default">Por defecto</option>
+          <option value="menor-mayor">Menor a mayor</option>
+          <option value="mayor-menor">Mayor a menor</option>
+        </select>
+      </div>
+
+      <!-- Precio máximo -->
+      <div class="filter-group">
+        <h4>Precio máximo</h4>
+        <input type="number" id="precio-limite" placeholder="Ej: 25" />
+      </div>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main>
+      <!-- Carrusel -->
+      <section class="destacados">
+        <h2>Destacados</h2>
+        <div class="slider-frame">
+          <ul id="carousel-products"></ul>
+        </div>
+      </section>
+
+      <!-- Productos -->
+      <section class="products-section">
+        <h2>Productos</h2>
+        <div class="product-grid"></div>
+
+        <div class="paginacion">
+          <button id="prev">⬅️</button>
+          <span id="pageNumber"></span>
+          <button id="next">➡️</button>
+        </div>
+      </section>
+    </main>
   </div>
 
-  <div class="footer-info">
-    <p>Valentin Corallo &nbsp;&nbsp; Agustin Gonzales</p>
-    <p>&copy; 2025 ValorantTienda. Todos los derechos reservados.</p>
-  </div>
-</footer>
+  <footer>
+    <div class="logo">
+      <img src="favicon.png" alt="Logo ValorantTienda" />
+      <h1>ValorantTienda</h1>
+    </div>
 
-<script type="module" src="js/main.js"></script>
+    <div class="footer-info">
+      <p>Valentin Corallo &nbsp;&nbsp; Agustin Gonzales</p>
+      <p>&copy; 2025 ValorantTienda. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>

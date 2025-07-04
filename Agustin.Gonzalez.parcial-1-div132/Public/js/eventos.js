@@ -1,89 +1,101 @@
-import { filtrarProductosPorTexto, aplicarFiltros } from './filtros.js';
+import { filtrarProductosPorTexto, aplicarFiltros, resetearFiltros } from './filtros.js';
 import { cargarCarrito, renderizarCarrito, renderizarResumenCarrito } from './carrito.js';
 import { mostrarProductos, mostrarCarruselDestacado } from './ui.js';
-import { productosGlobal, cargarDatos } from './api.js';
+import { productosGlobal, cargarDatos, setProductosGlobal } from './api.js';
 import { finalizarCompra } from './carrito.js';
 
+export let categoriaActual = 'skin'; // variable global para categoría actual
 
 export async function inicializarEventos() {
   const pathname = window.location.pathname;
   console.log("Página actual:", pathname);
 
   if (pathname.includes("carrito.html")) {
-    console.log("🛒 Entrando a carrito.html");
-
-    // Cargar carrito y renderizar resumen en carrito.html
+    // código carrito (igual que antes)
     cargarCarrito();
     renderizarResumenCarrito();
     const btnFinalizar = document.getElementById("finalizar-compra");
     if (btnFinalizar) {
-      btnFinalizar.addEventListener("click", () => {
-      finalizarCompra();
-    });
-  }
+      btnFinalizar.addEventListener("click", () => finalizarCompra());
+    }
 
-    // En carrito.html los botones redirigen a productos.html con categoría en query string
+    // Botones que llevan a productos con query string (solo para carrito)
     const btnVP = document.getElementById("btnVP");
     if (btnVP) {
       btnVP.addEventListener("click", () => {
         window.location.href = "productos.html?categoria=moneda";
       });
     }
-
     const btnSkins = document.getElementById("btnSkins");
     if (btnSkins) {
       btnSkins.addEventListener("click", () => {
         window.location.href = "productos.html?categoria=skin";
       });
     }
-
-    return; // No continuar con el resto para carrito.html
+    return; // no sigue el resto para carrito
   }
 
-  // Para productos.html u otras páginas:
-
-  console.log("JS cargado");
+  // Para productos.html y demás
 
   const datos = await cargarDatos();
-
   if (datos.length === 0) {
     console.warn("No se cargaron productos");
     return;
   }
+  setProductosGlobal(datos);
 
-  // Leer parámetro 'categoria' de URL para mostrar filtro inicial
+  // Inicializar categoriaActual según parámetro URL (o default 'skin')
   const urlParams = new URLSearchParams(window.location.search);
-  const categoriaParam = urlParams.get('categoria') || 'skin'; // Por defecto 'skin'
+  categoriaActual = urlParams.get('categoria') || 'skin';
 
-  const productosFiltrados = productosGlobal.filter(p => p.categoria === categoriaParam);
-
+  // Mostrar productos iniciales por categoría actual
+  const productosFiltrados = productosGlobal.filter(p => p.categoria === categoriaActual);
   mostrarProductos(productosFiltrados);
   mostrarCarruselDestacado(productosFiltrados);
 
-  // Eventos de búsqueda y filtros
+  // Listeners filtros
+  const subcategoriasCheckboxes = document.querySelectorAll("input[name='subcategoria']");
+  const ordenPrecioSelect = document.getElementById("orden-precio");
+  const precioLimiteInput = document.getElementById("precio-limite");
+
+  subcategoriasCheckboxes.forEach(cb => cb.addEventListener("change", aplicarFiltros));
+  if (ordenPrecioSelect) ordenPrecioSelect.addEventListener("change", aplicarFiltros);
+  if (precioLimiteInput) precioLimiteInput.addEventListener("input", aplicarFiltros);
+
+  // Botones categoría: al hacer clic cambian categoriaActual, resetean filtros y aplican filtros
+  const btnVP = document.getElementById("btnVP");
+  if (btnVP) {
+    btnVP.addEventListener("click", () => {
+      categoriaActual = 'moneda';
+      resetearFiltros();
+      aplicarFiltros();
+    });
+  }
+  const btnSkins = document.getElementById("btnSkins");
+  if (btnSkins) {
+    btnSkins.addEventListener("click", () => {
+      categoriaActual = 'skin';
+      resetearFiltros();
+      aplicarFiltros();
+    });
+  }
+
+  // Búsqueda
   const searchBar = document.getElementById("search-bar");
   if (searchBar) searchBar.addEventListener("input", filtrarProductosPorTexto);
 
-  const filtros = document.querySelectorAll("input[name='categoria'], input[name='rareza'], #precio-max");
-  filtros.forEach(f => f.addEventListener("input", aplicarFiltros));
-
-  const precioMaxSelect = document.getElementById("precio-max");
-  if (precioMaxSelect) precioMaxSelect.addEventListener("change", aplicarFiltros);
-
-  // Cargar carrito guardado y renderizar
+  // Carrito
   cargarCarrito();
   renderizarCarrito();
 
   // Toggle carrito dropdown
   const cartButton = document.getElementById("cart-button");
   const cartDropdown = document.getElementById("cart-dropdown");
-
   if (cartButton && cartDropdown) {
     cartButton.addEventListener("click", (event) => {
       event.stopPropagation();
       cartDropdown.classList.toggle("hidden");
     });
-
     document.addEventListener("click", (event) => {
       if (
         !cartDropdown.classList.contains("hidden") &&
@@ -95,54 +107,17 @@ export async function inicializarEventos() {
     });
   }
 
-  // Logo que vuelve a productos.html sin query (por defecto skins)
+  // Logo vuelve a productos sin query
   const logoDiv = document.querySelector(".logo");
   if (logoDiv) {
     logoDiv.addEventListener("click", () => {
-      window.location.href = "productos.html";
+      categoriaActual = 'skin';
+      resetearFiltros();
+      aplicarFiltros();
     });
   }
 
-  // Botones VP y Skins para filtrar sin cambiar de página (solo si estás en productos.html)
-  const btnVP = document.getElementById("btnVP");
-  if (btnVP) {
-    btnVP.addEventListener("click", () => {
-      const monedas = productosGlobal.filter(p => p.categoria === 'moneda');
-      mostrarProductos(monedas);
-      mostrarCarruselDestacado(monedas);
-    });
-  }
-
-  const btnSkins = document.getElementById("btnSkins");
-  if (btnSkins) {
-    btnSkins.addEventListener("click", () => {
-      const skins = productosGlobal.filter(p => p.categoria === 'skin');
-      mostrarProductos(skins);
-      mostrarCarruselDestacado(skins);
-    });
-  }
-
-  // Icono búsqueda toggle
-  const searchIcon = document.getElementById("search-toggle");
-  const searchContainer = document.querySelector(".search-container");
-
-  if (searchIcon && searchContainer) {
-    searchIcon.addEventListener("click", () => {
-      searchContainer.classList.toggle("active");
-      const input = document.getElementById("search-bar");
-      if (searchContainer.classList.contains("active") && input) {
-        input.focus();
-      }
-    });
-
-    document.addEventListener("click", (e) => {
-      if (!searchContainer.contains(e.target) && e.target !== searchIcon) {
-        searchContainer.classList.remove("active");
-      }
-    });
-  }
-
-  // Botón confirmar compra que lleva a carrito.html
+  // Botón confirmar compra lleva a carrito.html
   const btnConfirmar = document.getElementById("confirmar-compra");
   if (btnConfirmar) {
     btnConfirmar.addEventListener("click", () => {
