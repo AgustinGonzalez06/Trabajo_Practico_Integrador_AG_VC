@@ -1,6 +1,16 @@
 const params = new URLSearchParams(window.location.search);
 const ventaId = params.get("ventaId");
 
+function salir() {
+  //Elimina el usuario y otros datos de localStorage
+  localStorage.removeItem("user");
+  localStorage.removeItem("carrito"); // si guardas carrito
+
+  // Redirige a http://localhost:5000/
+  window.location.href = "http://localhost:5000";
+}
+
+
 
 if (!ventaId) {
   alert("No se encontró el ticket.");
@@ -29,7 +39,8 @@ async function cargarTicket() {
     
     const container = document.getElementById("ticketContainer");
     container.innerHTML = 
-    `<p><strong>Cliente:</strong> ${usuario}</p>
+    `<p><strong>ValorantTienda</strong></p>
+    <p><strong>Cliente:</strong> ${usuario}</p>
     <p><strong>Venta ID:</strong> ${ventaID}</p>
     <p><strong>fecha :</strong> ${fecha}</p>
     <table border="1" cellspacing="0" cellpadding="5">
@@ -77,6 +88,10 @@ function descargarPDF() {
 
 document.addEventListener("DOMContentLoaded", () => {
   cargarTicket();
-  const boton = document.getElementById("btnPDF");
-  if (boton) boton.addEventListener("click", descargarPDF);
+
+  const botonPDF = document.getElementById("btnPDF");
+  if (botonPDF) botonPDF.addEventListener("click", descargarPDF);
+
+  const botonSalir = document.getElementById("btnSalir");
+  if (botonSalir) botonSalir.addEventListener("click", salir);
 });
