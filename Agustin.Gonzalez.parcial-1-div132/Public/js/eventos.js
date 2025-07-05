@@ -3,6 +3,8 @@ import { cargarCarrito, renderizarCarrito, renderizarResumenCarrito } from './ca
 import { mostrarProductos, mostrarCarruselDestacado } from './ui.js';
 import { productosGlobal, cargarDatos, setProductosGlobal } from './api.js';
 import { finalizarCompra } from './carrito.js';
+import { aplicarTemaCSS } from './CambiarTema.js';
+import { paginacionProductos } from './paginacion.js';
 
 export let categoriaActual = 'skin'; // variable global para categoría actual
 
@@ -50,7 +52,7 @@ export async function inicializarEventos() {
 
   // Mostrar productos iniciales por categoría actual
   const productosFiltrados = productosGlobal.filter(p => p.categoria === categoriaActual);
-  mostrarProductos(productosFiltrados);
+  paginacionProductos(productosFiltrados, mostrarProductos);
   mostrarCarruselDestacado(productosFiltrados);
 
   // Listeners filtros
@@ -124,4 +126,37 @@ export async function inicializarEventos() {
       window.location.href = "carrito.html";
     });
   }
+
+  // Botón cambiar tema con menú
+  const btnTema = document.getElementById("btnTema");
+  const menuTema = document.getElementById("menuTema");
+  const temaClaro = document.getElementById("temaClaro");
+  const temaOscuro = document.getElementById("temaOscuro");
+
+  if (btnTema && menuTema && temaClaro && temaOscuro) {
+    btnTema.addEventListener("click", () => {
+      menuTema.classList.toggle("hidden");
+    });
+
+    temaClaro.addEventListener("click", () => aplicarTemaCSS("claro"));
+    temaOscuro.addEventListener("click", () => aplicarTemaCSS("oscuro"));
+
+    // Al cargar la página, aplica el tema guardado
+    const temaGuardado = localStorage.getItem("tema");
+    const linkTema = document.getElementById("temaCSS");
+    if (temaGuardado === "oscuro") {
+      linkTema.setAttribute("href", "oscuro.css");
+    } else {
+      linkTema.setAttribute("href", "claro.css");
+    }
+  }
+
+  // Cerrar menú si clickea afuera
+  document.addEventListener("click", (event) => {
+    if (!menuTema.contains(event.target) && event.target !== btnTema) {
+      menuTema.classList.add("hidden");
+    }
+  });
+
+
 }

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Productos</title>
-  <link rel="stylesheet" href="css/stylesProd.css" />
+  <link id="temaCSS" rel="stylesheet" href="css/stylesProd.css" />
   <link rel="icon" href="favicon.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
@@ -20,6 +20,7 @@
 
     <nav>
       <div class="menu">
+        <button id="btnTema">Cambiar tema</button>
         <button id="btnVP" class="boton">Monedas</button>
         <button id="btnSkins" class="boton">Skins</button>
       </div>
@@ -40,6 +41,11 @@
       <p class="cart-total">Total: <span id="total-price">$0.00</span></p>
       <button id="confirmar-compra" class="confirm-button">Confirmar compra</button>
     </div>
+
+  <div id="menuTema" class="hidden">
+  <button id="temaClaro">Claro</button>
+  <button id="temaOscuro">Oscuro</button>
+  </div>
   </header>
 
   <!-- Contenedor de filtros y contenido -->
@@ -95,11 +101,6 @@
       <section class="products-section">
         <h2>Productos</h2>
         <div class="product-grid"></div>
-
-        <div class="paginacion">
-          <button id="prev">⬅️</button>
-          <span id="pageNumber"></span>
-          <button id="next">➡️</button>
         </div>
       </section>
     </main>

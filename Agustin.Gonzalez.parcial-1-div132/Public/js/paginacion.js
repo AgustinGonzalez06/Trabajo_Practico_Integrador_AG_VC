@@ -1,35 +1,58 @@
-let page = 1;
-const limit = 2;
+let paginaActual = 1;
+const productosPorPagina = 2;
+let listaGlobal = [];
 
-function actualizarPaginacion(pageActual, totalPaginas) {
-  const prevBtn = document.getElementById("prev");
-  const nextBtn = document.getElementById("next");
-  const pageNumber = document.getElementById("pageNumber");
+/**
+ * Función principal de paginación
+ */
+export function paginacionProductos(lista, mostrarCallback) {
+  listaGlobal = lista;
 
-  if (!prevBtn || !nextBtn || !pageNumber) return;
+  const totalPaginas = Math.ceil(lista.length / productosPorPagina);
 
-  pageNumber.textContent = `Página ${pageActual} de ${totalPaginas}`;
-  prevBtn.disabled = pageActual === 1;
-  nextBtn.disabled = pageActual === totalPaginas;
+  // Ajusta página actual si excede
+  if (paginaActual > totalPaginas) {
+    paginaActual = totalPaginas;
+  }
+
+  const inicio = (paginaActual - 1) * productosPorPagina;
+  const fin = inicio + productosPorPagina;
+  const productosPagina = lista.slice(inicio, fin);
+
+  // Llama a tu función de renderizado que se pasa como callback
+  mostrarCallback(productosPagina);
+
+  mostrarControlesPaginacion(totalPaginas, mostrarCallback);
 }
 
-document.getElementById("prev")?.addEventListener("click", () => {
-  if (page > 1) {
-    page--;
-    cargarProductosPaginados();  // Tu función que recarga los productos
+/**
+ * Controles de paginación
+ */
+function mostrarControlesPaginacion(totalPaginas, mostrarCallback) {
+  let paginacion = document.getElementById("paginacion");
+  if (!paginacion) {
+    paginacion = document.createElement("div");
+    paginacion.id = "paginacion";
+    document.body.appendChild(paginacion);
   }
-});
 
-document.getElementById("next")?.addEventListener("click", () => {
-  page++;
-  cargarProductosPaginados();
-});
+  paginacion.innerHTML = `
+    <button id="prevPag" ${paginaActual === 1 ? "disabled" : ""}>Anterior</button>
+    <span> Página ${paginaActual} de ${totalPaginas} </span>
+    <button id="nextPag" ${paginaActual === totalPaginas ? "disabled" : ""}>Siguiente</button>
+  `;
 
-// En la función que carga los productos paginados debes llamar a actualizarPaginacion
-async function cargarProductosPaginados() {
-  const res = await fetch(`/api/productos/paginacion?page=${page}&limit=${limit}`);
-  const data = await res.json();
+  document.getElementById("prevPag").addEventListener("click", () => {
+    if (paginaActual > 1) {
+      paginaActual--;
+      paginacionProductos(listaGlobal, mostrarCallback);
+    }
+  });
 
-  mostrarProductos(data.productos);
-  actualizarPaginacion(data.page, data.totalPages);
+  document.getElementById("nextPag").addEventListener("click", () => {
+    if (paginaActual < totalPaginas) {
+      paginaActual++;
+      paginacionProductos(listaGlobal, mostrarCallback);
+    }
+  });
 }

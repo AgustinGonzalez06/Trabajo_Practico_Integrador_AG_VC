@@ -1,6 +1,7 @@
 import { mostrarProductos, mostrarCarruselDestacado } from './ui.js';
 import { productosGlobal } from './api.js';
 import {categoriaActual} from './eventos.js';
+import { paginacionProductos } from './paginacion.js';
 
 export function filtrarProductosPorTexto() {
   const searchBar = document.getElementById("search-bar");
@@ -65,7 +66,7 @@ export function aplicarFiltros() {
     filtrados.sort((a, b) => b.precio - a.precio);
   }
 
-  mostrarProductos(filtrados);
+  paginacionProductos(filtrados, mostrarProductos);
   mostrarCarruselDestacado(filtrados);
 }
 

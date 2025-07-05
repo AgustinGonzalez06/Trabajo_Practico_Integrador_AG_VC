@@ -1,5 +1,6 @@
 import { agregarAlCarrito } from './carrito.js';
 import { carrito, actualizarTotal } from './carrito.js';
+import { paginacionProductos } from './paginacion.js';
 
 export function mostrarProductos(lista) {
   const container = document.querySelector(".product-grid");

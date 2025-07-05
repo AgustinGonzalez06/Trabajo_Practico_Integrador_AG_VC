@@ -1,6 +1,25 @@
 const params = new URLSearchParams(window.location.search);
 const ventaId = params.get("ventaId");
 
+
+
+function iniciarTemporizador(duracion) {
+  const timerElement = document.getElementById("timer");
+  let tiempo = duracion;
+
+  const intervalo = setInterval(() => {
+    timerElement.textContent = tiempo;
+    tiempo--;
+
+    if (tiempo < 0) {
+      clearInterval(intervalo);
+      salir(); // Llama la función para salir automáticamente
+    }
+  }, 1000);
+}
+
+
+
 function salir() {
   //Elimina el usuario y otros datos de localStorage
   localStorage.removeItem("user");
@@ -9,8 +28,6 @@ function salir() {
   // Redirige a http://localhost:5000/
   window.location.href = "http://localhost:5000";
 }
-
-
 
 if (!ventaId) {
   alert("No se encontró el ticket.");
@@ -94,4 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const botonSalir = document.getElementById("btnSalir");
   if (botonSalir) botonSalir.addEventListener("click", salir);
+
+
+  iniciarTemporizador(30);
 });
