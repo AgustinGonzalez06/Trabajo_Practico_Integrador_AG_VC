@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dashboard Admin</title>
-  <link rel="stylesheet" href="/css/stylesProd.css" />
+  <link id="temaCSS" rel="stylesheet" href="/css/stylesProd.css" />
   <link rel="icon" href="/favicon.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
@@ -18,6 +18,10 @@
   </div>
   </a>
   <nav>
+      <!-- Botón de tema aparte -->
+  <button id="btnTema" class="tema-toggle" aria-label="Cambiar tema">
+    <span id="iconoTema" class="material-symbols-outlined">dark_mode</span>
+  </button>
     <div class="menu">
       <!-- <button id="btnVP" class="boton">Monedas</button>
       <button id="btnSkins" class="boton">Skins</button> -->
@@ -28,6 +32,9 @@
 </header>
 
 <main>
+  <div class="dashboard-search-container" style="max-width: 480px; margin: 40px auto;">
+  <input type="text" id="dashboard-search-bar" placeholder="Buscar producto..." style="width: 100%; padding: 8px 12px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc;" />
+</div>
   <% if (productos && productos.length > 0) { %>
     <section class="product-grid">
       <% productos.forEach(producto => { %>
@@ -66,6 +73,61 @@
   </div>
 </footer>
 
-<script type="module" src="js/main.js"></script>
+<script>
+  function aplicarTemaCSS(tema) {
+    const linkTema = document.getElementById('temaCSS');
+    if (tema === 'oscuro') {
+      linkTema.href = '/css/stylesProd.css';
+      document.getElementById("iconoTema").textContent = "light_mode";
+    } else {
+      linkTema.href = '/css/stylesProdclaro.css';
+      document.getElementById("iconoTema").textContent = "dark_mode";
+    }
+    localStorage.setItem("tema", tema);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const temaGuardado = localStorage.getItem("tema");
+    aplicarTemaCSS(temaGuardado === 'oscuro' ? 'oscuro' : 'claro');
+
+    const btnTema = document.getElementById("btnTema");
+    const iconoTema = document.getElementById("iconoTema");
+
+    if (btnTema && iconoTema) {
+      btnTema.addEventListener("click", () => {
+        const temaActual = localStorage.getItem("tema");
+        const nuevoTema = temaActual === "oscuro" ? "claro" : "oscuro";
+        aplicarTemaCSS(nuevoTema);
+      });
+    }
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const searchBar = document.getElementById('dashboard-search-bar');
+    const productCards = document.querySelectorAll('.product-card');
+
+    searchBar.addEventListener('input', () => {
+      const texto = searchBar.value.toLowerCase();
+
+      if (texto.length < 3) {
+        // Mostrar todos los productos si hay menos de 3 caracteres
+        productCards.forEach(card => {
+          card.style.display = '';
+        });
+        return;
+      }
+
+      productCards.forEach(card => {
+        const nombre = card.querySelector('h3').textContent.toLowerCase();
+        if (nombre.includes(texto)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>

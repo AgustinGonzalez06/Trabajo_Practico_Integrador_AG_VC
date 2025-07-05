@@ -1,5 +1,5 @@
 let paginaActual = 1;
-const productosPorPagina = 2;
+const productosPorPagina = 6;
 let listaGlobal = [];
 
 /**
@@ -30,10 +30,12 @@ export function paginacionProductos(lista, mostrarCallback) {
  */
 function mostrarControlesPaginacion(totalPaginas, mostrarCallback) {
   let paginacion = document.getElementById("paginacion");
+  const zonaPaginacion = document.getElementById("zonaPaginacion");
+
   if (!paginacion) {
     paginacion = document.createElement("div");
     paginacion.id = "paginacion";
-    document.body.appendChild(paginacion);
+    zonaPaginacion.appendChild(paginacion);
   }
 
   paginacion.innerHTML = `

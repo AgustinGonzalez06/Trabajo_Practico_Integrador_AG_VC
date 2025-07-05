@@ -70,15 +70,6 @@ export function aplicarFiltros() {
   mostrarCarruselDestacado(filtrados);
 }
 
-
-
-
-
-
-
-
-
-
 export function resetearFiltros() {
   // Desmarcar todos los checkboxes de subcategoría
   document.querySelectorAll("input[name='subcategoria']").forEach(cb => cb.checked = false);

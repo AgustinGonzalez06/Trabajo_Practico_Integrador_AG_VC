@@ -12,16 +12,37 @@ export async function inicializarEventos() {
   const pathname = window.location.pathname;
   console.log("Página actual:", pathname);
 
+  // ------------------------
+  // Código para carrito.html
+  // ------------------------
   if (pathname.includes("carrito.html")) {
-    // código carrito (igual que antes)
     cargarCarrito();
     renderizarResumenCarrito();
+
+    // Aplicar tema y toggle en carrito
+    const btnTema = document.getElementById("btnTema");
+    const iconoTema = document.getElementById("iconoTema");
+
+    const temaGuardado = localStorage.getItem("tema");
+    if (temaGuardado === "oscuro") {
+      aplicarTemaCSS("oscuro");
+    } else {
+      aplicarTemaCSS("claro");
+    }
+
+    if (btnTema && iconoTema) {
+      btnTema.addEventListener("click", () => {
+        const temaActual = localStorage.getItem("tema");
+        const nuevoTema = temaActual === "oscuro" ? "claro" : "oscuro";
+        aplicarTemaCSS(nuevoTema);
+      });
+    }
+
     const btnFinalizar = document.getElementById("finalizar-compra");
     if (btnFinalizar) {
       btnFinalizar.addEventListener("click", () => finalizarCompra());
     }
 
-    // Botones que llevan a productos con query string (solo para carrito)
     const btnVP = document.getElementById("btnVP");
     if (btnVP) {
       btnVP.addEventListener("click", () => {
@@ -34,11 +55,12 @@ export async function inicializarEventos() {
         window.location.href = "productos.html?categoria=skin";
       });
     }
-    return; // no sigue el resto para carrito
+    return; // Termina ejecución para carrito
   }
 
-  // Para productos.html y demás
-
+  // --------------------------
+  // Código para productos.html y otros
+  // --------------------------
   const datos = await cargarDatos();
   if (datos.length === 0) {
     console.warn("No se cargaron productos");
@@ -64,7 +86,6 @@ export async function inicializarEventos() {
   if (ordenPrecioSelect) ordenPrecioSelect.addEventListener("change", aplicarFiltros);
   if (precioLimiteInput) precioLimiteInput.addEventListener("input", aplicarFiltros);
 
-  // Botones categoría: al hacer clic cambian categoriaActual, resetean filtros y aplican filtros
   const btnVP = document.getElementById("btnVP");
   if (btnVP) {
     btnVP.addEventListener("click", () => {
@@ -127,36 +148,46 @@ export async function inicializarEventos() {
     });
   }
 
-  // Botón cambiar tema con menú
+  // Aplicar tema y toggle para productos y otras páginas
   const btnTema = document.getElementById("btnTema");
-  const menuTema = document.getElementById("menuTema");
-  const temaClaro = document.getElementById("temaClaro");
-  const temaOscuro = document.getElementById("temaOscuro");
+  const iconoTema = document.getElementById("iconoTema");
 
-  if (btnTema && menuTema && temaClaro && temaOscuro) {
+  const temaGuardado = localStorage.getItem("tema");
+  if (temaGuardado === "oscuro") {
+    aplicarTemaCSS("oscuro");
+  } else {
+    aplicarTemaCSS("claro");
+  }
+
+  if (btnTema && iconoTema) {
     btnTema.addEventListener("click", () => {
-      menuTema.classList.toggle("hidden");
+      const temaActual = localStorage.getItem("tema");
+      const nuevoTema = temaActual === "oscuro" ? "claro" : "oscuro";
+      aplicarTemaCSS(nuevoTema);
     });
-
-    temaClaro.addEventListener("click", () => aplicarTemaCSS("claro"));
-    temaOscuro.addEventListener("click", () => aplicarTemaCSS("oscuro"));
-
-    // Al cargar la página, aplica el tema guardado
-    const temaGuardado = localStorage.getItem("tema");
-    const linkTema = document.getElementById("temaCSS");
-    if (temaGuardado === "oscuro") {
-      linkTema.setAttribute("href", "oscuro.css");
-    } else {
-      linkTema.setAttribute("href", "claro.css");
-    }
   }
 
   // Cerrar menú si clickea afuera
+  const menuTema = document.getElementById("menuTema");
   document.addEventListener("click", (event) => {
-    if (!menuTema.contains(event.target) && event.target !== btnTema) {
+    if (menuTema && !menuTema.contains(event.target) && event.target !== btnTema) {
       menuTema.classList.add("hidden");
     }
   });
 
+  const searchToggle = document.getElementById("search-toggle");
+const searchContainer = document.querySelector(".search-container");
 
+
+if (searchToggle && searchContainer && searchBar) {
+  searchToggle.addEventListener("click", () => {
+    searchContainer.classList.toggle("active");
+    if (searchContainer.classList.contains("active")) {
+      searchBar.focus();
+    } else {
+      searchBar.value = "";
+      aplicarFiltros("");
+    }
+  });
+}
 }

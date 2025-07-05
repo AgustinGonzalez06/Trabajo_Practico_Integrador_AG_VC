@@ -3,9 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <title>Alta de Producto</title>
-  <link rel="stylesheet" href="/css/stylesProd.css">
+  <link id="temaCSS" rel="stylesheet" href="/css/stylesProd.css" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
+  <header>
+  <a href="/loginUser.html" style="text-decoration: none; color: inherit;">
+  <div class="logo">
+    <img src="/favicon.png" alt="Logo ValorantTienda" />
+    <h1>ValorantTienda Dashboard</h1>
+  </div>
+  </a>
+  <nav>
+      <!-- Botón de tema aparte -->
+  <button id="btnTema" class="tema-toggle" aria-label="Cambiar tema">
+    <span id="iconoTema" class="material-symbols-outlined">dark_mode</span>
+  </button>
+    <div class="menu">
+      <!-- <button id="btnVP" class="boton">Monedas</button>
+      <button id="btnSkins" class="boton">Skins</button> -->
+      <a href="/admin/agregar" class="btn-agregar">➕ Agregar producto</a>
+    </div>
+  </nav>
+
+</header>
   <main class="formulario-producto">
     <h1>Agregar nuevo producto</h1>
 
@@ -42,5 +65,46 @@
 
     <a href="/admin/dashboard">⬅️ Volver al dashboard</a>
   </main>
+  <footer>
+  <div class="logo">
+    <img src="/favicon.png" alt="Logo ValorantTienda" />
+    <h1>ValorantTienda</h1>
+  </div>
+
+  <div class="footer-info">
+    <p>Valentin Corallo &nbsp;&nbsp; Agustin Gonzales</p>
+    <p>&copy; 2025 ValorantTienda. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  function aplicarTemaCSS(tema) {
+    const linkTema = document.getElementById('temaCSS');
+    if (tema === 'oscuro') {
+      linkTema.href = '/css/stylesProd.css';
+      document.getElementById("iconoTema").textContent = "light_mode";
+    } else {
+      linkTema.href = '/css/stylesProdclaro.css';
+      document.getElementById("iconoTema").textContent = "dark_mode";
+    }
+    localStorage.setItem("tema", tema);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const temaGuardado = localStorage.getItem("tema");
+    aplicarTemaCSS(temaGuardado === 'oscuro' ? 'oscuro' : 'claro');
+
+    const btnTema = document.getElementById("btnTema");
+    const iconoTema = document.getElementById("iconoTema");
+
+    if (btnTema && iconoTema) {
+      btnTema.addEventListener("click", () => {
+        const temaActual = localStorage.getItem("tema");
+        const nuevoTema = temaActual === "oscuro" ? "claro" : "oscuro";
+        aplicarTemaCSS(nuevoTema);
+      });
+    }
+  });
+</script>
 </body>
 </html>
