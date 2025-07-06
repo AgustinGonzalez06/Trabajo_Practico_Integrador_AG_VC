@@ -5,12 +5,14 @@ export function initLogin() {
     if (loginForm) {
       loginForm.addEventListener("submit", (event) => {
         event.preventDefault();
-        const inputUsuario = document.getElementById("nombre").value;
+        const inputUsuario = document.getElementById("nombre").value.trim();
+        const errorMsg = document.getElementById("errorMsg");
         if (inputUsuario) {
+          errorMsg.textContent = "";
           localStorage.setItem("user", JSON.stringify({ nombre: inputUsuario }));
           window.location.href = "productos.html";
         } else {
-          alert("Ingrese su nombre");
+          errorMsg.textContent = "Ingrese su nombre";
         }
       });
     }

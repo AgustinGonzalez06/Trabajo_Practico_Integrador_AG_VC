@@ -6,8 +6,8 @@ import { dirname } from "path";
 import { body, validationResult } from "express-validator";
 import fs from 'fs';
 
-import skinRoutes from './src/routes/skin.routes.js';
-import monedasRouter from './src/routes/moneda.routes.js';
+// import skinRoutes from './src/routes/skin.routes.js';
+// import monedasRouter from './src/routes/moneda.routes.js';
 import productosRouter from './src/routes/productos.routes.js';
 import ventaRoutes from './src/routes/venta.routes.js';
 import ticketsRouter from './src/routes/ticket.routes.js';
@@ -46,8 +46,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Rutas API
-app.use('/api/skins', skinRoutes);
-app.use('/api/monedas', monedasRouter);
+// app.use('/api/skins', skinRoutes);
+// app.use('/api/monedas', monedasRouter);
 app.use('/api/productos', productosRouter);
 app.use('/api/paginacion', paginacionRouter);
 app.use('/api/venta', ventaRoutes);

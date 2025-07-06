@@ -389,3 +389,272 @@ footer {
   opacity: 1;
   transform: rotate(0deg) scale(1);
 }
+
+/* ========================
+   ✅ RESPONSIVE: 768px (Tablets)
+   ======================== */
+@media (max-width: 768px) {
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .menu,
+  .search-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .search-container {
+    width: auto;
+    margin-top: 0;
+  }
+
+  #cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+    gap: 5px;
+  }
+
+  h1 {
+    display: none;
+  }
+
+  .btn-agregar,
+  .btn-editar,
+  .btn-deshabilitar {
+    padding: 6px 12px;
+    font-size: 0.65rem;
+    border-radius: 8px;
+    margin: 3px;
+    min-width: auto;
+    white-space: nowrap;
+    box-shadow: 0 0 8px #00ff88, 0 0 12px #00ff88 inset;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .btn-agregar:hover,
+  .btn-editar:hover,
+  .btn-deshabilitar:hover {
+    transform: scale(1.05);
+  }
+
+  .texto-pequeño {
+    font-size: 10px;
+    display: inline;
+    text-decoration: none;
+  }
+
+  .btn-agregar .texto-grande,
+  .btn-editar .texto-grande,
+  .btn-deshabilitar .texto-grande {
+    display: none;
+  }
+
+  .btn-agregar .texto-pequeño,
+  .btn-editar .texto-pequeño,
+  .btn-deshabilitar .texto-pequeño {
+    display: inline;
+    font-size: 1.2rem;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .btn-deshabilitar {
+    font-size: 0.55rem !important;
+  }
+
+  header {
+    padding: 10px 10px;
+  }
+
+  .tienda-container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .sidebar {
+    position: static;
+    width: 100%;
+    max-height: none;
+    border-radius: 10px;
+  }
+
+  main {
+    gap: 1.5rem;
+  }
+
+  .slider-frame {
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  .product-grid {
+    justify-content: center;
+  }
+
+  .product-card {
+    width: 180px;
+  }
+
+  .cart-dropdown {
+    right: 10px;
+    width: 90%;
+  }
+
+  footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  footer .footer-info {
+    text-align: center;
+  }
+}
+
+
+/* ========================
+   ✅ RESPONSIVE: 480px (Celulares)
+   ======================== */
+@media (max-width: 480px) {
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .tema-toggle {
+    margin: 0;
+  }
+
+  .search-container {
+    flex-grow: 1;
+    max-width: 200px;
+    display: flex;
+    align-items: center;
+  }
+
+  #search-bar {
+    width: 100% !important;
+  }
+
+  #cart-button {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+  }
+
+  .btn-agregar,
+  .btn-editar,
+  .btn-deshabilitar {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    border-radius: 8px;
+    margin: 0 3px;
+    white-space: nowrap;
+    box-shadow: 0 0 8px #00ff88, 0 0 12px #00ff88 inset;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+  }
+
+  .btn-agregar:hover,
+  .btn-editar:hover,
+  .btn-deshabilitar:hover {
+    transform: scale(1.05);
+  }
+
+  .btn-agregar {
+    font-size: 0.65rem !important;
+  }
+
+  header {
+    padding: 10px;
+    font-size: smaller;
+  }
+
+  .logo img {
+    width: 40px;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  .boton {
+    font-size: 0.9rem;
+    padding: 8px 14px;
+  }
+
+  .slider-frame {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .product-card {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .product-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .sidebar {
+    padding: 0.5rem;
+  }
+
+  .filter-group h4 {
+    font-size: 1rem;
+  }
+
+  .filter-group .content label {
+    font-size: 0.85rem;
+  }
+
+  .cart-dropdown {
+    width: 95%;
+    right: 2.5%;
+  }
+
+  .cantidad-controls button {
+    padding: 4px 8px;
+    font-size: 0.85rem;
+  }
+
+  .btn-eliminar {
+    padding: 4px 10px;
+    font-size: 0.9rem;
+  }
+
+  #paginacion button {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
+
+  .product-card button {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+}

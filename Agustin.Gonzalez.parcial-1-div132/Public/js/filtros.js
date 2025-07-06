@@ -1,4 +1,4 @@
-import { mostrarProductos, mostrarCarruselDestacado } from './ui.js';
+import { mostrarProductos } from './ui.js';
 import { productosGlobal } from './api.js';
 import {categoriaActual} from './eventos.js';
 import { paginacionProductos } from './paginacion.js';
@@ -67,7 +67,6 @@ export function aplicarFiltros() {
   }
 
   paginacionProductos(filtrados, mostrarProductos);
-  mostrarCarruselDestacado(filtrados);
 }
 
 export function resetearFiltros() {

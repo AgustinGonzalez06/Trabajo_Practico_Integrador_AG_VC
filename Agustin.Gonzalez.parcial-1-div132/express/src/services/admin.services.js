@@ -19,4 +19,3 @@ export const getAdminByEmail = async (email) => {
   );
   return rows[0];
 };
-

@@ -1,12 +1,12 @@
 import { filtrarProductosPorTexto, aplicarFiltros, resetearFiltros } from './filtros.js';
 import { cargarCarrito, renderizarCarrito, renderizarResumenCarrito } from './carrito.js';
-import { mostrarProductos, mostrarCarruselDestacado } from './ui.js';
+import { mostrarProductos } from './ui.js';
 import { productosGlobal, cargarDatos, setProductosGlobal } from './api.js';
 import { finalizarCompra } from './carrito.js';
 import { aplicarTemaCSS } from './CambiarTema.js';
 import { paginacionProductos } from './paginacion.js';
 
-export let categoriaActual = 'skin'; // variable global para categoría actual
+export let categoriaActual = 'skin';
 
 export async function inicializarEventos() {
   const pathname = window.location.pathname;
@@ -15,6 +15,8 @@ export async function inicializarEventos() {
   // ------------------------
   // Código para carrito.html
   // ------------------------
+
+  // Si estamos en carrito.html, cargar carrito y aplicar tema
   if (pathname.includes("carrito.html")) {
     cargarCarrito();
     renderizarResumenCarrito();
@@ -38,11 +40,13 @@ export async function inicializarEventos() {
       });
     }
 
+    //finalizar compra
     const btnFinalizar = document.getElementById("finalizar-compra");
     if (btnFinalizar) {
       btnFinalizar.addEventListener("click", () => finalizarCompra());
     }
 
+   //botones de navegacion en carrito.html
     const btnVP = document.getElementById("btnVP");
     if (btnVP) {
       btnVP.addEventListener("click", () => {
@@ -61,6 +65,8 @@ export async function inicializarEventos() {
   // --------------------------
   // Código para productos.html y otros
   // --------------------------
+
+
   const datos = await cargarDatos();
   if (datos.length === 0) {
     console.warn("No se cargaron productos");
@@ -75,7 +81,6 @@ export async function inicializarEventos() {
   // Mostrar productos iniciales por categoría actual
   const productosFiltrados = productosGlobal.filter(p => p.categoria === categoriaActual);
   paginacionProductos(productosFiltrados, mostrarProductos);
-  mostrarCarruselDestacado(productosFiltrados);
 
   // Listeners filtros
   const subcategoriasCheckboxes = document.querySelectorAll("input[name='subcategoria']");
@@ -86,6 +91,8 @@ export async function inicializarEventos() {
   if (ordenPrecioSelect) ordenPrecioSelect.addEventListener("change", aplicarFiltros);
   if (precioLimiteInput) precioLimiteInput.addEventListener("input", aplicarFiltros);
 
+
+  // Botones de categoría
   const btnVP = document.getElementById("btnVP");
   if (btnVP) {
     btnVP.addEventListener("click", () => {

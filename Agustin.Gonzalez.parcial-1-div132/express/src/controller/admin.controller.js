@@ -7,6 +7,9 @@ import {
   toggleEstadoProducto
 } from '../services/productos.services.js';
 
+import { getAdminByEmail } from '../services/admin.services.js'; // Asegurate de tener esta función
+
+import { validationResult } from 'express-validator';
 
 import {
   createAdmin
@@ -35,11 +38,19 @@ export const renderEditarProducto = async (req, res) => {
   res.render('admin/editar-producto', { producto });
 };
 
-export const renderRegistroAdmin = (req, res) => {
-  res.render('admin/registro-admin');
-};
 
 // =================== PRODUCTO CRUD ===================
+
+export const validarProducto = (req, res, next) => {
+  const errores = validationResult(req);
+  if (!errores.isEmpty()) {
+    return res.status(400).render('admin/agregar-producto', {
+      errores: errores.array(),
+      datos: req.body
+    });
+  }
+  next();
+};
 
 export const agregarProductoDesdeForm = async (req, res) => {
   const producto = {
@@ -96,15 +107,76 @@ export const toggleEstadoDesdeForm = async (req, res) => {
 
 // =================== ADMIN CREACIÓN ===================
 
-export const crearAdminDesdeForm = async (req, res) => {
+
+export const loginAdminDesdeForm = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Pasamos la contraseña plana para que el servicio la hashee
+    const admin = await getAdminByEmail(email);
+    if (!admin) {
+      return res.status(401).render('admin/login-admin', {
+        errorMsg: 'Correo no registrado',
+      });
+    }
+
+    const esValida = await bcrypt.compare(password, admin.contraseña);
+    if (!esValida) {
+      return res.status(401).render('admin/login-admin', {
+        errorMsg: 'Contraseña incorrecta',
+      });
+    }
+
+    // Autenticación exitosa: podés guardar el admin en la sesión si usás express-session
+    // req.session.admin = admin;
+
+    res.redirect('/admin/dashboard');
+  } catch (error) {
+    console.error('Error en login admin:', error);
+    res.status(500).render('admin/login-admin', {
+      errorMsg: 'Error del servidor al iniciar sesión',
+    });
+  }
+};
+
+// Para el render inicial (sin errores)
+export const renderRegistroAdmin = (req, res) => {
+  res.render('admin/registro-admin', { datos: {} });
+};
+
+// Para cuando hay errores, envías los datos enviados por el usuario para rellenar el formulario
+export const crearAdminDesdeForm = async (req, res) => {
+  const { email, password } = req.body;
+
+  // Puedes hacer aquí validaciones previas si querés
+  const errores = [];
+  if (!email || !email.trim()) errores.push({ msg: 'Email obligatorio' });
+  if (!password || password.length < 6) errores.push({ msg: 'La contraseña debe tener al menos 6 caracteres.' });
+
+  if (errores.length > 0) {
+    return res.status(400).render('admin/registro-admin', {
+      errores,
+      datos: { email }
+    });
+  }
+
+  try {
     await createAdmin({ email, contraseña: password });
     res.redirect('/admin/login');
   } catch (error) {
     console.error('Error al crear admin:', error);
-    res.status(500).render('admin/registro-admin', { errorMsg: 'Error al registrar el administrador' });
+
+    // Manejo error de duplicado (MySQL error code: ER_DUP_ENTRY)
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(400).render('admin/registro-admin', {
+        errores: [{ msg: 'El email ya está registrado, ingrese otro.' }],
+        datos: { email }
+      });
+    }
+
+    // Otros errores generales
+    res.status(500).render('admin/registro-admin', {
+      errores: [{ msg: 'Error inesperado al registrar el administrador.' }],
+      datos: { email }
+    });
   }
 };
