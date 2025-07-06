@@ -80,7 +80,7 @@ export async function inicializarEventos() {
 
   // Mostrar productos iniciales por categoría actual
   const productosFiltrados = productosGlobal.filter(p => p.categoria === categoriaActual);
-  paginacionProductos(productosFiltrados, mostrarProductos);
+  paginacionProductos(productosFiltrados, mostrarProductos, true);
 
   // Listeners filtros
   const subcategoriasCheckboxes = document.querySelectorAll("input[name='subcategoria']");

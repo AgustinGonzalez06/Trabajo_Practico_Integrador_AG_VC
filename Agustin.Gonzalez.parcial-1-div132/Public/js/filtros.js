@@ -9,12 +9,12 @@ export function filtrarProductosPorTexto() {
 
   const texto = searchBar.value.toLowerCase();
   if (texto.length < 3) {
-    mostrarProductos(productosGlobal);
+    paginacionProductos(productosGlobal, mostrarProductos, true);
     return;
   }
 
   const filtrados = productosGlobal.filter(p => p.nombre.toLowerCase().includes(texto));
-  mostrarProductos(filtrados);
+  paginacionProductos(filtrados, mostrarProductos, true);
 }
 
 
@@ -25,35 +25,36 @@ export function aplicarFiltros() {
   const orden = document.getElementById("orden-precio")?.value || "default";
   const precioLimite = parseFloat(document.getElementById("precio-limite")?.value);
 
-  // Usamos categoriaActual global en lugar de detectar categoría por filtros
-  let categoriaFiltrar = categoriaActual;
-
-  // Si hay filtros de subcategoría, validamos que la categoría corresponda con el filtro
   const filtrosMoneda = ['vp', 'rp', 'radiant'];
-  const filtrosSkin = ['vandal', 'spectre', 'guardian', 'phantom', 'sheriff', 'operator', 'classic', 'cuchillos'];
+  const filtrosSkin = ['vandal', 'spectre', 'guardian', 'phantom', 'sheriff', 'Operator', 'classic', 'cuchillos'];
 
-  if (subcategorias.length > 0) {
-    if (subcategorias.some(sc => filtrosMoneda.includes(sc))) {
-      categoriaFiltrar = 'moneda';
-    } else if (subcategorias.some(sc => filtrosSkin.includes(sc))) {
-      categoriaFiltrar = 'skin';
-    }
+  const contieneMonedas = subcategorias.some(sc => filtrosMoneda.includes(sc));
+  const contieneSkins = subcategorias.some(sc => filtrosSkin.includes(sc));
+
+  let filtrados = [];
+
+  // Filtrar categoría general
+  if (contieneMonedas && contieneSkins) {
+    filtrados = productosGlobal.slice(); // todos
+  } else if (contieneMonedas) {
+    filtrados = productosGlobal.filter(p => p.categoria === 'moneda');
+  } else if (contieneSkins) {
+    filtrados = productosGlobal.filter(p => p.categoria === 'skin');
+  } else {
+    filtrados = productosGlobal.filter(p => p.categoria === categoriaActual);
   }
 
-  // Filtrar productos por categoria actual
-  let filtrados = productosGlobal.filter(p => p.categoria === categoriaFiltrar);
-
-  // Filtrar por subcategoría solo si hay filtros
+  // Aplicar subcategorías (generalizado para ambas)
   if (subcategorias.length > 0) {
     filtrados = filtrados.filter(p => {
-      if (categoriaFiltrar === 'moneda') {
-        const pSub = (p.subcategoria || "").trim().toLowerCase();
-        return subcategorias.includes(pSub);
-      } else {
-        const nombreLower = p.nombre.toLowerCase().trim();
-        return subcategorias.some(sub => nombreLower.startsWith(sub));
-      }
-    });
+      const pSub = (p.subcategoria || "").trim().toLowerCase();
+      const nombreLower = p.nombre.toLowerCase().trim();
+    
+    return (
+      subcategorias.includes(pSub) || // monedas
+      subcategorias.some(sub => nombreLower.includes(sub)) // skins
+    );
+        });
   }
 
   if (!isNaN(precioLimite)) {
@@ -66,8 +67,9 @@ export function aplicarFiltros() {
     filtrados.sort((a, b) => b.precio - a.precio);
   }
 
-  paginacionProductos(filtrados, mostrarProductos);
+  paginacionProductos(filtrados, mostrarProductos, true);
 }
+
 
 export function resetearFiltros() {
   // Desmarcar todos los checkboxes de subcategoría

@@ -7,6 +7,8 @@ import {
   toggleEstadoProducto
 } from '../services/productos.services.js';
 
+import { obtenerVentas } from '../services/admin.services.js';
+
 import { getAdminByEmail } from '../services/admin.services.js'; // Asegurate de tener esta función
 
 import { validationResult } from 'express-validator';
@@ -180,3 +182,21 @@ export const crearAdminDesdeForm = async (req, res) => {
     });
   }
 };
+
+
+export async function renderListaVentas(req, res) {
+  try {
+    let ventas = await obtenerVentas();
+
+    // Convertir total a número
+    ventas = ventas.map(v => ({
+      ...v,
+      total: Number(v.total)  // o parseFloat(v.total)
+    }));
+
+    res.render("admin/ventas", { ventas });
+  } catch (error) {
+    console.error("Error al renderizar lista de ventas:", error);
+    res.status(500).send("Error al cargar ventas");
+  }
+}

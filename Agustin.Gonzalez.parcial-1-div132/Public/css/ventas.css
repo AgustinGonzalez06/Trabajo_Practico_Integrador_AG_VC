@@ -1,0 +1,38 @@
+/* Aplica a la tabla principal */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Estilo para la tabla de productos anidada */
+td table {
+  width: 100%;
+  margin-top: 8px;
+  border-collapse: collapse;
+}
+
+td table th,
+td table td {
+  border: 1px solid #ddd;
+  padding: 4px 6px;
+  font-size: 13px;
+}
+
+td table th {
+  background-color: #fafafa;
+  text-align: left;
+}

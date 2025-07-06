@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ventas realizadas</title>
+  <link rel="stylesheet" href="/css/ventas.css">
+</head>
+<body>
+  <h1>Listado de Ventas</h1>
+
+    <input type="text" id="buscador" placeholder="Buscar por ID de venta o cliente..." />
+
+
+<table id="tabla-ventas">
+  <thead>
+    <tr>
+      <th>ID Venta</th>
+      <th>Fecha</th>
+      <th>Cliente</th>
+      <th>Total</th>
+      <th>Productos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% ventas.forEach(v => { %>
+      <tr>
+        <td class="venta-id"><%= v.venta_id %></td>           
+        <td><%= new Date(v.fecha).toLocaleString() %></td>
+        <td class="cliente-nombre"><%= v.cliente_nombre %></td> 
+        <td>$<%= Number(v.total).toFixed(2) %></td>
+        <td>
+          <table>
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio unitario</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% v.productos.forEach(p => { %>
+                <tr>
+                  <td><%= p.nombre %></td>
+                  <td><%= p.cantidad %></td>
+                  <td>$<%= Number(p.precio_unitario).toFixed(2) %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+  <script>
+    const buscador = document.getElementById('buscador');
+    const tabla = document.getElementById('tabla-ventas').getElementsByTagName('tbody')[0];
+
+    buscador.addEventListener('input', function() {
+      const texto = this.value.toLowerCase();
+
+      for (let fila of tabla.rows) {
+        const ventaId = fila.querySelector('.venta-id').textContent.toLowerCase();
+        const clienteNombre = fila.querySelector('.cliente-nombre').textContent.toLowerCase();
+
+        if (ventaId.includes(texto) || clienteNombre.includes(texto)) {
+          fila.style.display = '';
+        } else {
+          fila.style.display = 'none';
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

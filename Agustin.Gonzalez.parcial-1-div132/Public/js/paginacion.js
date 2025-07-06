@@ -1,27 +1,32 @@
 let paginaActual = 1;
-const productosPorPagina = 6;
+const productosPorPagina = 2;
 let listaGlobal = [];
 
 /**
  * Función principal de paginación
  */
-export function paginacionProductos(lista, mostrarCallback) {
+export function paginacionProductos(lista, mostrarCallback, reiniciar = false) {
   listaGlobal = lista;
 
-  const totalPaginas = Math.ceil(lista.length / productosPorPagina);
+  if (reiniciar) {
+    paginaActual = 1;
+  }
 
-  // Ajusta página actual si excede
+  const totalPaginas = Math.max(1, Math.ceil(lista.length / productosPorPagina));
+
   if (paginaActual > totalPaginas) {
     paginaActual = totalPaginas;
+  }
+
+  if (paginaActual < 1) {
+    paginaActual = 1;
   }
 
   const inicio = (paginaActual - 1) * productosPorPagina;
   const fin = inicio + productosPorPagina;
   const productosPagina = lista.slice(inicio, fin);
 
-  // Llama a tu función de renderizado que se pasa como callback
   mostrarCallback(productosPagina);
-
   mostrarControlesPaginacion(totalPaginas, mostrarCallback);
 }
 
@@ -30,12 +35,10 @@ export function paginacionProductos(lista, mostrarCallback) {
  */
 function mostrarControlesPaginacion(totalPaginas, mostrarCallback) {
   let paginacion = document.getElementById("paginacion");
-  const zonaPaginacion = document.getElementById("zonaPaginacion");
-
   if (!paginacion) {
     paginacion = document.createElement("div");
     paginacion.id = "paginacion";
-    zonaPaginacion.appendChild(paginacion);
+    document.body.appendChild(paginacion);
   }
 
   paginacion.innerHTML = `
@@ -44,17 +47,17 @@ function mostrarControlesPaginacion(totalPaginas, mostrarCallback) {
     <button id="nextPag" ${paginaActual === totalPaginas ? "disabled" : ""}>Siguiente</button>
   `;
 
-  document.getElementById("prevPag").addEventListener("click", () => {
-    if (paginaActual > 1) {
-      paginaActual--;
-      paginacionProductos(listaGlobal, mostrarCallback);
-    }
-  });
+document.getElementById("prevPag").addEventListener("click", () => {
+  if (paginaActual > 1) {
+    paginaActual--;
+    paginacionProductos(listaGlobal, mostrarCallback, false);
+  }
+});
 
-  document.getElementById("nextPag").addEventListener("click", () => {
-    if (paginaActual < totalPaginas) {
-      paginaActual++;
-      paginacionProductos(listaGlobal, mostrarCallback);
-    }
-  });
+document.getElementById("nextPag").addEventListener("click", () => {
+  if (paginaActual < totalPaginas) {
+    paginaActual++;
+    paginacionProductos(listaGlobal, mostrarCallback, false); 
+  }
+});
 }

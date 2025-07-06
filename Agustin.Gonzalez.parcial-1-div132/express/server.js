@@ -24,7 +24,8 @@ import {
 
 import {
   renderRegistroAdmin,
-  crearAdminDesdeForm
+  crearAdminDesdeForm,
+  renderListaVentas
 } from './src/controller/admin.controller.js';
 
 import { getAdminByEmail } from './src/services/admin.services.js';
