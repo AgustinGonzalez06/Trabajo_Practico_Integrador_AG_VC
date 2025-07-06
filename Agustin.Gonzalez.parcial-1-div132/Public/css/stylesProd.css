@@ -4,6 +4,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+.texto-pequeño {
+  display: none;
+  text-decoration: none;
+}
+
 
 html, body {
   height: 100%;
@@ -485,12 +490,14 @@ h2 {
 
 /* Footer sticky */
 footer {
-  margin-top: auto;
+  flex-shrink: 0;
   background-color: #111;
-  color: white;
-  text-align: center;
   padding: 20px;
   border-top: 4px solid #ff4655;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 footer .logo {
   display: flex;
@@ -599,6 +606,16 @@ footer {
    ✅ RESPONSIVE: 1080px
    ======================== */
 @media (max-width: 1080px) {
+
+  .texto-grande {
+    display: none;
+  }
+  .texto-pequeño {
+    display: inline-block; /* mejor para botones */
+    font-size: 1.5rem; /* ajustá tamaño si querés */
+    line-height: 1;
+    text-decoration: none;
+  }
   .slider-frame {
     width: 60%;
   }
@@ -613,27 +630,90 @@ footer {
 }
 
 /* ========================
+/* ========================
    ✅ RESPONSIVE: 768px (Tablets)
    ======================== */
 @media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    height: auto;
-    gap: 10px;
-  }
-
   nav {
-    flex-direction: column;
-    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     gap: 10px;
   }
 
-  .menu {
-    flex-wrap: wrap;
+  .menu,
+  .search-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+    justify-content: center;
   }
 
   .search-container {
-    width: 100%;
+    width: auto;
+    margin-top: 0;
+  }
+
+  #cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+    gap: 5px;
+  }
+
+  h1 {
+    display: none;
+  }
+
+  .btn-agregar,
+  .btn-editar,
+  .btn-deshabilitar {
+    padding: 6px 12px;
+    font-size: 0.65rem;
+    border-radius: 8px;
+    margin: 3px;
+    min-width: auto;
+    white-space: nowrap;
+    box-shadow: 0 0 8px #00ff88, 0 0 12px #00ff88 inset;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .btn-agregar:hover,
+  .btn-editar:hover,
+  .btn-deshabilitar:hover {
+    transform: scale(1.05);
+  }
+
+  .texto-pequeño {
+    font-size: 10px;
+    display: inline;
+    text-decoration: none;
+  }
+
+  .btn-agregar .texto-grande,
+  .btn-editar .texto-grande,
+  .btn-deshabilitar .texto-grande {
+    display: none;
+  }
+
+  .btn-agregar .texto-pequeño,
+  .btn-editar .texto-pequeño,
+  .btn-deshabilitar .texto-pequeño {
+    display: inline;
+    font-size: 1.2rem;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .btn-deshabilitar {
+    font-size: 0.55rem !important;
+  }
+
+  header {
+    padding: 10px 10px;
   }
 
   .tienda-container {
@@ -681,12 +761,76 @@ footer {
   }
 }
 
+
 /* ========================
    ✅ RESPONSIVE: 480px (Celulares)
    ======================== */
 @media (max-width: 480px) {
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .tema-toggle {
+    margin: 0;
+  }
+
+  .search-container {
+    flex-grow: 1;
+    max-width: 200px;
+    display: flex;
+    align-items: center;
+  }
+
+  #search-bar {
+    width: 100% !important;
+  }
+
+  #cart-button {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+  }
+
+  .btn-agregar,
+  .btn-editar,
+  .btn-deshabilitar {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    border-radius: 8px;
+    margin: 0 3px;
+    white-space: nowrap;
+    box-shadow: 0 0 8px #00ff88, 0 0 12px #00ff88 inset;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+  }
+
+  .btn-agregar:hover,
+  .btn-editar:hover,
+  .btn-deshabilitar:hover {
+    transform: scale(1.05);
+  }
+
+  .btn-agregar {
+    font-size: 0.65rem !important;
+  }
+
   header {
     padding: 10px;
+    font-size: smaller;
   }
 
   .logo img {
@@ -695,11 +839,6 @@ footer {
 
   h1 {
     font-size: 1.2rem;
-  }
-
-  .menu {
-    flex-direction: column;
-    gap: 10px;
   }
 
   .boton {
@@ -734,10 +873,6 @@ footer {
     font-size: 0.85rem;
   }
 
-  #search-bar {
-    width: 130px !important;
-  }
-
   .cart-dropdown {
     width: 95%;
     right: 2.5%;
@@ -763,6 +898,8 @@ footer {
     font-size: 14px;
   }
 }
+
+
 
 .tema-toggle {
   background: none;
@@ -961,4 +1098,13 @@ footer {
     font-size: 1rem;
     padding: 12px 0;
   }
+}
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.texto-pequeño {
+  display: none;
+  text-decoration: none;
 }

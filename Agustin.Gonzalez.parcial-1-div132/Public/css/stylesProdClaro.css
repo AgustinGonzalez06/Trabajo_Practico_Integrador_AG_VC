@@ -4,6 +4,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+.texto-pequeño {
+  display: none;
+  text-decoration: none;
+}
+
 
 html, body {
   height: 100%;
@@ -13,7 +18,7 @@ body {
   /* background-color: #1f1f27; */
   background-image: url('../img/bgstoreClaro.png');
   font-family: 'Orbitron', sans-serif;
-  color: #111111 ;
+  color: #111111;
   user-select: none;
 
   /* Flex para footer sticky */
@@ -44,7 +49,7 @@ main {
 /* Header */
 header {
   height: 70px;
-  background-color: #f6f6f6 ;
+  background-color: #f3f3f3;
   color: #111111;
   display: flex;
   justify-content: space-between;
@@ -78,7 +83,7 @@ nav {
 .nav-link {
   background: none;
   border: none;
-  color: #111111;
+  color: white;
   font-size: 1rem;
   cursor: pointer;
   font-family: 'Orbitron', sans-serif;
@@ -97,7 +102,7 @@ nav {
   width: 320px;
   max-height: 400px;
   overflow-y: auto;
-  background-color: #f6f6f6;
+  background-color: #ffffff;
   border: 2px solid #ff4655;
   border-radius: 8px;
   padding: 10px;
@@ -123,14 +128,14 @@ nav {
   margin-bottom: 8px;
   font-size: 0.95rem;
   padding: 6px;
-  background-color: #f6f6f6;
+  background-color: #FFFFFF;
   border-radius: 4px;
 }
 
-#cart-items li button {
+#cart-items li button, #paginacion button {
   background-color: #ff2e4d;
   border: none;
-  color: #111111;
+  color: white;
   padding: 5px 10px;
   border-radius: 6px;
   cursor: pointer;
@@ -140,7 +145,7 @@ nav {
   transition: background-color 0.3s;
 }
 
-#cart-items li button:hover {
+#cart-items li button:hover, #paginacion button:hover {
   background-color: #aa2235;
 }
 
@@ -172,8 +177,8 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f6f6f6;
-  color: #111111;
+  background-color: #ffffff;
+  color: #555555	;
 }
 
 .product-card img {
@@ -197,7 +202,7 @@ nav {
 .product-card button, 
 .confirm-button, .btn-agregar, .btn-editar {
   background-color: #00ff88;
-  color: #3f3f3f;
+  color: #000;
   border: 2px solid #00ff88;
   padding: 12px 18px;
   border-radius: 10px;
@@ -213,7 +218,7 @@ nav {
 }
 
 .product-card button:hover, .btn-agregar:hover, .btn-editar:hover {
-  background-color: #3f3f3f;
+  background-color: #000;
   color: #00ff88;
   box-shadow: 0 0 15px #00ff88, 0 0 30px #00ff88 inset;
   transform: scale(1.05);
@@ -278,7 +283,7 @@ h2 {
   overflow: hidden;
   border: 2px solid #ff2018;
   border-radius: 10px;
-  background-color: #d6d6d6;
+  background-color: rgb(36, 34, 34);
   padding: 20px;
   box-shadow: 0 0 10px #ff2018, 0 0 20px #ff2018 inset;
   position: relative;
@@ -442,6 +447,7 @@ h2 {
 
 #search-bar {
   position: absolute;
+  top: 50px; /* Debajo del icono */
   right: 100%; /* Coloca el input a la izquierda del botón */
   width: 0;
   opacity: 0;
@@ -449,7 +455,7 @@ h2 {
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #111111;
+  background-color: white;
   color: black;
   margin-left: 0; /* Elimina margen que empujaba hacia la derecha */
   z-index: 10; /* Asegura que esté por encima si hay solapamientos */
@@ -458,7 +464,7 @@ h2 {
 .search-container.active #search-bar {
   width: 150px;
   opacity: 1;
-  z-index: 10;
+  z-index: 1000000000000;
 }
 
 /* Botón carrito sin texto */
@@ -485,7 +491,7 @@ h2 {
 /* Footer sticky */
 footer {
   flex-shrink: 0;
-  background-color: #111;
+background-color: #F9FAFB;
   padding: 20px;
   border-top: 4px solid #ff4655;
   display: flex;
@@ -493,7 +499,6 @@ footer {
   align-items: center;
   flex-wrap: wrap;
 }
-
 footer .logo {
   display: flex;
   align-items: center;
@@ -524,8 +529,7 @@ footer .footer-info p {
 /* Sidebar (filtros) */
 .sidebar {
   width: 240px;
-  color: #111111;
-  background-color: #f6f6f6;
+  background-color: #ffffff	;
   padding: 1rem;
   border-radius: 12px;
   overflow-y: auto;
@@ -582,8 +586,8 @@ main {
 
 footer {
   margin-top: auto;
-  background-color: #f6f6f6;
-  color: #111111;
+background-color: #F9FAFB;
+  color: 	#111111;
   text-align: center;
   padding: 20px;
   border-top: 4px solid #ff4655;
@@ -602,6 +606,16 @@ footer {
    ✅ RESPONSIVE: 1080px
    ======================== */
 @media (max-width: 1080px) {
+
+  .texto-grande {
+    display: none;
+  }
+  .texto-pequeño {
+    display: inline-block; /* mejor para botones */
+    font-size: 1.5rem; /* ajustá tamaño si querés */
+    line-height: 1;
+    text-decoration: none;
+  }
   .slider-frame {
     width: 60%;
   }
@@ -616,27 +630,90 @@ footer {
 }
 
 /* ========================
+/* ========================
    ✅ RESPONSIVE: 768px (Tablets)
    ======================== */
 @media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    height: auto;
-    gap: 10px;
-  }
-
   nav {
-    flex-direction: column;
-    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     gap: 10px;
   }
 
-  .menu {
-    flex-wrap: wrap;
+  .menu,
+  .search-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+    justify-content: center;
   }
 
   .search-container {
-    width: 100%;
+    width: auto;
+    margin-top: 0;
+  }
+
+  #cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+    gap: 5px;
+  }
+
+  h1 {
+    display: none;
+  }
+
+  .btn-agregar,
+  .btn-editar,
+  .btn-deshabilitar {
+    padding: 6px 12px;
+    font-size: 0.65rem;
+    border-radius: 8px;
+    margin: 3px;
+    min-width: auto;
+    white-space: nowrap;
+    box-shadow: 0 0 8px #00ff88, 0 0 12px #00ff88 inset;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .btn-agregar:hover,
+  .btn-editar:hover,
+  .btn-deshabilitar:hover {
+    transform: scale(1.05);
+  }
+
+  .texto-pequeño {
+    font-size: 10px;
+    display: inline;
+    text-decoration: none;
+  }
+
+  .btn-agregar .texto-grande,
+  .btn-editar .texto-grande,
+  .btn-deshabilitar .texto-grande {
+    display: none;
+  }
+
+  .btn-agregar .texto-pequeño,
+  .btn-editar .texto-pequeño,
+  .btn-deshabilitar .texto-pequeño {
+    display: inline;
+    font-size: 1.2rem;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .btn-deshabilitar {
+    font-size: 0.55rem !important;
+  }
+
+  header {
+    padding: 10px 10px;
   }
 
   .tienda-container {
@@ -684,12 +761,76 @@ footer {
   }
 }
 
+
 /* ========================
    ✅ RESPONSIVE: 480px (Celulares)
    ======================== */
 @media (max-width: 480px) {
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .tema-toggle {
+    margin: 0;
+  }
+
+  .search-container {
+    flex-grow: 1;
+    max-width: 200px;
+    display: flex;
+    align-items: center;
+  }
+
+  #search-bar {
+    width: 100% !important;
+  }
+
+  #cart-button {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+  }
+
+  .btn-agregar,
+  .btn-editar,
+  .btn-deshabilitar {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    border-radius: 8px;
+    margin: 0 3px;
+    white-space: nowrap;
+    box-shadow: 0 0 8px #00ff88, 0 0 12px #00ff88 inset;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+  }
+
+  .btn-agregar:hover,
+  .btn-editar:hover,
+  .btn-deshabilitar:hover {
+    transform: scale(1.05);
+  }
+
+  .btn-agregar {
+    font-size: 0.65rem !important;
+  }
+
   header {
     padding: 10px;
+    font-size: smaller;
   }
 
   .logo img {
@@ -698,11 +839,6 @@ footer {
 
   h1 {
     font-size: 1.2rem;
-  }
-
-  .menu {
-    flex-direction: column;
-    gap: 10px;
   }
 
   .boton {
@@ -737,10 +873,6 @@ footer {
     font-size: 0.85rem;
   }
 
-  #search-bar {
-    width: 130px !important;
-  }
-
   .cart-dropdown {
     width: 95%;
     right: 2.5%;
@@ -766,6 +898,8 @@ footer {
     font-size: 14px;
   }
 }
+
+
 
 .tema-toggle {
   background: none;
@@ -798,17 +932,17 @@ footer {
   transform: rotate(0deg) scale(1);
 }
 
-/* stylesFormProd claro - para alta-producto y editar-producto */
+/* stylesFormProd.css - Estilos para alta-producto y editar-producto */
 
 /* Contenedor main formulario */
 main.formulario-producto {
   max-width: 480px;
   margin: 80px auto 40px;
-  background-color: #fff;
+  background-color: #222;
   padding: 30px 25px;
   border-radius: 16px;
-  box-shadow: 0 0 25px #ff4655aa inset, 0 0 20px #ff4655;
-  color: #222;
+  box-shadow: 0 0 25px #00ff88aa inset, 0 0 20px #00ff88;
+  color: #000000;
   font-family: 'Orbitron', sans-serif;
 }
 
@@ -816,9 +950,9 @@ main.formulario-producto {
 main.formulario-producto h1 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #ff4655;
+  color: #00ff88;
   text-align: center;
-  text-shadow: 0 0 10px #ff4655;
+  text-shadow: 0 0 10px #00ff88;
 }
 
 /* Listado de errores */
@@ -828,13 +962,13 @@ ul.errores {
   padding: 15px 20px;
   margin-bottom: 20px;
   list-style-type: none;
-  color: #fff;
-  font-weight: 700;
-  text-shadow: 0 0 3px #aa2233;
 }
 
 ul.errores li {
   margin-bottom: 8px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 3px #aa2233;
 }
 
 /* Etiquetas */
@@ -844,8 +978,8 @@ main.formulario-producto label {
   margin-top: 18px;
   margin-bottom: 8px;
   font-size: 1rem;
-  color: #ff4655;
-  text-shadow: 0 0 6px #ff4655;
+  color: #00ff88;
+  text-shadow: 0 0 6px #00ff88;
 }
 
 /* Inputs y selects */
@@ -857,12 +991,12 @@ main.formulario-producto select {
   padding: 10px 12px;
   font-size: 1rem;
   border-radius: 10px;
-  border: 2px solid #ff4655;
-  background-color: #fff;
-  color: #222;
+  border: 2px solid #00ff88;
+background-color: #000000;
+  color: #fff;
   font-family: 'Orbitron', sans-serif;
   transition: border-color 0.3s ease;
-  box-shadow: 0 0 8px #ff4655 inset;
+  box-shadow: 0 0 8px #00ff88 inset;
 }
 
 main.formulario-producto input[type="text"]:focus,
@@ -870,9 +1004,10 @@ main.formulario-producto input[type="number"]:focus,
 main.formulario-producto input[type="file"]:focus,
 main.formulario-producto select:focus {
   outline: none;
-  border-color: #00ff88;
-  box-shadow: 0 0 12px #00ff88 inset;
-  background-color: #f0fdf5;
+  border-color: #ff4655;
+  box-shadow: 0 0 12px #ff4655 inset;
+  background-color: #222;
+
 }
 
 /* Checkbox destacado */
@@ -884,38 +1019,38 @@ main.formulario-producto label[for="destacado"] {
   font-weight: 700;
   margin-top: 20px;
   font-size: 1rem;
-  color: #ff4655;
+  color: #00ff88;
 }
 
 main.formulario-producto input[type="checkbox"] {
   width: 18px;
   height: 18px;
   cursor: pointer;
-  accent-color: #ff4655;
+  accent-color: #00ff88;
 }
 
 /* Botón submit */
 main.formulario-producto button[type="submit"] {
   margin-top: 30px;
   width: 100%;
-  background-color: #ff4655;
-  color: #fff;
+  background-color: #00ff88;
+  color: #000;
   font-weight: 900;
   font-size: 1.1rem;
   padding: 14px 0;
-  border: 3px solid #ff4655;
+  border: 3px solid #00ff88;
   border-radius: 14px;
   cursor: pointer;
-  box-shadow: 0 0 15px #ff4655, 0 0 25px #ff4655 inset;
+  box-shadow: 0 0 15px #00ff88, 0 0 25px #00ff88 inset;
   transition: all 0.3s ease;
   text-transform: uppercase;
   font-family: 'Orbitron', sans-serif;
 }
 
 main.formulario-producto button[type="submit"]:hover {
-  background-color: #fff;
-  color: #ff4655;
-  box-shadow: 0 0 20px #ff4655, 0 0 35px #ff4655 inset;
+  background-color: #000;
+  color: #00ff88;
+  box-shadow: 0 0 20px #00ff88, 0 0 35px #00ff88 inset;
   transform: scale(1.05);
 }
 
@@ -924,17 +1059,17 @@ main.formulario-producto a {
   display: block;
   text-align: center;
   margin-top: 30px;
-  color: #00aa66;
+  color: #ff4655;
   font-weight: 700;
   font-size: 1rem;
   text-decoration: none;
   transition: color 0.3s ease;
-  text-shadow: none;
+  text-shadow: 0 0 6px #ff4655;
 }
 
 main.formulario-producto a:hover {
-  color: #007744;
-  text-shadow: none;
+  color: #00ff88;
+  text-shadow: 0 0 10px #00ff88;
 }
 
 /* Imagen previa en editar */
@@ -944,8 +1079,8 @@ main.formulario-producto img {
   margin-bottom: 12px;
   max-width: 150px;
   border-radius: 10px;
-  border: 2px solid #ff4655;
-  box-shadow: 0 0 10px #ff4655 inset;
+  border: 2px solid #00ff88;
+  box-shadow: 0 0 10px #00ff88 inset;
 }
 
 /* Footer - hereda estilos de stylesProd.css */
@@ -965,4 +1100,12 @@ footer {
     padding: 12px 0;
   }
 }
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 
+.texto-pequeño {
+  display: none;
+  text-decoration: none;
+}

@@ -10,42 +10,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
-  <header>
-    <a href="loginUser.html" style="text-decoration: none; color: inherit;">
-      <div class="logo">
-        <img src="favicon.png" alt="Logo ValorantTienda" />
-        <h1>ValorantTienda</h1>
-      </div>
-    </a>
+<header>
+  <a href="loginUser.html" style="text-decoration: none; color: inherit;">
+    <div class="logo">
+      <img src="favicon.png" alt="Logo ValorantTienda" />
+      <h1>ValorantTienda</h1>
+    </div>
+  </a>
 
-    <nav>
-      <div class="menu">
-        <!-- Botón con ícono de sol/luna -->
-        <button id="btnTema" class="tema-toggle" aria-label="Cambiar tema">
-          <span id="iconoTema" class="material-symbols-outlined">dark_mode</span>
-        </button>
-
-        <button id="btnVP" class="boton">Monedas</button>
-        <button id="btnSkins" class="boton">Skins</button>
-      </div>
-
-      <div class="search-container">
-        <img src="img/buscarOscuro.svg" alt="Buscar" class="icon search-icon" id="search-toggle" />
-        <input type="text" id="search-bar" placeholder="Buscar skins..." />
-      </div>
-
-      <button id="cart-button" class="nav-link">
-        <img src="img/cart.png" alt="Carrito" class="icon" />
-        Carrito
+  <nav>
+    <div class="menu">
+      <!-- Botón con ícono de sol/luna -->
+      <button id="btnTema" class="tema-toggle" aria-label="Cambiar tema">
+        <span id="iconoTema" class="material-symbols-outlined">dark_mode</span>
       </button>
-    </nav>
 
+      <button id="btnVP" class="boton">Monedas</button>
+      <button id="btnSkins" class="boton">Skins</button>
+    </div>
+
+    <div class="search-container">
+      <img src="img/buscarOscuro.svg" alt="Buscar" class="icon search-icon" id="search-toggle" />
+      <input type="text" id="search-bar" placeholder="Buscar skins..." />
+    </div>
+
+    <button id="cart-button" class="nav-link">
+      <img src="img/cart.png" alt="Carrito" class="icon" />
+      Carrito
+    </button>
+
+    <!-- Mover dentro de nav -->
     <div id="cart-dropdown" class="cart-dropdown hidden">
       <ul id="cart-items"></ul>
       <p class="cart-total">Total: <span id="total-price">$0.00</span></p>
       <button id="confirmar-compra" class="confirm-button">Confirmar compra</button>
     </div>
-  </header>
+  </nav>
+</header>
 
   <!-- Contenedor de filtros y contenido -->
   <div class="tienda-container">

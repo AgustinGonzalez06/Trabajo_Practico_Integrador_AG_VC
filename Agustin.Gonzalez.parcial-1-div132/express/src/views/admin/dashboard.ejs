@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
-<header>
+  <header>
   <a href="/loginUser.html" style="text-decoration: none; color: inherit;">
   <div class="logo">
     <img src="/favicon.png" alt="Logo ValorantTienda" />
@@ -25,14 +25,21 @@
     <div class="menu">
       <!-- <button id="btnVP" class="boton">Monedas</button>
       <button id="btnSkins" class="boton">Skins</button> -->
-      <a href="/admin/agregar" class="btn-agregar">➕ Agregar producto</a>
-    </div>
+      <!-- <a href="/admin/agregar" class="btn-agregar">
+      <span class="texto-grande">➕ Agregar producto</span>
+      <span class="texto-pequeño">➕</span>
+      </a>
+    </div> -->
   </nav>
 
 </header>
 
 <main>
-  <div class="dashboard-search-container" style="max-width: 480px; margin: 40px auto;">
+      <a class="dashboard-search-container btn-agregar" style="max-width: 480px; margin: 10px auto; text-decoration: none;" href="/admin/agregar">
+      <span>➕</span>
+      </a>
+  <div class="dashboard-search-container" style="max-width: 480px; margin: 10px auto;">
+
   <input type="text" id="dashboard-search-bar" placeholder="Buscar producto..." style="width: 100%; padding: 8px 12px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc;" />
 </div>
   <% if (productos && productos.length > 0) { %>
@@ -47,10 +54,10 @@
           <p><%= producto.activo ? "🟢 Activo" : "🔴 Inactivo" %></p>
 
           <div class="acciones">
-            <a href="/admin/editar/<%= producto.id %>" class="btn-editar">✏️ Editar</a>
+            <a href="/admin/editar/<%= producto.id %>" class="btn-editar"> Editar</a>
             <form action="/admin/toggle-estado/<%= producto.id %>" method="POST" style="display:inline;"  onsubmit="return confirm('¿Estás seguro de cambiar el estado de este producto?');">
               <button type="submit" class="btn-deshabilitar">
-                <%= producto.activo ? "🚫 Deshabilitar" : "✅ Habilitar" %>
+                <%= producto.activo ? " Deshabilitar" : " Habilitar" %>
               </button>
             </form>
           </div>
