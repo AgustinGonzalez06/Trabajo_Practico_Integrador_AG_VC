@@ -1,45 +1,66 @@
 import mysql from 'mysql2/promise';
 
-const init = async () => {
-  const connection = await mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'admin'
-  });
+const DB_NAME = 'valoranttienda_db';
 
-  try {
-    await connection.query(`CREATE DATABASE IF NOT EXISTS valoranttienda_db`);
-    await connection.query(`USE valoranttienda_db`);
-
-    await connection.query(`
-    CREATE TABLE IF NOT EXISTS skins (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    categoria VARCHAR(100) NOT NULL,
-    nombre VARCHAR(255) NOT NULL,
-    precio DECIMAL(10,2) NOT NULL,
-    rareza VARCHAR(100),
-    img VARCHAR(255),
-    stock INT DEFAULT 0
-  );
-`);
-
-    await connection.query(`
-    CREATE TABLE IF NOT EXISTS monedas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    categoria VARCHAR(100) NOT NULL,
-    nombre VARCHAR(255) NOT NULL,
-    precio INT DEFAULT 0 NOT NULL,
-    img VARCHAR(255),
-    stock INT DEFAULT 0
-  );
-`);
-
-    console.log("✅ Base de datos y tablas creadas");
-  } catch (err) {
-    console.error("❌ Error al crear la base:", err);
-  } finally {
-    await connection.end();
-  }
+const config = {
+  host: 'localhost',
+  user: 'root',
+  password: 'admin',
+  multipleStatements: true
 };
 
-init();
+async function initDatabase() {
+  try {
+    const connection = await mysql.createConnection(config);
+
+    // Crear base de datos si no existe
+    await connection.query(`CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`);
+    await connection.query(`USE \`${DB_NAME}\``);
+
+    // Crear tablas
+    await connection.query(`
+      CREATE TABLE IF NOT EXISTS admins (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        email VARCHAR(100) NOT NULL UNIQUE,
+        contrasenia VARCHAR(255) NOT NULL
+      );
+
+      CREATE TABLE IF NOT EXISTS productos (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        nombre VARCHAR(100) NOT NULL,
+        precio INT NOT NULL,
+        categoria ENUM('moneda', 'skin') NOT NULL,
+        subcategoria VARCHAR(50),
+        img VARCHAR(255),
+        activo TINYINT(1) DEFAULT 1,
+        destacado TINYINT(1) DEFAULT 0
+      );
+
+      CREATE TABLE IF NOT EXISTS venta (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        cliente_nombre VARCHAR(100) NOT NULL,
+        fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+        total DECIMAL(10,2) NOT NULL
+      );
+
+      CREATE TABLE IF NOT EXISTS detalle_venta (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        venta_id INT NOT NULL,
+        producto_id INT NOT NULL,
+        cantidad INT NOT NULL,
+        precio_unitario DECIMAL(10,2) NOT NULL,
+        subtotal DECIMAL(10,2) NOT NULL,
+        FOREIGN KEY (venta_id) REFERENCES venta(id) ON DELETE CASCADE,
+        FOREIGN KEY (producto_id) REFERENCES productos(id)
+      );
+    `);
+
+    console.log('✅ Base de datos y tablas verificadas/creadas correctamente');
+    await connection.end();
+  } catch (error) {
+    console.error('❌ Error al inicializar la base de datos:', error.message);
+  }
+}
+
+// Ejecutar si se llama directamente
+initDatabase();

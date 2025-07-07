@@ -1108,3 +1108,40 @@ html, body {
   display: none;
   text-decoration: none;
 }
+
+#zonaPaginacion {
+  margin-top: 20px;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  user-select: none;
+}
+
+#zonaPaginacion button {
+  background-color: #111;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  margin: 0 8px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#zonaPaginacion button:disabled {
+  background-color: #444;
+  cursor: not-allowed;
+  color: #999;
+}
+
+#zonaPaginacion button:not(:disabled):hover {
+  background-color: #e74c3c; /* rojo estilo Valorant */
+  color: white;
+}
+
+#zonaPaginacion span {
+  font-size: 1rem;
+  color: white;
+  vertical-align: middle;
+  user-select: none;
+}

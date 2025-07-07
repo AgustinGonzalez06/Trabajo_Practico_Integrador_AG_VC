@@ -1,5 +1,5 @@
 let paginaActual = 1;
-const productosPorPagina = 2;
+const productosPorPagina = 6;
 let listaGlobal = [];
 
 /**
@@ -34,11 +34,11 @@ export function paginacionProductos(lista, mostrarCallback, reiniciar = false) {
  * Controles de paginación
  */
 function mostrarControlesPaginacion(totalPaginas, mostrarCallback) {
-  let paginacion = document.getElementById("paginacion");
+  let paginacion = document.getElementById("zonaPaginacion");
   if (!paginacion) {
     paginacion = document.createElement("div");
-    paginacion.id = "paginacion";
-    document.body.appendChild(paginacion);
+    paginacion.id = "zonaPaginacion";
+    document.querySelector('main .products-section').appendChild(paginacion);
   }
 
   paginacion.innerHTML = `
@@ -47,17 +47,17 @@ function mostrarControlesPaginacion(totalPaginas, mostrarCallback) {
     <button id="nextPag" ${paginaActual === totalPaginas ? "disabled" : ""}>Siguiente</button>
   `;
 
-document.getElementById("prevPag").addEventListener("click", () => {
-  if (paginaActual > 1) {
-    paginaActual--;
-    paginacionProductos(listaGlobal, mostrarCallback, false);
-  }
-});
+  document.getElementById("prevPag").addEventListener("click", () => {
+    if (paginaActual > 1) {
+      paginaActual--;
+      paginacionProductos(listaGlobal, mostrarCallback, false);
+    }
+  });
 
-document.getElementById("nextPag").addEventListener("click", () => {
-  if (paginaActual < totalPaginas) {
-    paginaActual++;
-    paginacionProductos(listaGlobal, mostrarCallback, false); 
-  }
-});
+  document.getElementById("nextPag").addEventListener("click", () => {
+    if (paginaActual < totalPaginas) {
+      paginaActual++;
+      paginacionProductos(listaGlobal, mostrarCallback, false); 
+    }
+  });
 }

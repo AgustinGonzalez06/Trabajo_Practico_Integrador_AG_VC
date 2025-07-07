@@ -1,3 +1,4 @@
+import './initDB.js'; //  Ejecuta el archivo al inicio
 import express from "express";
 import multer from 'multer';
 import path from "path";
