@@ -1,3 +1,6 @@
+//cambia el tema de la página entre claro y oscuro, guardando la preferencia en localStorage
+// y aplicando el CSS correspondiente
+
 function aplicarTemaCSS(tema) {
   const linkTema = document.getElementById('temaCSS');
   if (tema === 'oscuro') {

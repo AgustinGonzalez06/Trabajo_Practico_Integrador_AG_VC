@@ -2,6 +2,9 @@ import { agregarAlCarrito } from './carrito.js';
 import { carrito, actualizarTotal } from './carrito.js';
 import { paginacionProductos } from './paginacion.js';
 
+
+// Mostrar productos en la sección de productos
+// Crea tarjetas de productos dinámicamente y agrega eventos para añadir al carrito
 export function mostrarProductos(lista) {
   const container = document.querySelector(".product-grid");
   if (!container) return;
@@ -29,6 +32,9 @@ export function mostrarProductos(lista) {
   });
 }
 
+
+// Renderizar el carrito en la página
+// Limpia el contenedor y muestra cada producto con su cantidad y precio
 export function renderizarResumenCarrito() {
   const contenedor = document.querySelector('.resumen-carrito');
   if (!contenedor) return;

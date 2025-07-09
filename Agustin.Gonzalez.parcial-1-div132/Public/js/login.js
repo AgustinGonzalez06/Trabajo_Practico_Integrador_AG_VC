@@ -1,3 +1,5 @@
+//verificar si estamos en la página de login y manejar el formulario de inicio de sesión
+// Si estamos en la página de login, inicializa el formulario de inicio de sesión
 export function initLogin() {
   const pathname = window.location.pathname;
   if (pathname === "/" || pathname.includes("loginUser")) {

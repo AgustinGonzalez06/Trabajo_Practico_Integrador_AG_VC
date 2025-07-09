@@ -8,6 +8,9 @@ import { paginacionProductos } from './paginacion.js';
 
 export let categoriaActual = 'skin';
 
+
+// Inicializar eventos según la página actual
+// Si estamos en carrito.html, cargar carrito y aplicar tema
 export async function inicializarEventos() {
   const pathname = window.location.pathname;
   console.log("Página actual:", pathname);
@@ -137,7 +140,7 @@ export async function inicializarEventos() {
     });
   }
 
-  // Logo vuelve a productos sin query
+  // Logo vuelve a productos sin filtros ni nada
   const logoDiv = document.querySelector(".logo");
   if (logoDiv) {
     logoDiv.addEventListener("click", () => {
@@ -175,17 +178,17 @@ export async function inicializarEventos() {
   }
 
   // Cerrar menú si clickea afuera
-  const menuTema = document.getElementById("menuTema");
-  document.addEventListener("click", (event) => {
-    if (menuTema && !menuTema.contains(event.target) && event.target !== btnTema) {
-      menuTema.classList.add("hidden");
-    }
-  });
+  // const menuTema = document.getElementById("menuTema");
+  // document.addEventListener("click", (event) => {
+  //   if (menuTema && !menuTema.contains(event.target) && event.target !== btnTema) {
+  //     menuTema.classList.add("hidden");
+  //   }
+  // });
 
   const searchToggle = document.getElementById("search-toggle");
 const searchContainer = document.querySelector(".search-container");
 
-
+//toggle barra de busqueda para que se oculte o muestre
 if (searchToggle && searchContainer && searchBar) {
   searchToggle.addEventListener("click", () => {
     searchContainer.classList.toggle("active");

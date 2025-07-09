@@ -7,6 +7,9 @@ import {
   getProductosActivos
 } from '../services/productos.services.js';
 
+
+// Controladores para manejar las rutas de productos
+// Estos controladores interactúan con los servicios para realizar operaciones CRUD sobre productos
 export const obtenerProductos = async (req, res) => {
   try {
     const productos = await getAllProductos();

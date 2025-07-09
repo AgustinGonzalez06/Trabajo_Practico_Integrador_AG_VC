@@ -1,9 +1,15 @@
 export let carrito = [];
 
+
+// guardar carrito en localStorage
+// Convierte el carrito a JSON y lo guarda en localStorage
 export function guardarCarrito() {
   localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
+
+// Cargar carrito desde localStorage
+// Si no hay carrito guardado, inicializar como un array vacío
 export function cargarCarrito() {
   const carritoGuardado = localStorage.getItem("carrito");
   if (carritoGuardado) {
@@ -14,6 +20,10 @@ export function cargarCarrito() {
   return carrito;
 }
 
+
+// Agregar producto al carrito
+// Si el producto ya existe, aumentar la cantidad, si no, agregarlo con cantidad 1
+// Luego guarda el carrito y lo renderiza
 export function agregarAlCarrito(producto) {
   const existente = carrito.find(item => item.id === producto.id);
   if (existente) {
@@ -25,6 +35,10 @@ export function agregarAlCarrito(producto) {
   renderizarCarrito();
 }
 
+
+// Eliminar un producto del carrito
+// Si el índice es válido, reduce la cantidad o elimina el producto si la cantidad es 1
+// Luego guarda el carrito y lo renderiza
 export function eliminarDelCarrito(index) {
   if (index >= 0 && index < carrito.length) {
     if (carrito[index].cantidad > 1) {
@@ -37,6 +51,9 @@ export function eliminarDelCarrito(index) {
   }
 }
 
+
+// Actualizar el total del carrito
+// Calcula el total sumando el precio de cada producto por su cantidad
 export function actualizarTotal() {
   const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
   const totalLabel = document.getElementById("total-price");
@@ -45,6 +62,9 @@ export function actualizarTotal() {
   }
 }
 
+
+// Renderizar el carrito en la página
+// Limpia el contenedor y muestra cada producto con su cantidad y precio
 export function renderizarCarrito() {
   const contenedor = document.getElementById("cart-items");
   if (!contenedor) return;

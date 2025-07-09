@@ -4,6 +4,9 @@ export function setProductosGlobal(data) {
   productosGlobal = data;
 }
 
+
+//Cargar datos desde la API o JSON local
+// Si falla la API, intenta cargar desde un archivo JSON local
 export async function cargarDatos() {
   try {
     const res = await fetch('/api/productos/activos');

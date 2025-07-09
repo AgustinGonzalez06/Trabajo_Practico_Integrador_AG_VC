@@ -2,7 +2,9 @@ const params = new URLSearchParams(window.location.search);
 const ventaId = params.get("ventaId");
 
 
-
+// Inicia un temporizador de 30 segundos para salir automáticamente
+// Si el usuario no interactúa con la página en ese tiempo, se redirige a la página principal
+// y se eliminan los datos del usuario y carrito de localStorage.
 function iniciarTemporizador(duracion) {
   const timerElement = document.getElementById("timer");
   let tiempo = duracion;
@@ -19,7 +21,8 @@ function iniciarTemporizador(duracion) {
 }
 
 
-
+// Función para salir del ticket y redirigir al usuario a la página principal
+// y eliminar los datos del usuario y carrito de localStorage.
 function salir() {
   //Elimina el usuario y otros datos de localStorage
   localStorage.removeItem("user");
@@ -34,7 +37,8 @@ if (!ventaId) {
   window.location.href = "productos.html";
 }
 
-
+// Carga el ticket desde el servidor y muestra los detalles en la página
+// Si el ticket no existe o está vacío, redirige al usuario a la página de productos
 async function cargarTicket() {
   try {
     const res = await fetch(`/tickets/${ventaId}`);
@@ -89,6 +93,9 @@ async function cargarTicket() {
   }
 }
 
+
+// Función para descargar el ticket como PDF
+// Utiliza la librería html2pdf para convertir el contenido del ticket a PDF
 function descargarPDF() {
   const ticket = document.getElementById("ticketContainer");
   html2pdf()

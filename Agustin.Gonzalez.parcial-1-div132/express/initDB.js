@@ -9,6 +9,9 @@ const config = {
   multipleStatements: true
 };
 
+
+//se crea la bd con sus respectivas tablas y campos en caso de que no existan
+//se insertan productos por defecto si la tabla productos esta vacia  
 async function initDatabase() {
   let connection;
 

@@ -1,4 +1,4 @@
-
+//middleware para manejar el formulario de productos en la vista de admin, ya sea alta o edicion, con validaciones y actualizaciones dinámicas de subcategorías y precios
 
 document.addEventListener('DOMContentLoaded', () => {
   const categoriaSelect = document.getElementById('categoria');

@@ -75,7 +75,7 @@ app.get('/admin/dashboard', async (req, res) => {
   }
 });
 
-// 🔐 POST del login admin
+// POST del login admin
 app.post('/admin/login', async (req, res) => {
   console.log('Datos recibidos:', req.body);
   const { email, password } = req.body;

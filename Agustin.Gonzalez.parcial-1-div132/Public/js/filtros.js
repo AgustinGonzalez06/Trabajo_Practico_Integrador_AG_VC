@@ -3,6 +3,9 @@ import { productosGlobal } from './api.js';
 import {categoriaActual} from './eventos.js';
 import { paginacionProductos } from './paginacion.js';
 
+
+//funcion principal de la barra de busqueda
+// Filtra los productos por el texto ingresado en la barra de búsqueda
 export function filtrarProductosPorTexto() {
   const searchBar = document.getElementById("search-bar");
   if (!searchBar) return;
@@ -18,6 +21,8 @@ export function filtrarProductosPorTexto() {
 }
 
 
+// Aplica los filtros seleccionados en la barra lateral
+// Filtra los productos según las subcategorías, orden de precio y precio máximo
 export function aplicarFiltros() {
   const subcategorias = Array.from(document.querySelectorAll("input[name='subcategoria']:checked"))
     .map(cb => cb.value.toLowerCase());
@@ -70,7 +75,8 @@ export function aplicarFiltros() {
   paginacionProductos(filtrados, mostrarProductos, true);
 }
 
-
+// Resetea todos los filtros aplicados
+// Desmarca todos los checkboxes de subcategoría, resetea orden de precio y
 export function resetearFiltros() {
   // Desmarcar todos los checkboxes de subcategoría
   document.querySelectorAll("input[name='subcategoria']").forEach(cb => cb.checked = false);

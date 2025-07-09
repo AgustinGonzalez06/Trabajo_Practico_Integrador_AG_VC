@@ -13,7 +13,6 @@ export function aplicarTemaCSS(nuevoTema) {
   } else if (pathname.includes("carrito.html")) {
     baseCssPath = "css/carrito";
   } else {
-    // Por si usas otras páginas, poner un css por defecto
     baseCssPath = "css/stylesProd";
   }
 
