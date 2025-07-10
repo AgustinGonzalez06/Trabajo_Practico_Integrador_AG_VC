@@ -14,7 +14,7 @@
       </ul>
     <% } %>
 
-    <form action="/admin/agregar" method="POST" enctype="multipart/form-data">
+    <form id="fAgregar" action="/admin/agregar" method="POST" enctype="multipart/form-data">
       <label for="nombre">Nombre:</label>
       <input type="text" name="nombre" id="nombre" required minlength="3" maxlength="100" value="<%= datos?.nombre || '' %>" />
 
@@ -52,6 +52,22 @@
 
     <a href="/admin/dashboard">⬅️ Volver al dashboard</a>
   </main>
+  <script>
+  const palabrasPermitidas = [
+    'vp', 'rp', 'radiant',
+    'vandal', 'spectre', 'guardian', 'phantom', 'sheriff', 'operator', 'classic', 'cuchillos'
+  ].map(p => p.toLowerCase());
+
+  document.getElementById('fAgregar').addEventListener('submit', e => {
+    const nombre = document.getElementById('nombre').value.toLowerCase();
+    const contiene = palabrasPermitidas.some(palabra => nombre.includes(palabra));
+
+    if (!contiene) {
+      e.preventDefault();
+      alert('El nombre debe contener al menos una palabra permitida: ' + palabrasPermitidas.join(', '));
+    }
+  });
+  </script>
 
   <%- include('../Partials/footer') %>
   <%- include('../Partials/scripts') %>

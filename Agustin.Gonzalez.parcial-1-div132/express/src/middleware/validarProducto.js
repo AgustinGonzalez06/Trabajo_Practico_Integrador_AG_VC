@@ -3,9 +3,19 @@ import { body, validationResult } from 'express-validator';
 export const validarProducto = [
   // Validar nombre: requerido, 3 a 100 caracteres
   body('nombre')
-    .trim()
-    .isLength({ min: 3, max: 100 })
-    .withMessage('El nombre debe tener entre 3 y 100 caracteres'),
+  .trim()
+  .isLength({ min: 3, max: 100 })
+  .withMessage('El nombre debe tener entre 3 y 100 caracteres')
+  .custom((value) => {
+    const permitidas = ['vandal', 'spectre', 'guardian', 'phantom', 'sheriff', 'operator', 'classic', 'cuchillos', 'vp', 'rp', 'radiant'];
+    const valorMinuscula = value.toLowerCase();
+
+    const contienePermitida = permitidas.some(palabra => valorMinuscula.includes(palabra));
+    if (!contienePermitida) {
+      throw new Error('El nombre debe contener al menos una palabra permitida: ' + permitidas.join(', '));
+    }
+    return true;
+  }),
 
   // Validar categoría: solo 'moneda' o 'skin'
   body('categoria')
