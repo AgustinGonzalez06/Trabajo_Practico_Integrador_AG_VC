@@ -102,4 +102,4 @@ async function initDatabase() {
 }
 
 // Ejecutar si se llama directamente
-initDatabase();
+export default initDatabase;
