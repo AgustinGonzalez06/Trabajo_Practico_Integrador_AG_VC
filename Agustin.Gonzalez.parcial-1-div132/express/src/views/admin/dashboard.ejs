@@ -1,115 +1,91 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dashboard Admin</title>
-  <link id="temaCSS" rel="stylesheet" href="/css/stylesProd.css" />
-  <link rel="icon" href="/favicon.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-</head>
+  <%- include('../Partials/header', { titulo: 'Dashboard Admin' }) %>
 <body>
-  <header>
-  <a href="/loginUser.html" style="text-decoration: none; color: inherit;">
-  <div class="logo">
-    <img src="/favicon.png" alt="Logo ValorantTienda" />
-    <h1>ValorantTienda Dashboard</h1>
-  </div>
-  </a>
-  <nav>
-      <!-- Botón de tema aparte -->
-  <button id="btnTema" class="tema-toggle" aria-label="Cambiar tema">
-    <span id="iconoTema" class="material-symbols-outlined">dark_mode</span>
-  </button>
-    <div class="menu">
-      <!-- <button id="btnVP" class="boton">Monedas</button>
-      <button id="btnSkins" class="boton">Skins</button> -->
-      <!-- <a href="/admin/agregar" class="btn-agregar">
-      <span class="texto-grande">➕ Agregar producto</span>
-      <span class="texto-pequeño">➕</span>
-      </a>
-    </div> -->
-  </nav>
 
-</header>
-
-<main>
-      <a class="dashboard-search-container btn-agregar" style="max-width: 480px; margin: 10px auto; text-decoration: none;" href="/admin/agregar">
+  <main>
+    <a
+      class="dashboard-search-container btn-agregar"
+      style="max-width: 480px; margin: 10px auto; text-decoration: none;"
+      href="/admin/agregar"
+    >
       <span>➕</span>
-      </a>
+    </a>
 
-      <a href="/admin/ventas">📄 Ver todas las ventas</a>
+    <a href="/admin/ventas">📄 Ver todas las ventas</a>
 
-  <div class="dashboard-search-container" style="max-width: 480px; margin: 10px auto;">
+    <div
+      class="dashboard-search-container"
+      style="max-width: 480px; margin: 10px auto;"
+    >
+      <input
+        type="text"
+        id="dashboard-search-bar"
+        placeholder="Buscar producto..."
+        style="width: 100%; padding: 8px 12px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc;"
+      />
+    </div>
 
-  <input type="text" id="dashboard-search-bar" placeholder="Buscar producto..." style="width: 100%; padding: 8px 12px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc;" />
-</div>
-  <% if (productos && productos.length > 0) { %>
-    <section class="product-grid">
-      <% productos.forEach(producto => { %>
-        <div class="product-card"> <!-- usamos clase reutilizable -->
-          <img src="<%= producto.img %>" alt="<%= producto.nombre %>" />
-          <h3><%= producto.nombre %></h3>
-          <p>💰 Precio: $<%= producto.precio %></p>
-          <p>📂 Categoría: <%= producto.categoria %></p>
-          <p>🏷️ Subcategoría: <%= producto.subcategoria %></p>
-          <p><%= producto.activo ? "🟢 Activo" : "🔴 Inactivo" %></p>
+    <% if (productos && productos.length > 0) { %>
+      <section class="product-grid">
+        <% productos.forEach(producto => { %>
+          <div class="product-card">
+            <img src="<%= producto.img %>" alt="<%= producto.nombre %>" />
+            <h3><%= producto.nombre %></h3>
+            <p>💰 Precio: $<%= producto.precio %></p>
+            <p>📂 Categoría: <%= producto.categoria %></p>
+            <p>🏷️ Subcategoría: <%= producto.subcategoria %></p>
+            <p><%= producto.activo ? "🟢 Activo" : "🔴 Inactivo" %></p>
 
-          <div class="acciones">
-            <a href="/admin/editar/<%= producto.id %>" class="btn-editar"> Editar</a>
-            <form action="/admin/toggle-estado/<%= producto.id %>" method="POST" style="display:inline;"  onsubmit="return confirm('¿Estás seguro de cambiar el estado de este producto?');">
-              <button type="submit" class="btn-deshabilitar">
-                <%= producto.activo ? " Deshabilitar" : " Habilitar" %>
-              </button>
-            </form>
+            <div class="acciones">
+              <a href="/admin/editar/<%= producto.id %>" class="btn-editar">Editar</a>
+              <form
+                action="/admin/toggle-estado/<%= producto.id %>"
+                method="POST"
+                style="display:inline;"
+                onsubmit="return confirm('¿Estás seguro de cambiar el estado de este producto?');"
+              >
+                <button type="submit" class="btn-deshabilitar">
+                  <%= producto.activo ? " Deshabilitar" : " Habilitar" %>
+                </button>
+              </form>
+            </div>
           </div>
-        </div>
-      <% }); %>
-    </section>
-  <% } else { %>
-    <p>No hay productos cargados.</p>
-  <% } %>
-</main>
-<footer>
-  <div class="logo">
-    <img src="/favicon.png" alt="Logo ValorantTienda" />
-    <h1>ValorantTienda</h1>
-  </div>
+        <% }); %>
+      </section>
+    <% } else { %>
+      <p>No hay productos cargados.</p>
+    <% } %>
+  </main>
 
-  <div class="footer-info">
-    <p>Valentin Corallo &nbsp;&nbsp; Agustin Gonzales</p>
-    <p>&copy; 2025 ValorantTienda. Todos los derechos reservados.</p>
-  </div>
-</footer>
+  <%- include('../Partials/footer') %>
+  <%- include('../Partials/scripts') %>
 
-<script src="/js/temaToggle.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const searchBar = document.getElementById('dashboard-search-bar');
-    const productCards = document.querySelectorAll('.product-card');
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const searchBar = document.getElementById('dashboard-search-bar');
+      const productCards = document.querySelectorAll('.product-card');
 
-    searchBar.addEventListener('input', () => {
-      const texto = searchBar.value.toLowerCase();
+      searchBar.addEventListener('input', () => {
+        const texto = searchBar.value.toLowerCase();
 
-      if (texto.length < 3) {
-        // Mostrar todos los productos si hay menos de 3 caracteres
-        productCards.forEach(card => {
-          card.style.display = '';
-        });
-        return;
-      }
-
-      productCards.forEach(card => {
-        const nombre = card.querySelector('h3').textContent.toLowerCase();
-        if (nombre.includes(texto)) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
+        if (texto.length < 3) {
+          productCards.forEach(card => {
+            card.style.display = '';
+          });
+          return;
         }
+
+        productCards.forEach(card => {
+          const nombre = card.querySelector('h3').textContent.toLowerCase();
+          if (nombre.includes(texto)) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
       });
     });
-  });
-</script>
+  </script>
 </body>
 </html>

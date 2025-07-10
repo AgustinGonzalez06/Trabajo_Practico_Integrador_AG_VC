@@ -1,28 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Editar Producto</title>
-  <link id="temaCSS" rel="stylesheet" href="/css/stylesProd.css" />
-  <link rel="icon" href="/favicon.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-</head>
+  <%- include('../Partials/header', { titulo: 'Edicion de producto' }) %>
+
 <body>
-  <header>
-    <a href="/loginUser.html" style="text-decoration: none; color: inherit;">
-      <div class="logo">
-        <img src="/favicon.png" alt="Logo ValorantTienda" />
-        <h1>ValorantTienda Dashboard</h1>
-      </div>
-    </a>
-    <nav>
-      <button id="btnTema" class="tema-toggle" aria-label="Cambiar tema">
-        <span id="iconoTema" class="material-symbols-outlined">dark_mode</span>
-      </button>
-    </nav>
-  </header>
+
 
   <main class="formulario-producto">
     <h1>Editar producto</h1>
@@ -118,20 +99,8 @@
     <a href="/admin/dashboard">⬅️ Volver al dashboard</a>
   </main>
 
-  <footer>
-    <div class="logo">
-      <img src="/favicon.png" alt="Logo ValorantTienda" />
-      <h1>ValorantTienda</h1>
-    </div>
-
-    <div class="footer-info">
-      <p>Valentin Corallo &nbsp;&nbsp; Agustin Gonzales</p>
-      <p>&copy; 2025 ValorantTienda. Todos los derechos reservados.</p>
-    </div>
-  </footer>
-
-  <script src="/js/temaToggle.js"></script>
-  <script src="/js/productosForm.js"></script>
+  <%- include('../Partials/footer') %>
+  <%- include('../Partials/scripts') %>
 
   <script>
     // Para actualizar dinámicamente las opciones de subcategoría según categoría seleccionada

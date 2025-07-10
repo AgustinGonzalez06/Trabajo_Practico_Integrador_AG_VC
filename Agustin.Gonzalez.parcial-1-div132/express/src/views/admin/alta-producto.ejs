@@ -1,30 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Alta de Producto</title>
-  <link id="temaCSS" rel="stylesheet" href="/css/stylesProd.css" />
-  <link rel="icon" href="/favicon.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-</head>
+  <%- include('../Partials/header', { titulo: 'Alta de Producto' }) %>
 <body>
-  <header>
-  <a href="/loginUser.html" style="text-decoration: none; color: inherit;">
-  <div class="logo">
-    <img src="/favicon.png" alt="Logo ValorantTienda" />
-    <h1>ValorantTienda Dashboard</h1>
-  </div>
-  </a>
-  <nav>
-      <!-- Botón de tema aparte -->
-  <button id="btnTema" class="tema-toggle" aria-label="Cambiar tema">
-    <span id="iconoTema" class="material-symbols-outlined">dark_mode</span>
-  </button>
-  </nav>
 
-</header>
   <main class="formulario-producto">
     <h1>Agregar nuevo producto</h1>
 
@@ -36,7 +14,6 @@
       </ul>
     <% } %>
 
-    <!-- enctype importante para subir archivos -->
     <form action="/admin/agregar" method="POST" enctype="multipart/form-data">
       <label for="nombre">Nombre:</label>
       <input type="text" name="nombre" id="nombre" required minlength="3" maxlength="100" value="<%= datos?.nombre || '' %>" />
@@ -50,47 +27,33 @@
         <option value="skin" <%= datos?.categoria === 'skin' ? 'selected' : '' %>>Skin</option>
       </select>
 
-<label for="subcategoria">Subcategoría:</label>
-<select name="subcategoria" id="subcategoria" required>
-  <% if (datos?.categoria === 'moneda') { %>
-    <option value="vp" <%= datos?.subcategoria === 'vp' ? 'selected' : '' %>>VP</option>
-    <option value="rp" <%= datos?.subcategoria === 'rp' ? 'selected' : '' %>>RP</option>
-    <option value="radiant" <%= datos?.subcategoria === 'radiant' ? 'selected' : '' %>>Radiant</option>
-  <% } else if (datos?.categoria === 'skin') { %>
-    <option value="selecta" <%= datos?.subcategoria === 'selecta' ? 'selected' : '' %>>Selecta</option>
-    <option value="deluxe" <%= datos?.subcategoria === 'deluxe' ? 'selected' : '' %>>Deluxe</option>
-    <option value="premium" <%= datos?.subcategoria === 'premium' ? 'selected' : '' %>>Premium</option>
-    <option value="ultra" <%= datos?.subcategoria === 'ultra' ? 'selected' : '' %>>Ultra</option>
-    <option value="exclusive" <%= datos?.subcategoria === 'exclusive' ? 'selected' : '' %>>Exclusive</option>
-  <% } else { %>
-    <!-- Default vacío para cuando no haya categoría o sea otra cosa -->
-    <option value="" disabled selected>Seleccione categoría primero</option>
-  <% } %>
-</select>
+      <label for="subcategoria">Subcategoría:</label>
+      <select name="subcategoria" id="subcategoria" required>
+        <% if (datos?.categoria === 'moneda') { %>
+          <option value="vp" <%= datos?.subcategoria === 'vp' ? 'selected' : '' %>>VP</option>
+          <option value="rp" <%= datos?.subcategoria === 'rp' ? 'selected' : '' %>>RP</option>
+          <option value="radiant" <%= datos?.subcategoria === 'radiant' ? 'selected' : '' %>>Radiant</option>
+        <% } else if (datos?.categoria === 'skin') { %>
+          <option value="selecta" <%= datos?.subcategoria === 'selecta' ? 'selected' : '' %>>Selecta</option>
+          <option value="deluxe" <%= datos?.subcategoria === 'deluxe' ? 'selected' : '' %>>Deluxe</option>
+          <option value="premium" <%= datos?.subcategoria === 'premium' ? 'selected' : '' %>>Premium</option>
+          <option value="ultra" <%= datos?.subcategoria === 'ultra' ? 'selected' : '' %>>Ultra</option>
+          <option value="exclusive" <%= datos?.subcategoria === 'exclusive' ? 'selected' : '' %>>Exclusive</option>
+        <% } else { %>
+          <option value="" disabled selected>Seleccione categoría primero</option>
+        <% } %>
+      </select>
 
       <label for="img">Imagen del producto:</label>
       <input type="file" name="img" id="img" accept="image/*" required />
-      
 
       <button type="submit">Agregar producto</button>
     </form>
 
     <a href="/admin/dashboard">⬅️ Volver al dashboard</a>
   </main>
-  <footer>
-  <div class="logo">
-    <img src="/favicon.png" alt="Logo ValorantTienda" />
-    <h1>ValorantTienda</h1>
-  </div>
 
-  <div class="footer-info">
-    <p>Valentin Corallo &nbsp;&nbsp; Agustin Gonzales</p>
-    <p>&copy; 2025 ValorantTienda. Todos los derechos reservados.</p>
-  </div>
-</footer>
-
-<script src="/js/temaToggle.js"></script>
-<script src="/js/productosForm.js"></script>
-
+  <%- include('../Partials/footer') %>
+  <%- include('../Partials/scripts') %>
 </body>
 </html>
