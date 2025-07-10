@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Editar Producto</title>
   <link id="temaCSS" rel="stylesheet" href="/css/stylesProd.css" />
   <link rel="icon" href="/favicon.png" type="image/png" />
@@ -11,25 +11,24 @@
 </head>
 <body>
   <header>
-  <a href="/loginUser.html" style="text-decoration: none; color: inherit;">
-  <div class="logo">
-    <img src="/favicon.png" alt="Logo ValorantTienda" />
-    <h1>ValorantTienda Dashboard</h1>
-  </div>
-  </a>
-  <nav>
-      <!-- Botón de tema aparte -->
-  <button id="btnTema" class="tema-toggle" aria-label="Cambiar tema">
-    <span id="iconoTema" class="material-symbols-outlined">dark_mode</span>
-  </button>
-  </nav>
+    <a href="/loginUser.html" style="text-decoration: none; color: inherit;">
+      <div class="logo">
+        <img src="/favicon.png" alt="Logo ValorantTienda" />
+        <h1>ValorantTienda Dashboard</h1>
+      </div>
+    </a>
+    <nav>
+      <button id="btnTema" class="tema-toggle" aria-label="Cambiar tema">
+        <span id="iconoTema" class="material-symbols-outlined">dark_mode</span>
+      </button>
+    </nav>
+  </header>
 
-</header>
   <main class="formulario-producto">
     <h1>Editar producto</h1>
 
     <% if (errores && errores.length > 0) { %>
-      <ul class="errores">
+      <ul class="errores" style="color: red;">
         <% errores.forEach(err => { %>
           <li><%= err.msg %></li>
         <% }) %>
@@ -38,10 +37,26 @@
 
     <form action="/admin/editar/<%= datos.id %>" method="POST" enctype="multipart/form-data">
       <label for="nombre">Nombre:</label>
-      <input type="text" name="nombre" id="nombre" required minlength="3" maxlength="100" value="<%= datos?.nombre || '' %>" />
+      <input
+        type="text"
+        name="nombre"
+        id="nombre"
+        required
+        minlength="3"
+        maxlength="100"
+        value="<%= datos?.nombre || '' %>"
+      />
 
       <label for="precio">Precio:</label>
-      <input type="number" name="precio" id="precio" required min="1" step="1" value="<%= datos?.precio || '' %>" />
+      <input
+        type="number"
+        name="precio"
+        id="precio"
+        required
+        min="1"
+        step="1"
+        value="<%= datos?.precio || '' %>"
+      />
 
       <label for="categoria">Categoría:</label>
       <select name="categoria" id="categoria" required>
@@ -49,26 +64,26 @@
         <option value="skin" <%= datos?.categoria === 'skin' ? 'selected' : '' %>>Skin</option>
       </select>
 
-<label for="subcategoria">Subcategoría:</label>
-<select name="subcategoria" id="subcategoria" required>
-  <% if (datos?.categoria === 'moneda') { %>
-    <option value="vp" <%= datos?.subcategoria === 'vp' ? 'selected' : '' %>>VP</option>
-    <option value="rp" <%= datos?.subcategoria === 'rp' ? 'selected' : '' %>>RP</option>
-    <option value="radiant" <%= datos?.subcategoria === 'radiant' ? 'selected' : '' %>>Radiant</option>
-  <% } else if (datos?.categoria === 'skin') { %>
-    <option value="selecta" <%= datos?.subcategoria === 'selecta' ? 'selected' : '' %>>Selecta</option>
-    <option value="deluxe" <%= datos?.subcategoria === 'deluxe' ? 'selected' : '' %>>Deluxe</option>
-    <option value="premium" <%= datos?.subcategoria === 'premium' ? 'selected' : '' %>>Premium</option>
-    <option value="ultra" <%= datos?.subcategoria === 'ultra' ? 'selected' : '' %>>Ultra</option>
-    <option value="exclusive" <%= datos?.subcategoria === 'exclusive' ? 'selected' : '' %>>Exclusive</option>
-  <% } else { %>
-    <option value="" disabled selected>Seleccione categoría primero</option>
-  <% } %>
-</select>
+      <label for="subcategoria">Subcategoría:</label>
+      <select name="subcategoria" id="subcategoria" required>
+        <% if (datos?.categoria === 'moneda') { %>
+          <option value="vp" <%= datos?.subcategoria === 'vp' ? 'selected' : '' %>>VP</option>
+          <option value="rp" <%= datos?.subcategoria === 'rp' ? 'selected' : '' %>>RP</option>
+          <option value="radiant" <%= datos?.subcategoria === 'radiant' ? 'selected' : '' %>>Radiant</option>
+        <% } else if (datos?.categoria === 'skin') { %>
+          <option value="selecta" <%= datos?.subcategoria === 'selecta' ? 'selected' : '' %>>Selecta</option>
+          <option value="deluxe" <%= datos?.subcategoria === 'deluxe' ? 'selected' : '' %>>Deluxe</option>
+          <option value="premium" <%= datos?.subcategoria === 'premium' ? 'selected' : '' %>>Premium</option>
+          <option value="ultra" <%= datos?.subcategoria === 'ultra' ? 'selected' : '' %>>Ultra</option>
+          <option value="exclusive" <%= datos?.subcategoria === 'exclusive' ? 'selected' : '' %>>Exclusive</option>
+        <% } else { %>
+          <option value="" disabled selected>Seleccione categoría primero</option>
+        <% } %>
+      </select>
 
-      <label for="img">Imagen actual:</label><br>
+      <label>Imagen actual:</label><br />
       <% if (datos.img) { %>
-        <img src="<%= datos.img %>" alt="Imagen actual" width="150"><br>
+        <img src="<%= datos.img %>" alt="Imagen actual" width="150" /><br />
       <% } else { %>
         <p>No hay imagen disponible.</p>
       <% } %>
@@ -76,24 +91,100 @@
       <label for="img">Subir nueva imagen (opcional):</label>
       <input type="file" name="img" id="img" accept="image/*" />
 
+      <label for="activo">
+        <input
+          type="checkbox"
+          name="activo"
+          id="activo"
+          <%= datos.activo ? 'checked' : '' %>
+        />
+        Activo
+      </label>
+
+      <label for="destacado">
+        <input
+          type="checkbox"
+          name="destacado"
+          id="destacado"
+          <%= datos.destacado ? 'checked' : '' %>
+        />
+        Destacado
+      </label>
+
+      <br /><br />
       <button type="submit">Guardar cambios</button>
     </form>
 
     <a href="/admin/dashboard">⬅️ Volver al dashboard</a>
   </main>
+
   <footer>
-  <div class="logo">
-    <img src="/favicon.png" alt="Logo ValorantTienda" />
-    <h1>ValorantTienda</h1>
-  </div>
+    <div class="logo">
+      <img src="/favicon.png" alt="Logo ValorantTienda" />
+      <h1>ValorantTienda</h1>
+    </div>
 
-  <div class="footer-info">
-    <p>Valentin Corallo &nbsp;&nbsp; Agustin Gonzales</p>
-    <p>&copy; 2025 ValorantTienda. Todos los derechos reservados.</p>
-  </div>
-</footer>
+    <div class="footer-info">
+      <p>Valentin Corallo &nbsp;&nbsp; Agustin Gonzales</p>
+      <p>&copy; 2025 ValorantTienda. Todos los derechos reservados.</p>
+    </div>
+  </footer>
 
-<script src="/js/temaToggle.js"></script>
-<script src="/js/productosForm.js"></script>
+  <script src="/js/temaToggle.js"></script>
+  <script src="/js/productosForm.js"></script>
+
+  <script>
+    // Para actualizar dinámicamente las opciones de subcategoría según categoría seleccionada
+    document.addEventListener('DOMContentLoaded', () => {
+      const categoriaSelect = document.getElementById('categoria');
+      const subcategoriaSelect = document.getElementById('subcategoria');
+
+      const opcionesSubcategorias = {
+        moneda: [
+          { value: 'vp', text: 'VP' },
+          { value: 'rp', text: 'RP' },
+          { value: 'radiant', text: 'Radiant' },
+        ],
+        skin: [
+          { value: 'selecta', text: 'Selecta' },
+          { value: 'deluxe', text: 'Deluxe' },
+          { value: 'premium', text: 'Premium' },
+          { value: 'ultra', text: 'Ultra' },
+          { value: 'exclusive', text: 'Exclusive' },
+        ],
+      };
+
+      function actualizarSubcategorias() {
+        const categoria = categoriaSelect.value;
+        const actualesub = '<%= datos?.subcategoria || "" %>';
+
+        // Limpiar opciones
+        subcategoriaSelect.innerHTML = '';
+
+        if (opcionesSubcategorias[categoria]) {
+          opcionesSubcategorias[categoria].forEach(({ value, text }) => {
+            const option = document.createElement('option');
+            option.value = value;
+            option.text = text;
+            if (value === actualesub) option.selected = true;
+            subcategoriaSelect.appendChild(option);
+          });
+          subcategoriaSelect.disabled = false;
+        } else {
+          const option = document.createElement('option');
+          option.text = 'Seleccione categoría primero';
+          option.disabled = true;
+          option.selected = true;
+          subcategoriaSelect.appendChild(option);
+          subcategoriaSelect.disabled = true;
+        }
+      }
+
+      categoriaSelect.addEventListener('change', actualizarSubcategorias);
+
+      // Inicializar en carga
+      actualizarSubcategorias();
+    });
+  </script>
 </body>
 </html>
