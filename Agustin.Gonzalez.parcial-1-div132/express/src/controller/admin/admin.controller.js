@@ -1,5 +1,5 @@
 import { getAdminByEmail, createAdmin } from '../../services/admin/admin.services.js';
-import { getAllProductos, createProducto, getProductoById } from '../../services/admin/productos.services.js';
+import { getAllProductos, createProducto, getProductoById, toggleEstadoProducto } from '../../services/admin/productos.services.js';
 import { obtenerVentas } from '../../services/admin/ventas.services.js';
 
 import bcrypt from 'bcrypt';
@@ -119,3 +119,13 @@ export const renderEditarProducto = async (req, res) => {
   }
 };
 
+
+export const toggleEstadoDesdeForm = async (req, res) => {
+  try {
+    await toggleEstadoProducto(req.params.id);
+    res.redirect('/admin/productos');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error al cambiar estado');
+  }
+};

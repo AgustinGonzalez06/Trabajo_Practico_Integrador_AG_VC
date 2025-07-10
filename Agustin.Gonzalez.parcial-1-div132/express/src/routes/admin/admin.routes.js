@@ -12,6 +12,7 @@ import {
   agregarProducto,
   renderVentas,
   renderEditarProducto,
+  toggleEstadoDesdeForm
 } from '../../controller/admin/admin.controller.js';
 
 import { actualizarProductoDesdeForm } from '../../controller/admin/productos.controller.js';
@@ -69,6 +70,7 @@ router.post(
   ],
   actualizarProductoDesdeForm
 );
+router.post('/toggle-estado/:id', toggleEstadoDesdeForm);
 
 // Ventas admin
 router.get('/ventas', renderVentas);
